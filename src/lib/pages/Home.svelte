@@ -4,4 +4,4 @@
 </script>
 
 <h1>Home</h1>
-<a href="/events" use:link>Eventos</a>
+<a href="/login" use:link>Login</a>
