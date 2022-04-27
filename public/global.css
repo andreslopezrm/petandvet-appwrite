@@ -1,0 +1,15 @@
+:root {
+	--primary-color: #0D9B90;
+	--secundary-color: #5D1D46;
+	--font-color-ligth: #eee;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
