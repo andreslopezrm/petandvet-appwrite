@@ -19,7 +19,7 @@ body {
 }
 
 .container {
-	max-width: 1200px;
+	max-width: 1100px;
 	margin: 0 auto;
 }
 
@@ -29,4 +29,28 @@ body {
 
 .wrapper a {
 	color: var(--secundary-color);
+}
+
+.mt-1 {
+	margin-top: 1rem;
+}
+
+.big-title {
+	font-size: 2.3rem;
+}
+
+@media only screen and (min-width: 600px) {
+	main {
+		display: flex;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	main > section {
+		flex: 2;
+	}
+
+	main > aside {
+		flex: 1;
+	}
 }

@@ -7,13 +7,13 @@ import { routes } from './lib/router'
 </script>
 
 <Header />
-<main class="wrapper">
+<div class="wrapper">
 	<Router {routes} on:conditionsFailed={() => push("/")} />
-</main>
+</div>
 <Footer />
 
 <style>
-	main {
+	:root {
 		--agnostic-btn-primary: var(--secundary-color);
 		--agnostic-focus-ring-outline-color: var(--ring-color); 
 	}

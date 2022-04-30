@@ -41,7 +41,14 @@ export default {
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production
-			}
+			},
+			onwarn: (warning, handler) => {
+                const { code, frame, filename } = warning
+                if (code === "css-unused-selector") {
+                    return;
+                }
+                handler(warning)
+            }
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
@@ -72,5 +79,6 @@ export default {
 	],
 	watch: {
 		clearScreen: false
-	}
+	},
+	
 };

@@ -3,12 +3,13 @@
     import { Button } from 'agnostic-svelte';
 </script>
 
-<main>
+<main class="container mt-1">
     <section>
-        <Button mode="primary">Go</Button>
+        <h2 class="big-title">Last photo pets</h2>
     </section>
     <aside>
-
+        <a href="/login" use:link>Login</a>
     </aside>
 </main>
-<a href="/login" use:link>Login</a>
+
+
