@@ -1,5 +1,6 @@
 <script>
-    import {link} from 'svelte-spa-router';
+import {link} from "svelte-spa-router";
+import { state } from "../store";
 </script>
 
 <nav>
@@ -7,14 +8,23 @@
         <h1>
             <a href="/" use:link> 🐾 🧑‍⚕️ Pet And Vet</a>
         </h1>
-        <!-- <div>
-            <a href="/profile" use:link> ℹ️ My Profile</a>
-        </div> -->
-        <div>
-            <a href="/register" use:link> Register </a> 
-            <span class="text-white"> | </span>
-            <a href="/login" use:link> Login </a>
-        </div> 
+        {#await $state.account }
+            <span />
+        {:then account } 
+           {#if account }
+            <div>
+                <a href="/profile" use:link> ℹ️ My Profile</a>
+            </div>
+           {/if}
+
+           {#if !account}
+            <div>
+                <a href="/register" use:link> Register </a> 
+                <span class="text-white"> | </span>
+                <a href="/login" use:link> Login </a>
+            </div> 
+           {/if}
+        {/await}
     </div>
 </nav>
 

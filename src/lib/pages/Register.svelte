@@ -3,6 +3,7 @@ import { Input, Select, Button, Close, Toasts, Toast  } from "agnostic-svelte";
 import { onMount } from "svelte";
 import { sdk } from "../../appwrite";
 import Aside from "../componentes/Aside.svelte";
+import { state } from "../store";
 
 let countriesOptions = [];
 let isToastCountryOpen = false
@@ -28,28 +29,29 @@ function toastKindClose() {
 
 async function handleSubmit() {
     
-    if(!country) {
-        isToastCountryOpen = true;
-        return;
-    }
+    // if(!country) {
+    //     isToastCountryOpen = true;
+    //     return;
+    // }
 
-    if(!kind) {
-        isToastKindOpen = true;
-        return;
-    }
+    // if(!kind) {
+    //     isToastKindOpen = true;
+    //     return;
+    // }
 
-    try {
-        const account = await sdk.account.create('unique()', email, password, fullname);
-        const usermeta = await sdk.database.createDocument('usermeta', 'unique', {
-            userId: account.$id,
-            country,
-            kind
-        });
+    // try {
+    //     const account = await sdk.account.create('unique()', email, password, fullname);
+    //     const usermeta = await sdk.database.createDocument('usermeta', 'unique', {
+    //         userId: account.$id,
+    //         country,
+    //         kind
+    //     });
 
-        //const session = await sdk.account.createSession(email, password);
-    } catch(err) {
-        console.log(err);
-    }
+    //     const session = await sdk.account.createSession(email, password);
+    // } catch(err) {
+    //     console.log(err);
+    // }
+    
 }
 
 </script>
