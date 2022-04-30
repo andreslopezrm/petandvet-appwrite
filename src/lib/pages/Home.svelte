@@ -1,7 +1,14 @@
 <script>
     import {link} from 'svelte-spa-router'
-
+    import { Button } from 'agnostic-svelte';
 </script>
 
-<h1>Home</h1>
+<main>
+    <section>
+        <Button mode="primary">Go</Button>
+    </section>
+    <aside>
+
+    </aside>
+</main>
 <a href="/login" use:link>Login</a>

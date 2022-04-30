@@ -3,9 +3,10 @@
 	--secundary-color: #5D1D46;
 	--font-color-ligth: #eee;
 	--background-color: #ECEFF1;
+	--ring-color: #8b2c69;
 }
 
-html, body {
+html, body, h1, h2 {
 	margin: 0;
 	padding: 0;
 }
@@ -17,8 +18,15 @@ body {
 	min-height: 100vh;
 }
 
-
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
+}
+
+.wrapper {
+	min-height: calc(100vh - 63px);
+}
+
+.wrapper a {
+	color: var(--secundary-color);
 }
