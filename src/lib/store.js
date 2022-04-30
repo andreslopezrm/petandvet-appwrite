@@ -11,6 +11,12 @@ const createState = () => {
         init: async (account = null) => {
             return set({ account });
         },
+        update: async (account) => {
+            update((currentState) => {
+                currentState.account = account;
+                return currentState;
+            });
+        },
         destroy: async () => {
             update((currentState) => {
                 currentState.account = null;

@@ -1,13 +1,15 @@
 <script>
 import { Input, Select, Button, Close, Toasts, Toast  } from "agnostic-svelte";
 import { onMount } from "svelte";
+import { replace } from "svelte-spa-router";
 import { sdk } from "../../appwrite";
 import Aside from "../componentes/Aside.svelte";
-import { state } from "../store";
+import { createUser } from "../services/user";
+
 
 let countriesOptions = [];
-let isToastCountryOpen = false
-let isToastKindOpen = false
+let isToastOpen = false
+let errorMessage = "";
 let fullname = "";
 let email = "";
 let password = "";
@@ -19,38 +21,38 @@ onMount(async () => {
     countriesOptions = countries.map(({ name, code }) => ({ value: code, label: name })); 
 })
 
-function toastCountryClose() {
-    isToastCountryOpen = false
+function toastClose() {
+    errorMessage = "";
+    isToastOpen = false
 }
 
-function toastKindClose() {
-    isToastKindOpen = false
+function toastOpen(message) {
+    errorMessage = message;
+    isToastOpen = true;
 }
+
 
 async function handleSubmit() {
+
+    errorMessage = "";
+    isToastOpen = false;
     
-    // if(!country) {
-    //     isToastCountryOpen = true;
-    //     return;
-    // }
+    if(!country) {
+        toastOpen("Select a country");
+        return;
+    }
 
-    // if(!kind) {
-    //     isToastKindOpen = true;
-    //     return;
-    // }
+    if(!kind) {
+        toastOpen("Select a kind");
+        return;
+    }
 
-    // try {
-    //     const account = await sdk.account.create('unique()', email, password, fullname);
-    //     const usermeta = await sdk.database.createDocument('usermeta', 'unique', {
-    //         userId: account.$id,
-    //         country,
-    //         kind
-    //     });
-
-    //     const session = await sdk.account.createSession(email, password);
-    // } catch(err) {
-    //     console.log(err);
-    // }
+    try {
+        await createUser({ fullname, email, password, country, kind });
+        replace("/profile");
+    } catch(err) {
+        toastOpen(err.message);
+    }
     
 }
 
@@ -103,17 +105,10 @@ async function handleSubmit() {
 </main>
 
 <Toasts portalRootSelector="body" horizontalPosition="center" verticalPosition="bottom">
-    <Toast isOpen={isToastCountryOpen} type="error">
+    <Toast isOpen={isToastOpen} type="error">
         <div class="toast-error-content">
-            <p>Select a country</p>
-            <Close color="var(--agnostic-error-dark)" on:click={toastCountryClose} />
-        </div>
-    </Toast>
-
-    <Toast isOpen={isToastKindOpen} type="error">
-        <div class="toast-error-content">
-            <p>Select a kind</p>
-            <Close color="var(--agnostic-error-dark)" on:click={toastKindClose} />
+            <p>{errorMessage}</p>
+            <Close color="var(--agnostic-error-dark)" on:click={toastClose} />
         </div>
     </Toast>
 </Toasts>
