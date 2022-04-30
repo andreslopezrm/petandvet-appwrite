@@ -4,14 +4,12 @@ var app = (function () {
     'use strict';
 
     function noop() { }
+    const identity = x => x;
     function assign(tar, src) {
         // @ts-ignore
         for (const k in src)
             tar[k] = src[k];
         return tar;
-    }
-    function is_promise(value) {
-        return value && typeof value === 'object' && typeof value.then === 'function';
     }
     function add_location(element, file, line, column, char) {
         element.__svelte_meta = {
@@ -36,20 +34,12 @@ var app = (function () {
     function is_empty(obj) {
         return Object.keys(obj).length === 0;
     }
-    function validate_store(store, name) {
-        if (store != null && typeof store.subscribe !== 'function') {
-            throw new Error(`'${name}' is not a store with a 'subscribe' method`);
-        }
-    }
     function subscribe(store, ...callbacks) {
         if (store == null) {
             return noop;
         }
         const unsub = store.subscribe(...callbacks);
         return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
-    }
-    function component_subscribe(component, store, callback) {
-        component.$$.on_destroy.push(subscribe(store, callback));
     }
     function create_slot(definition, ctx, $$scope, fn) {
         if (definition) {
@@ -118,8 +108,60 @@ var app = (function () {
     function action_destroyer(action_result) {
         return action_result && is_function(action_result.destroy) ? action_result.destroy : noop;
     }
+
+    const is_client = typeof window !== 'undefined';
+    let now = is_client
+        ? () => window.performance.now()
+        : () => Date.now();
+    let raf = is_client ? cb => requestAnimationFrame(cb) : noop;
+
+    const tasks = new Set();
+    function run_tasks(now) {
+        tasks.forEach(task => {
+            if (!task.c(now)) {
+                tasks.delete(task);
+                task.f();
+            }
+        });
+        if (tasks.size !== 0)
+            raf(run_tasks);
+    }
+    /**
+     * Creates a new task that runs on each raf frame
+     * until it returns a falsy value or is aborted
+     */
+    function loop(callback) {
+        let task;
+        if (tasks.size === 0)
+            raf(run_tasks);
+        return {
+            promise: new Promise(fulfill => {
+                tasks.add(task = { c: callback, f: fulfill });
+            }),
+            abort() {
+                tasks.delete(task);
+            }
+        };
+    }
     function append(target, node) {
         target.appendChild(node);
+    }
+    function get_root_for_style(node) {
+        if (!node)
+            return document;
+        const root = node.getRootNode ? node.getRootNode() : node.ownerDocument;
+        if (root && root.host) {
+            return root;
+        }
+        return node.ownerDocument;
+    }
+    function append_empty_stylesheet(node) {
+        const style_element = element('style');
+        append_stylesheet(get_root_for_style(node), style_element);
+        return style_element.sheet;
+    }
+    function append_stylesheet(node, style) {
+        append(node.head || node, style);
     }
     function insert(target, node, anchor) {
         target.insertBefore(node, anchor || null);
@@ -230,6 +272,72 @@ var app = (function () {
         const e = document.createEvent('CustomEvent');
         e.initCustomEvent(type, bubbles, false, detail);
         return e;
+    }
+
+    // we need to store the information for multiple documents because a Svelte application could also contain iframes
+    // https://github.com/sveltejs/svelte/issues/3624
+    const managed_styles = new Map();
+    let active = 0;
+    // https://github.com/darkskyapp/string-hash/blob/master/index.js
+    function hash(str) {
+        let hash = 5381;
+        let i = str.length;
+        while (i--)
+            hash = ((hash << 5) - hash) ^ str.charCodeAt(i);
+        return hash >>> 0;
+    }
+    function create_style_information(doc, node) {
+        const info = { stylesheet: append_empty_stylesheet(node), rules: {} };
+        managed_styles.set(doc, info);
+        return info;
+    }
+    function create_rule(node, a, b, duration, delay, ease, fn, uid = 0) {
+        const step = 16.666 / duration;
+        let keyframes = '{\n';
+        for (let p = 0; p <= 1; p += step) {
+            const t = a + (b - a) * ease(p);
+            keyframes += p * 100 + `%{${fn(t, 1 - t)}}\n`;
+        }
+        const rule = keyframes + `100% {${fn(b, 1 - b)}}\n}`;
+        const name = `__svelte_${hash(rule)}_${uid}`;
+        const doc = get_root_for_style(node);
+        const { stylesheet, rules } = managed_styles.get(doc) || create_style_information(doc, node);
+        if (!rules[name]) {
+            rules[name] = true;
+            stylesheet.insertRule(`@keyframes ${name} ${rule}`, stylesheet.cssRules.length);
+        }
+        const animation = node.style.animation || '';
+        node.style.animation = `${animation ? `${animation}, ` : ''}${name} ${duration}ms linear ${delay}ms 1 both`;
+        active += 1;
+        return name;
+    }
+    function delete_rule(node, name) {
+        const previous = (node.style.animation || '').split(', ');
+        const next = previous.filter(name
+            ? anim => anim.indexOf(name) < 0 // remove specific animation
+            : anim => anim.indexOf('__svelte') === -1 // remove all Svelte animations
+        );
+        const deleted = previous.length - next.length;
+        if (deleted) {
+            node.style.animation = next.join(', ');
+            active -= deleted;
+            if (!active)
+                clear_rules();
+        }
+    }
+    function clear_rules() {
+        raf(() => {
+            if (active)
+                return;
+            managed_styles.forEach(info => {
+                const { stylesheet } = info;
+                let i = stylesheet.cssRules.length;
+                while (i--)
+                    stylesheet.deleteRule(i);
+                info.rules = {};
+            });
+            managed_styles.clear();
+        });
     }
 
     let current_component;
@@ -363,6 +471,20 @@ var app = (function () {
             $$.after_update.forEach(add_render_callback);
         }
     }
+
+    let promise;
+    function wait() {
+        if (!promise) {
+            promise = Promise.resolve();
+            promise.then(() => {
+                promise = null;
+            });
+        }
+        return promise;
+    }
+    function dispatch(node, direction, kind) {
+        node.dispatchEvent(custom_event(`${direction ? 'intro' : 'outro'}${kind}`));
+    }
     const outroing = new Set();
     let outros;
     function group_outros() {
@@ -400,87 +522,111 @@ var app = (function () {
             block.o(local);
         }
     }
-
-    function handle_promise(promise, info) {
-        const token = info.token = {};
-        function update(type, index, key, value) {
-            if (info.token !== token)
-                return;
-            info.resolved = value;
-            let child_ctx = info.ctx;
-            if (key !== undefined) {
-                child_ctx = child_ctx.slice();
-                child_ctx[key] = value;
+    const null_transition = { duration: 0 };
+    function create_bidirectional_transition(node, fn, params, intro) {
+        let config = fn(node, params);
+        let t = intro ? 0 : 1;
+        let running_program = null;
+        let pending_program = null;
+        let animation_name = null;
+        function clear_animation() {
+            if (animation_name)
+                delete_rule(node, animation_name);
+        }
+        function init(program, duration) {
+            const d = (program.b - t);
+            duration *= Math.abs(d);
+            return {
+                a: t,
+                b: program.b,
+                d,
+                duration,
+                start: program.start,
+                end: program.start + duration,
+                group: program.group
+            };
+        }
+        function go(b) {
+            const { delay = 0, duration = 300, easing = identity, tick = noop, css } = config || null_transition;
+            const program = {
+                start: now() + delay,
+                b
+            };
+            if (!b) {
+                // @ts-ignore todo: improve typings
+                program.group = outros;
+                outros.r += 1;
             }
-            const block = type && (info.current = type)(child_ctx);
-            let needs_flush = false;
-            if (info.block) {
-                if (info.blocks) {
-                    info.blocks.forEach((block, i) => {
-                        if (i !== index && block) {
-                            group_outros();
-                            transition_out(block, 1, 1, () => {
-                                if (info.blocks[i] === block) {
-                                    info.blocks[i] = null;
-                                }
-                            });
-                            check_outros();
+            if (running_program || pending_program) {
+                pending_program = program;
+            }
+            else {
+                // if this is an intro, and there's a delay, we need to do
+                // an initial tick and/or apply CSS animation immediately
+                if (css) {
+                    clear_animation();
+                    animation_name = create_rule(node, t, b, duration, delay, easing, css);
+                }
+                if (b)
+                    tick(0, 1);
+                running_program = init(program, duration);
+                add_render_callback(() => dispatch(node, b, 'start'));
+                loop(now => {
+                    if (pending_program && now > pending_program.start) {
+                        running_program = init(pending_program, duration);
+                        pending_program = null;
+                        dispatch(node, running_program.b, 'start');
+                        if (css) {
+                            clear_animation();
+                            animation_name = create_rule(node, t, running_program.b, running_program.duration, 0, easing, config.css);
                         }
+                    }
+                    if (running_program) {
+                        if (now >= running_program.end) {
+                            tick(t = running_program.b, 1 - t);
+                            dispatch(node, running_program.b, 'end');
+                            if (!pending_program) {
+                                // we're done
+                                if (running_program.b) {
+                                    // intro — we can tidy up immediately
+                                    clear_animation();
+                                }
+                                else {
+                                    // outro — needs to be coordinated
+                                    if (!--running_program.group.r)
+                                        run_all(running_program.group.c);
+                                }
+                            }
+                            running_program = null;
+                        }
+                        else if (now >= running_program.start) {
+                            const p = now - running_program.start;
+                            t = running_program.a + running_program.d * easing(p / running_program.duration);
+                            tick(t, 1 - t);
+                        }
+                    }
+                    return !!(running_program || pending_program);
+                });
+            }
+        }
+        return {
+            run(b) {
+                if (is_function(config)) {
+                    wait().then(() => {
+                        // @ts-ignore
+                        config = config();
+                        go(b);
                     });
                 }
                 else {
-                    info.block.d(1);
+                    go(b);
                 }
-                block.c();
-                transition_in(block, 1);
-                block.m(info.mount(), info.anchor);
-                needs_flush = true;
+            },
+            end() {
+                clear_animation();
+                running_program = pending_program = null;
             }
-            info.block = block;
-            if (info.blocks)
-                info.blocks[index] = block;
-            if (needs_flush) {
-                flush();
-            }
-        }
-        if (is_promise(promise)) {
-            const current_component = get_current_component();
-            promise.then(value => {
-                set_current_component(current_component);
-                update(info.then, 1, info.value, value);
-                set_current_component(null);
-            }, error => {
-                set_current_component(current_component);
-                update(info.catch, 2, info.error, error);
-                set_current_component(null);
-                if (!info.hasCatch) {
-                    throw error;
-                }
-            });
-            // if we previously had a then/catch block, destroy it
-            if (info.current !== info.pending) {
-                update(info.pending, 0);
-                return true;
-            }
-        }
-        else {
-            if (info.current !== info.then) {
-                update(info.then, 1, info.value, promise);
-                return true;
-            }
-            info.resolved = promise;
-        }
-    }
-    function update_await_block_branch(info, ctx, dirty) {
-        const child_ctx = ctx.slice();
-        const { resolved } = info;
-        if (info.current === info.then) {
-            child_ctx[info.value] = resolved;
-        }
-        if (info.current === info.catch) {
-            child_ctx[info.error] = resolved;
-        }
-        info.block.p(child_ctx, dirty);
+        };
     }
 
     const globals = (typeof window !== 'undefined'
@@ -1953,6 +2099,16 @@ var app = (function () {
     	}
     }
 
+    function fade(node, { delay = 0, duration = 400, easing = identity } = {}) {
+        const o = +getComputedStyle(node).opacity;
+        return {
+            delay,
+            duration,
+            easing,
+            css: t => `opacity: ${t * o}`
+        };
+    }
+
     const createState = () => {
 
         const { subscribe, set, update } = writable({
@@ -1984,47 +2140,36 @@ var app = (function () {
     /* src/lib/componentes/Header.svelte generated by Svelte v3.47.0 */
     const file$f = "src/lib/componentes/Header.svelte";
 
-    // (1:0) <script> import {link}
-    function create_catch_block(ctx) {
-    	const block = { c: noop, m: noop, p: noop, d: noop };
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_catch_block.name,
-    		type: "catch",
-    		source: "(1:0) <script> import {link}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (13:8) {:then account }
-    function create_then_block(ctx) {
+    // (29:12) {#if isShowMenu}
+    function create_if_block$6(ctx) {
+    	let div;
     	let t;
-    	let if_block1_anchor;
-    	let if_block0 = /*account*/ ctx[1] && create_if_block_1$1(ctx);
-    	let if_block1 = !/*account*/ ctx[1] && create_if_block$6(ctx);
+    	let div_transition;
+    	let current;
+    	let if_block0 = /*account*/ ctx[1] && create_if_block_2$1(ctx);
+    	let if_block1 = !/*account*/ ctx[1] && create_if_block_1$1(ctx);
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			if (if_block0) if_block0.c();
     			t = space();
     			if (if_block1) if_block1.c();
-    			if_block1_anchor = empty();
+    			add_location(div, file$f, 29, 16, 554);
     		},
     		m: function mount(target, anchor) {
-    			if (if_block0) if_block0.m(target, anchor);
-    			insert_dev(target, t, anchor);
-    			if (if_block1) if_block1.m(target, anchor);
-    			insert_dev(target, if_block1_anchor, anchor);
+    			insert_dev(target, div, anchor);
+    			if (if_block0) if_block0.m(div, null);
+    			append_dev(div, t);
+    			if (if_block1) if_block1.m(div, null);
+    			current = true;
     		},
     		p: function update(ctx, dirty) {
     			if (/*account*/ ctx[1]) {
     				if (if_block0) ; else {
-    					if_block0 = create_if_block_1$1(ctx);
+    					if_block0 = create_if_block_2$1(ctx);
     					if_block0.c();
-    					if_block0.m(t.parentNode, t);
+    					if_block0.m(div, t);
     				}
     			} else if (if_block0) {
     				if_block0.d(1);
@@ -2033,54 +2178,65 @@ var app = (function () {
 
     			if (!/*account*/ ctx[1]) {
     				if (if_block1) ; else {
-    					if_block1 = create_if_block$6(ctx);
+    					if_block1 = create_if_block_1$1(ctx);
     					if_block1.c();
-    					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
+    					if_block1.m(div, null);
     				}
     			} else if (if_block1) {
     				if_block1.d(1);
     				if_block1 = null;
     			}
     		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			add_render_callback(() => {
+    				if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 350 }, true);
+    				div_transition.run(1);
+    			});
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			if (!div_transition) div_transition = create_bidirectional_transition(div, fade, { duration: 350 }, false);
+    			div_transition.run(0);
+    			current = false;
+    		},
     		d: function destroy(detaching) {
-    			if (if_block0) if_block0.d(detaching);
-    			if (detaching) detach_dev(t);
-    			if (if_block1) if_block1.d(detaching);
-    			if (detaching) detach_dev(if_block1_anchor);
+    			if (detaching) detach_dev(div);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
+    			if (detaching && div_transition) div_transition.end();
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_then_block.name,
-    		type: "then",
-    		source: "(13:8) {:then account }",
+    		id: create_if_block$6.name,
+    		type: "if",
+    		source: "(29:12) {#if isShowMenu}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (14:11) {#if account }
-    function create_if_block_1$1(ctx) {
-    	let div;
+    // (31:20) {#if account}
+    function create_if_block_2$1(ctx) {
     	let a;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			div = element("div");
     			a = element("a");
     			a.textContent = "ℹ️ My Profile";
     			attr_dev(a, "href", "/profile");
     			attr_dev(a, "class", "svelte-tjx43h");
-    			add_location(a, file$f, 15, 16, 361);
-    			add_location(div, file$f, 14, 12, 339);
+    			add_location(a, file$f, 31, 24, 657);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, a);
+    			insert_dev(target, a, anchor);
 
     			if (!mounted) {
     				dispose = action_destroyer(link.call(null, a));
@@ -2088,7 +2244,7 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(a);
     			mounted = false;
     			dispose();
     		}
@@ -2096,18 +2252,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$1.name,
+    		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(14:11) {#if account }",
+    		source: "(31:20) {#if account}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (20:11) {#if !account}
-    function create_if_block$6(ctx) {
-    	let div;
+    // (35:20) {#if !account}
+    function create_if_block_1$1(ctx) {
     	let a0;
     	let t1;
     	let span;
@@ -2118,7 +2273,6 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div = element("div");
     			a0 = element("a");
     			a0.textContent = "Register";
     			t1 = space();
@@ -2129,21 +2283,19 @@ var app = (function () {
     			a1.textContent = "Login";
     			attr_dev(a0, "href", "/register");
     			attr_dev(a0, "class", "svelte-tjx43h");
-    			add_location(a0, file$f, 21, 16, 505);
+    			add_location(a0, file$f, 35, 20, 786);
     			attr_dev(span, "class", "text-white");
-    			add_location(span, file$f, 22, 16, 566);
+    			add_location(span, file$f, 36, 20, 851);
     			attr_dev(a1, "href", "/login");
     			attr_dev(a1, "class", "svelte-tjx43h");
-    			add_location(a1, file$f, 23, 16, 618);
-    			add_location(div, file$f, 20, 12, 483);
+    			add_location(a1, file$f, 37, 20, 907);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, a0);
-    			append_dev(div, t1);
-    			append_dev(div, span);
-    			append_dev(div, t3);
-    			append_dev(div, a1);
+    			insert_dev(target, a0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, span, anchor);
+    			insert_dev(target, t3, anchor);
+    			insert_dev(target, a1, anchor);
 
     			if (!mounted) {
     				dispose = [
@@ -2155,7 +2307,11 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(a0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(span);
+    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(a1);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -2163,38 +2319,9 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$6.name,
+    		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(20:11) {#if !account}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (11:32)              <span />         {:then account }
-    function create_pending_block(ctx) {
-    	let span;
-
-    	const block = {
-    		c: function create() {
-    			span = element("span");
-    			add_location(span, file$f, 11, 12, 266);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, span, anchor);
-    		},
-    		p: noop,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(span);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_pending_block.name,
-    		type: "pending",
-    		source: "(11:32)              <span />         {:then account }",
+    		source: "(35:20) {#if !account}",
     		ctx
     	});
 
@@ -2207,22 +2334,10 @@ var app = (function () {
     	let h1;
     	let a;
     	let t1;
-    	let promise;
+    	let current;
     	let mounted;
     	let dispose;
-
-    	let info = {
-    		ctx,
-    		current: null,
-    		token: null,
-    		hasCatch: false,
-    		pending: create_pending_block,
-    		then: create_then_block,
-    		catch: create_catch_block,
-    		value: 1
-    	};
-
-    	handle_promise(promise = /*$state*/ ctx[0].account, info);
+    	let if_block = /*isShowMenu*/ ctx[0] && create_if_block$6(ctx);
 
     	const block = {
     		c: function create() {
@@ -2232,16 +2347,16 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "🐾 🧑‍⚕️ Pet And Vet";
     			t1 = space();
-    			info.block.c();
+    			if (if_block) if_block.c();
     			attr_dev(a, "href", "/");
     			attr_dev(a, "class", "svelte-tjx43h");
-    			add_location(a, file$f, 8, 12, 160);
+    			add_location(a, file$f, 26, 12, 448);
     			attr_dev(h1, "class", "svelte-tjx43h");
-    			add_location(h1, file$f, 7, 8, 143);
+    			add_location(h1, file$f, 25, 8, 431);
     			attr_dev(div, "class", "container header svelte-tjx43h");
-    			add_location(div, file$f, 6, 4, 104);
+    			add_location(div, file$f, 24, 4, 392);
     			attr_dev(nav, "class", "svelte-tjx43h");
-    			add_location(nav, file$f, 5, 0, 94);
+    			add_location(nav, file$f, 23, 0, 382);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2252,30 +2367,50 @@ var app = (function () {
     			append_dev(div, h1);
     			append_dev(h1, a);
     			append_dev(div, t1);
-    			info.block.m(div, info.anchor = null);
-    			info.mount = () => div;
-    			info.anchor = null;
+    			if (if_block) if_block.m(div, null);
+    			current = true;
 
     			if (!mounted) {
     				dispose = action_destroyer(link.call(null, a));
     				mounted = true;
     			}
     		},
-    		p: function update(new_ctx, [dirty]) {
-    			ctx = new_ctx;
-    			info.ctx = ctx;
+    		p: function update(ctx, [dirty]) {
+    			if (/*isShowMenu*/ ctx[0]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
 
-    			if (dirty & /*$state*/ 1 && promise !== (promise = /*$state*/ ctx[0].account) && handle_promise(promise, info)) ; else {
-    				update_await_block_branch(info, ctx, dirty);
+    					if (dirty & /*isShowMenu*/ 1) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block$6(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
     			}
     		},
-    		i: noop,
-    		o: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(nav);
-    			info.block.d();
-    			info.token = null;
-    			info = null;
+    			if (if_block) if_block.d();
     			mounted = false;
     			dispose();
     		}
@@ -2293,19 +2428,49 @@ var app = (function () {
     }
 
     function instance$g($$self, $$props, $$invalidate) {
-    	let $state;
-    	validate_store(state, 'state');
-    	component_subscribe($$self, state, $$value => $$invalidate(0, $state = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Header', slots, []);
+    	let isShowMenu = false;
+    	let account = null;
+
+    	function visibleMenu() {
+    		$$invalidate(0, isShowMenu = true);
+    	}
+
+    	onMount(() => {
+    		setTimeout(visibleMenu, 500);
+    	});
+
+    	state.subscribe(data => {
+    		$$invalidate(1, account = data?.account);
+    	});
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Header> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$capture_state = () => ({ link, state, $state });
-    	return [$state];
+    	$$self.$capture_state = () => ({
+    		onMount,
+    		link,
+    		fade,
+    		state,
+    		isShowMenu,
+    		account,
+    		visibleMenu
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('isShowMenu' in $$props) $$invalidate(0, isShowMenu = $$props.isShowMenu);
+    		if ('account' in $$props) $$invalidate(1, account = $$props.account);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [isShowMenu, account];
     }
 
     class Header extends SvelteComponentDev {
@@ -10431,7 +10596,6 @@ var app = (function () {
             const account = await sdk.account.get();
             const usermeta = await sdk.database.getDocument('usermeta', account.$id);
             const user = {...usermeta, ...account};
-            console.log(user);
             state.init(user);
         } catch(err) {
             state.init(null);

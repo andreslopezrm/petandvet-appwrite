@@ -30,7 +30,6 @@ export async function loadUser() {
         const account = await sdk.account.get();
         const usermeta = await sdk.database.getDocument('usermeta', account.$id);
         const user = {...usermeta, ...account};
-        console.log(user);
         state.init(user)
     } catch(err) {
         state.init(null);

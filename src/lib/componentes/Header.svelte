@@ -1,6 +1,24 @@
 <script>
+import { onMount } from "svelte";
 import {link} from "svelte-spa-router";
+import { fade } from 'svelte/transition';
 import { state } from "../store";
+
+let isShowMenu = false;
+let account = null;
+
+function visibleMenu() {
+    isShowMenu = true;
+}
+
+onMount(() => {
+    setTimeout(visibleMenu, 500);
+})
+
+state.subscribe((data) => {
+    account = data?.account;
+})
+
 </script>
 
 <nav>
@@ -8,23 +26,19 @@ import { state } from "../store";
         <h1>
             <a href="/" use:link> 🐾 🧑‍⚕️ Pet And Vet</a>
         </h1>
-        {#await $state.account }
-            <span />
-        {:then account } 
-           {#if account }
-            <div>
-                <a href="/profile" use:link> ℹ️ My Profile</a>
-            </div>
-           {/if}
+            {#if isShowMenu}
+                <div transition:fade="{{  duration: 350 }}">
+                    {#if account}
+                        <a href="/profile" use:link> ℹ️ My Profile</a>
+                    {/if}
 
-           {#if !account}
-            <div>
-                <a href="/register" use:link> Register </a> 
-                <span class="text-white"> | </span>
-                <a href="/login" use:link> Login </a>
-            </div> 
-           {/if}
-        {/await}
+                    {#if !account}
+                    <a href="/register" use:link> Register </a> 
+                    <span class="text-white"> | </span>
+                    <a href="/login" use:link> Login </a>
+                    {/if}
+                </div>
+            {/if}
     </div>
 </nav>
 
