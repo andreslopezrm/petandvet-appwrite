@@ -15,15 +15,21 @@ export async function createUser({ fullname, email, password, country, kind }) {
     state.update(user);
 }
 
-export function login() {
+export async function login({ email, password }) {
+    const session = await sdk.account.createSession(email, password);
+    saveSessionId(session.$id);
 
+    const account = await sdk.account.get();
+    const usermeta = await sdk.database.getDocument('usermeta', account.$id);
+    const user = {...usermeta, ...account};
+    state.update(user);
 }
 
 
 export async function logout() {
     const sessionId = getSessionId();
-    await sdk.account.deleteSession(sessionId);
     state.destroy();
+    await sdk.account.deleteSession(sessionId);
 }
 
 

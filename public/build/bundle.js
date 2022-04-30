@@ -6465,7 +6465,7 @@ var app = (function () {
     			role: "tab",
     			ariaControls: /*tab*/ ctx[25].ariaControls,
     			isActive: /*tab*/ ctx[25].isActive,
-    			$$slots: { default: [create_default_slot$3] },
+    			$$slots: { default: [create_default_slot$5] },
     			$$scope: { ctx }
     		};
 
@@ -6569,7 +6569,7 @@ var app = (function () {
     }
 
     // (356:8) <svelte:component           this={tab.tabButtonComponent}           bind:this={dynamicComponentRefs[i]}           on:click={() => selectTab(i)}           on:keydown={(e) => handleKeyDown(e, i)}           disabled={isDisabled ||             disabledOptions.includes(tab.title) ||             undefined}           classes={tabButtonClasses(tab)}           role="tab"           ariaControls={tab.ariaControls}           isActive={tab.isActive}         >
-    function create_default_slot$3(ctx) {
+    function create_default_slot$5(ctx) {
     	let t0_value = /*tab*/ ctx[25].title + "";
     	let t0;
     	let t1;
@@ -6594,7 +6594,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot$3.name,
+    		id: create_default_slot$5.name,
     		type: "slot",
     		source: "(356:8) <svelte:component           this={tab.tabButtonComponent}           bind:this={dynamicComponentRefs[i]}           on:click={() => selectTab(i)}           on:keydown={(e) => handleKeyDown(e, i)}           disabled={isDisabled ||             disabledOptions.includes(tab.title) ||             undefined}           classes={tabButtonClasses(tab)}           role=\\\"tab\\\"           ariaControls={tab.ariaControls}           isActive={tab.isActive}         >",
     		ctx
@@ -7380,7 +7380,7 @@ var app = (function () {
     	const alert_spread_levels = [{ isToast: true }, /*$$restProps*/ ctx[1]];
 
     	let alert_props = {
-    		$$slots: { default: [create_default_slot$2] },
+    		$$slots: { default: [create_default_slot$4] },
     		$$scope: { ctx }
     	};
 
@@ -7435,7 +7435,7 @@ var app = (function () {
     }
 
     // (7:2) <Alert isToast={true} {...$$restProps}>
-    function create_default_slot$2(ctx) {
+    function create_default_slot$4(ctx) {
     	let current;
     	const default_slot_template = /*#slots*/ ctx[2].default;
     	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[3], null);
@@ -7483,7 +7483,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot$2.name,
+    		id: create_default_slot$4.name,
     		type: "slot",
     		source: "(7:2) <Alert isToast={true} {...$$restProps}>",
     		ctx
@@ -7899,7 +7899,7 @@ var app = (function () {
     const file$a = "src/lib/componentes/Aside.svelte";
 
     // (7:4) <Card isBorder="{true}" isStacked="{true}" isRounded="{true}">
-    function create_default_slot_2$1(ctx) {
+    function create_default_slot_2$2(ctx) {
     	let figure;
     	let a0;
     	let t1;
@@ -7972,7 +7972,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$1.name,
+    		id: create_default_slot_2$2.name,
     		type: "slot",
     		source: "(7:4) <Card isBorder=\\\"{true}\\\" isStacked=\\\"{true}\\\" isRounded=\\\"{true}\\\">",
     		ctx
@@ -7982,7 +7982,7 @@ var app = (function () {
     }
 
     // (26:8) <Card isBorder="{true}" isStacked="{true}" isRounded="{true}">
-    function create_default_slot_1$1(ctx) {
+    function create_default_slot_1$2(ctx) {
     	let figure;
     	let a0;
     	let t1;
@@ -8055,7 +8055,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$1.name,
+    		id: create_default_slot_1$2.name,
     		type: "slot",
     		source: "(26:8) <Card isBorder=\\\"{true}\\\" isStacked=\\\"{true}\\\" isRounded=\\\"{true}\\\">",
     		ctx
@@ -8065,7 +8065,7 @@ var app = (function () {
     }
 
     // (46:8) <Card isBorder="{true}" isStacked="{true}" isRounded="{true}">
-    function create_default_slot$1(ctx) {
+    function create_default_slot$3(ctx) {
     	let figure;
     	let a0;
     	let t1;
@@ -8138,7 +8138,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot$1.name,
+    		id: create_default_slot$3.name,
     		type: "slot",
     		source: "(46:8) <Card isBorder=\\\"{true}\\\" isStacked=\\\"{true}\\\" isRounded=\\\"{true}\\\">",
     		ctx
@@ -8163,7 +8163,7 @@ var app = (function () {
     				isBorder: true,
     				isStacked: true,
     				isRounded: true,
-    				$$slots: { default: [create_default_slot_2$1] },
+    				$$slots: { default: [create_default_slot_2$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -8174,7 +8174,7 @@ var app = (function () {
     				isBorder: true,
     				isStacked: true,
     				isRounded: true,
-    				$$slots: { default: [create_default_slot_1$1] },
+    				$$slots: { default: [create_default_slot_1$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -8185,7 +8185,7 @@ var app = (function () {
     				isBorder: true,
     				isStacked: true,
     				isRounded: true,
-    				$$slots: { default: [create_default_slot$1] },
+    				$$slots: { default: [create_default_slot$3] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -11544,40 +11544,412 @@ var app = (function () {
 
     sdk.setEndpoint(server.endpoint).setProject(server.project);
 
+    const SESSION_KEY = "petandvet_sessionid";
+
+    function saveSessionId(id) {
+        localStorage.setItem(SESSION_KEY, id);
+    }
+
+    function getSessionId() {
+        return localStorage.getItem(SESSION_KEY);
+    }
+
+    async function createUser({ fullname, email, password, country, kind }) {
+        const account = await sdk.account.create('unique()', email, password, fullname);
+        const session = await sdk.account.createSession(email, password);
+        saveSessionId(session.$id);
+        const usermeta = await sdk.database.createDocument('usermeta', account.$id, {
+            country,
+            kind
+        });
+        const user = {...usermeta, ...account};
+        state.update(user);
+    }
+
+    async function login({ email, password }) {
+        const session = await sdk.account.createSession(email, password);
+        saveSessionId(session.$id);
+
+        const account = await sdk.account.get();
+        const usermeta = await sdk.database.getDocument('usermeta', account.$id);
+        const user = {...usermeta, ...account};
+        state.update(user);
+    }
+
+
+    async function logout() {
+        const sessionId = getSessionId();
+        state.destroy();
+        await sdk.account.deleteSession(sessionId);
+    }
+
+
+    async function loadUser() {
+        try {
+            const account = await sdk.account.get();
+            const usermeta = await sdk.database.getDocument('usermeta', account.$id);
+            const user = {...usermeta, ...account};
+            state.init(user);
+        } catch(err) {
+            state.init(null);
+        }
+    }
+
     /* src/lib/pages/Login.svelte generated by Svelte v3.47.0 */
     const file$7 = "src/lib/pages/Login.svelte";
 
+    // (54:20) <Button mode="primary" size="large" type="submit">
+    function create_default_slot_2$1(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Acept");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_2$1.name,
+    		type: "slot",
+    		source: "(54:20) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (62:8) <Toast isOpen={isToastOpen} type="error">
+    function create_default_slot_1$1(ctx) {
+    	let div;
+    	let p;
+    	let t0;
+    	let t1;
+    	let close;
+    	let current;
+
+    	close = new Close({
+    			props: { color: "var(--agnostic-error-dark)" },
+    			$$inline: true
+    		});
+
+    	close.$on("click", /*toastClose*/ ctx[4]);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			p = element("p");
+    			t0 = text(/*errorMessage*/ ctx[1]);
+    			t1 = space();
+    			create_component(close.$$.fragment);
+    			add_location(p, file$7, 63, 16, 1756);
+    			attr_dev(div, "class", "toast-error-content svelte-jkle8h");
+    			add_location(div, file$7, 62, 12, 1706);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, p);
+    			append_dev(p, t0);
+    			append_dev(div, t1);
+    			mount_component(close, div, null);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (!current || dirty & /*errorMessage*/ 2) set_data_dev(t0, /*errorMessage*/ ctx[1]);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(close.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(close.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(close);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1$1.name,
+    		type: "slot",
+    		source: "(62:8) <Toast isOpen={isToastOpen} type=\\\"error\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (61:4) <Toasts portalRootSelector="body" horizontalPosition="center" verticalPosition="bottom">
+    function create_default_slot$2(ctx) {
+    	let toast;
+    	let current;
+
+    	toast = new Toast({
+    			props: {
+    				isOpen: /*isToastOpen*/ ctx[0],
+    				type: "error",
+    				$$slots: { default: [create_default_slot_1$1] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(toast.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(toast, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const toast_changes = {};
+    			if (dirty & /*isToastOpen*/ 1) toast_changes.isOpen = /*isToastOpen*/ ctx[0];
+
+    			if (dirty & /*$$scope, errorMessage*/ 514) {
+    				toast_changes.$$scope = { dirty, ctx };
+    			}
+
+    			toast.$set(toast_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(toast.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(toast.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(toast, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot$2.name,
+    		type: "slot",
+    		source: "(61:4) <Toasts portalRootSelector=\\\"body\\\" horizontalPosition=\\\"center\\\" verticalPosition=\\\"bottom\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$7(ctx) {
     	let main;
+    	let section;
+    	let h2;
+    	let t1;
+    	let form;
+    	let div0;
+    	let input0;
+    	let updating_value;
+    	let t2;
+    	let div1;
+    	let input1;
+    	let updating_value_1;
+    	let t3;
+    	let div2;
     	let button;
+    	let t4;
+    	let aside;
+    	let t5;
+    	let toasts;
+    	let current;
     	let mounted;
     	let dispose;
+
+    	function input0_value_binding(value) {
+    		/*input0_value_binding*/ ctx[6](value);
+    	}
+
+    	let input0_props = {
+    		label: "Email",
+    		type: "email",
+    		required: true
+    	};
+
+    	if (/*email*/ ctx[2] !== void 0) {
+    		input0_props.value = /*email*/ ctx[2];
+    	}
+
+    	input0 = new Input({ props: input0_props, $$inline: true });
+    	binding_callbacks.push(() => bind(input0, 'value', input0_value_binding));
+
+    	function input1_value_binding(value) {
+    		/*input1_value_binding*/ ctx[7](value);
+    	}
+
+    	let input1_props = {
+    		label: "Password",
+    		type: "password",
+    		required: true,
+    		minlength: "8"
+    	};
+
+    	if (/*password*/ ctx[3] !== void 0) {
+    		input1_props.value = /*password*/ ctx[3];
+    	}
+
+    	input1 = new Input({ props: input1_props, $$inline: true });
+    	binding_callbacks.push(() => bind(input1, 'value', input1_value_binding));
+
+    	button = new Button({
+    			props: {
+    				mode: "primary",
+    				size: "large",
+    				type: "submit",
+    				$$slots: { default: [create_default_slot_2$1] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	aside = new Aside({ $$inline: true });
+
+    	toasts = new Toasts({
+    			props: {
+    				portalRootSelector: "body",
+    				horizontalPosition: "center",
+    				verticalPosition: "bottom",
+    				$$slots: { default: [create_default_slot$2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
 
     	const block = {
     		c: function create() {
     			main = element("main");
-    			button = element("button");
-    			button.textContent = "User sesion";
-    			add_location(button, file$7, 15, 0, 434);
-    			add_location(main, file$7, 14, 0, 427);
+    			section = element("section");
+    			h2 = element("h2");
+    			h2.textContent = "Login";
+    			t1 = space();
+    			form = element("form");
+    			div0 = element("div");
+    			create_component(input0.$$.fragment);
+    			t2 = space();
+    			div1 = element("div");
+    			create_component(input1.$$.fragment);
+    			t3 = space();
+    			div2 = element("div");
+    			create_component(button.$$.fragment);
+    			t4 = space();
+    			create_component(aside.$$.fragment);
+    			t5 = space();
+    			create_component(toasts.$$.fragment);
+    			attr_dev(h2, "class", "big-title");
+    			add_location(h2, file$7, 43, 12, 919);
+    			attr_dev(div0, "class", "sepatator svelte-jkle8h");
+    			add_location(div0, file$7, 45, 16, 1027);
+    			attr_dev(div1, "class", "sepatator svelte-jkle8h");
+    			add_location(div1, file$7, 48, 16, 1175);
+    			attr_dev(div2, "class", "actions svelte-jkle8h");
+    			add_location(div2, file$7, 52, 16, 1347);
+    			add_location(form, file$7, 44, 12, 964);
+    			add_location(section, file$7, 42, 8, 897);
+    			attr_dev(main, "class", "container mt-1");
+    			add_location(main, file$7, 41, 4, 859);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			append_dev(main, button);
+    			append_dev(main, section);
+    			append_dev(section, h2);
+    			append_dev(section, t1);
+    			append_dev(section, form);
+    			append_dev(form, div0);
+    			mount_component(input0, div0, null);
+    			append_dev(form, t2);
+    			append_dev(form, div1);
+    			mount_component(input1, div1, null);
+    			append_dev(form, t3);
+    			append_dev(form, div2);
+    			mount_component(button, div2, null);
+    			append_dev(main, t4);
+    			mount_component(aside, main, null);
+    			insert_dev(target, t5, anchor);
+    			mount_component(toasts, target, anchor);
+    			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", onLogin, false, false, false);
+    				dispose = listen_dev(form, "submit", prevent_default(/*handleSubmit*/ ctx[5]), false, true, false);
     				mounted = true;
     			}
     		},
-    		p: noop,
-    		i: noop,
-    		o: noop,
+    		p: function update(ctx, [dirty]) {
+    			const input0_changes = {};
+
+    			if (!updating_value && dirty & /*email*/ 4) {
+    				updating_value = true;
+    				input0_changes.value = /*email*/ ctx[2];
+    				add_flush_callback(() => updating_value = false);
+    			}
+
+    			input0.$set(input0_changes);
+    			const input1_changes = {};
+
+    			if (!updating_value_1 && dirty & /*password*/ 8) {
+    				updating_value_1 = true;
+    				input1_changes.value = /*password*/ ctx[3];
+    				add_flush_callback(() => updating_value_1 = false);
+    			}
+
+    			input1.$set(input1_changes);
+    			const button_changes = {};
+
+    			if (dirty & /*$$scope*/ 512) {
+    				button_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button.$set(button_changes);
+    			const toasts_changes = {};
+
+    			if (dirty & /*$$scope, isToastOpen, errorMessage*/ 515) {
+    				toasts_changes.$$scope = { dirty, ctx };
+    			}
+
+    			toasts.$set(toasts_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(input0.$$.fragment, local);
+    			transition_in(input1.$$.fragment, local);
+    			transition_in(button.$$.fragment, local);
+    			transition_in(aside.$$.fragment, local);
+    			transition_in(toasts.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(input0.$$.fragment, local);
+    			transition_out(input1.$$.fragment, local);
+    			transition_out(button.$$.fragment, local);
+    			transition_out(aside.$$.fragment, local);
+    			transition_out(toasts.$$.fragment, local);
+    			current = false;
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
+    			destroy_component(input0);
+    			destroy_component(input1);
+    			destroy_component(button);
+    			destroy_component(aside);
+    			if (detaching) detach_dev(t5);
+    			destroy_component(toasts, detaching);
     			mounted = false;
     			dispose();
     		}
@@ -11594,22 +11966,91 @@ var app = (function () {
     	return block;
     }
 
-    async function onLogin() {
-    	
-    } // const user = await sdk.account.create('unique()', 'uno@gmail.com', '12345!!SDS', 'Kent');
-    // console.log(user)
-
     function instance$7($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Login', slots, []);
+    	let isToastOpen = false;
+    	let errorMessage = "";
+    	let email = "";
+    	let password = "";
+
+    	function toastClose() {
+    		$$invalidate(1, errorMessage = "");
+    		$$invalidate(0, isToastOpen = false);
+    	}
+
+    	function toastOpen(message) {
+    		$$invalidate(1, errorMessage = message);
+    		$$invalidate(0, isToastOpen = true);
+    	}
+
+    	async function handleSubmit() {
+    		$$invalidate(1, errorMessage = "");
+    		$$invalidate(0, isToastOpen = false);
+
+    		try {
+    			await login({ email, password });
+    			replace("/profile");
+    		} catch(err) {
+    			toastOpen(err.message);
+    		}
+    	}
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Login> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$capture_state = () => ({ sdk, onLogin });
-    	return [];
+    	function input0_value_binding(value) {
+    		email = value;
+    		$$invalidate(2, email);
+    	}
+
+    	function input1_value_binding(value) {
+    		password = value;
+    		$$invalidate(3, password);
+    	}
+
+    	$$self.$capture_state = () => ({
+    		Input,
+    		Button,
+    		Close,
+    		Toasts,
+    		Toast,
+    		replace,
+    		Aside,
+    		login,
+    		isToastOpen,
+    		errorMessage,
+    		email,
+    		password,
+    		toastClose,
+    		toastOpen,
+    		handleSubmit
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('isToastOpen' in $$props) $$invalidate(0, isToastOpen = $$props.isToastOpen);
+    		if ('errorMessage' in $$props) $$invalidate(1, errorMessage = $$props.errorMessage);
+    		if ('email' in $$props) $$invalidate(2, email = $$props.email);
+    		if ('password' in $$props) $$invalidate(3, password = $$props.password);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [
+    		isToastOpen,
+    		errorMessage,
+    		email,
+    		password,
+    		toastClose,
+    		handleSubmit,
+    		input0_value_binding,
+    		input1_value_binding
+    	];
     }
 
     class Login extends SvelteComponentDev {
@@ -11624,36 +12065,6 @@ var app = (function () {
     			id: create_fragment$7.name
     		});
     	}
-    }
-
-    const SESSION_KEY = "petandvet_sessionid";
-
-    function saveSessionId(id) {
-        localStorage.setItem(SESSION_KEY, id);
-    }
-
-    async function createUser({ fullname, email, password, country, kind }) {
-        const account = await sdk.account.create('unique()', email, password, fullname);
-        const session = await sdk.account.createSession(email, password);
-        saveSessionId(session.$id);
-        const usermeta = await sdk.database.createDocument('usermeta', account.$id, {
-            country,
-            kind
-        });
-        const user = {...usermeta, ...account};
-        state.update(user);
-    }
-
-
-    async function loadUser() {
-        try {
-            const account = await sdk.account.get();
-            const usermeta = await sdk.database.getDocument('usermeta', account.$id);
-            const user = {...usermeta, ...account};
-            state.init(user);
-        } catch(err) {
-            state.init(null);
-        }
     }
 
     /* src/lib/pages/Register.svelte generated by Svelte v3.47.0 */
@@ -11751,7 +12162,7 @@ var app = (function () {
     }
 
     // (107:0) <Toasts portalRootSelector="body" horizontalPosition="center" verticalPosition="bottom">
-    function create_default_slot(ctx) {
+    function create_default_slot$1(ctx) {
     	let toast;
     	let current;
 
@@ -11799,7 +12210,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot.name,
+    		id: create_default_slot$1.name,
     		type: "slot",
     		source: "(107:0) <Toasts portalRootSelector=\\\"body\\\" horizontalPosition=\\\"center\\\" verticalPosition=\\\"bottom\\\">",
     		ctx
@@ -11954,7 +12365,7 @@ var app = (function () {
     				portalRootSelector: "body",
     				horizontalPosition: "center",
     				verticalPosition: "bottom",
-    				$$slots: { default: [create_default_slot] },
+    				$$slots: { default: [create_default_slot$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -12591,14 +13002,56 @@ var app = (function () {
     /* src/lib/pages/Profile.svelte generated by Svelte v3.47.0 */
     const file$1 = "src/lib/pages/Profile.svelte";
 
+    // (22:12) <Button type="button" isLink on:click={closeSession}>
+    function create_default_slot(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Logout");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot.name,
+    		type: "slot",
+    		source: "(22:12) <Button type=\\\"button\\\" isLink on:click={closeSession}>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$1(ctx) {
     	let main;
     	let section;
+    	let div0;
     	let h2;
     	let t1;
-    	let div;
+    	let button;
+    	let t2;
+    	let div1;
     	let tabs;
     	let current;
+
+    	button = new Button({
+    			props: {
+    				type: "button",
+    				isLink: true,
+    				$$slots: { default: [create_default_slot] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	button.$on("click", /*closeSession*/ ctx[0]);
 
     	tabs = new Tabs({
     			props: {
@@ -12633,18 +13086,23 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			section = element("section");
+    			div0 = element("div");
     			h2 = element("h2");
     			h2.textContent = "Profile";
     			t1 = space();
-    			div = element("div");
+    			create_component(button.$$.fragment);
+    			t2 = space();
+    			div1 = element("div");
     			create_component(tabs.$$.fragment);
     			attr_dev(h2, "class", "big-title");
-    			add_location(h2, file$1, 10, 8, 380);
-    			attr_dev(div, "class", "container-tabs svelte-8ggtxl");
-    			add_location(div, file$1, 14, 8, 447);
-    			add_location(section, file$1, 9, 4, 362);
+    			add_location(h2, file$1, 18, 12, 572);
+    			attr_dev(div0, "class", "container-header svelte-gegxz2");
+    			add_location(div0, file$1, 17, 8, 529);
+    			attr_dev(div1, "class", "container-tabs svelte-gegxz2");
+    			add_location(div1, file$1, 24, 8, 751);
+    			add_location(section, file$1, 16, 4, 511);
     			attr_dev(main, "class", "container mt-1");
-    			add_location(main, file$1, 8, 0, 328);
+    			add_location(main, file$1, 15, 0, 477);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12652,24 +13110,38 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
     			append_dev(main, section);
-    			append_dev(section, h2);
-    			append_dev(section, t1);
-    			append_dev(section, div);
-    			mount_component(tabs, div, null);
+    			append_dev(section, div0);
+    			append_dev(div0, h2);
+    			append_dev(div0, t1);
+    			mount_component(button, div0, null);
+    			append_dev(section, t2);
+    			append_dev(section, div1);
+    			mount_component(tabs, div1, null);
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			const button_changes = {};
+
+    			if (dirty & /*$$scope*/ 2) {
+    				button_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button.$set(button_changes);
+    		},
     		i: function intro(local) {
     			if (current) return;
+    			transition_in(button.$$.fragment, local);
     			transition_in(tabs.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
+    			transition_out(button.$$.fragment, local);
     			transition_out(tabs.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
+    			destroy_component(button);
     			destroy_component(tabs);
     		}
     	};
@@ -12688,6 +13160,12 @@ var app = (function () {
     function instance$1($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Profile', slots, []);
+
+    	async function closeSession() {
+    		await logout();
+    		replace("/");
+    	}
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -12695,14 +13173,18 @@ var app = (function () {
     	});
 
     	$$self.$capture_state = () => ({
+    		Button,
     		Tabs,
+    		replace,
     		TabPets,
     		TabEvents,
     		TabTips,
-    		TabInfo
+    		TabInfo,
+    		logout,
+    		closeSession
     	});
 
-    	return [];
+    	return [closeSession];
     }
 
     class Profile extends SvelteComponentDev {
