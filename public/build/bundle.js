@@ -10078,8 +10078,8 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$1 = "src/lib/pages/Register.svelte";
 
-    // (52:16) <Button mode="primary" size="large" type="submit">
-    function create_default_slot_2(ctx) {
+    // (96:16) <Button mode="primary" size="large" type="submit">
+    function create_default_slot_3(ctx) {
     	let t;
 
     	const block = {
@@ -10096,16 +10096,76 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2.name,
+    		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(52:16) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\">",
+    		source: "(96:16) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (60:4) <Toast isOpen={isToasErrorOpen} type="error">
+    // (104:4) <Toast isOpen={isToastCountryOpen} type="error">
+    function create_default_slot_2(ctx) {
+    	let div;
+    	let p;
+    	let t1;
+    	let close;
+    	let current;
+
+    	close = new Close({
+    			props: { color: "var(--agnostic-error-dark)" },
+    			$$inline: true
+    		});
+
+    	close.$on("click", /*toastCountryClose*/ ctx[8]);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			p = element("p");
+    			p.textContent = "Select a country";
+    			t1 = space();
+    			create_component(close.$$.fragment);
+    			add_location(p, file$1, 105, 12, 3266);
+    			attr_dev(div, "class", "toast-error-content svelte-dmqorf");
+    			add_location(div, file$1, 104, 8, 3220);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, p);
+    			append_dev(div, t1);
+    			mount_component(close, div, null);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(close.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(close.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(close);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_2.name,
+    		type: "slot",
+    		source: "(104:4) <Toast isOpen={isToastCountryOpen} type=\\\"error\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (111:4) <Toast isOpen={isToastKindOpen} type="error">
     function create_default_slot_1(ctx) {
     	let div;
     	let p;
@@ -10118,18 +10178,18 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	close.$on("click", /*toastErrorClose*/ ctx[7]);
+    	close.$on("click", /*toastKindClose*/ ctx[9]);
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			p = element("p");
-    			p.textContent = "Select a country";
+    			p.textContent = "Select a kind";
     			t1 = space();
     			create_component(close.$$.fragment);
-    			add_location(p, file$1, 61, 12, 2071);
+    			add_location(p, file$1, 112, 12, 3509);
     			attr_dev(div, "class", "toast-error-content svelte-dmqorf");
-    			add_location(div, file$1, 60, 8, 2025);
+    			add_location(div, file$1, 111, 8, 3463);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -10158,21 +10218,33 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(60:4) <Toast isOpen={isToasErrorOpen} type=\\\"error\\\">",
+    		source: "(111:4) <Toast isOpen={isToastKindOpen} type=\\\"error\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (59:0) <Toasts portalRootSelector="body" horizontalPosition="center" verticalPosition="bottom">
+    // (103:0) <Toasts portalRootSelector="body" horizontalPosition="center" verticalPosition="bottom">
     function create_default_slot(ctx) {
-    	let toast;
+    	let toast0;
+    	let t;
+    	let toast1;
     	let current;
 
-    	toast = new Toast({
+    	toast0 = new Toast({
     			props: {
-    				isOpen: /*isToasErrorOpen*/ ctx[1],
+    				isOpen: /*isToastCountryOpen*/ ctx[1],
+    				type: "error",
+    				$$slots: { default: [create_default_slot_2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	toast1 = new Toast({
+    			props: {
+    				isOpen: /*isToastKindOpen*/ ctx[2],
     				type: "error",
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
@@ -10182,33 +10254,49 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(toast.$$.fragment);
+    			create_component(toast0.$$.fragment);
+    			t = space();
+    			create_component(toast1.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(toast, target, anchor);
+    			mount_component(toast0, target, anchor);
+    			insert_dev(target, t, anchor);
+    			mount_component(toast1, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const toast_changes = {};
-    			if (dirty & /*isToasErrorOpen*/ 2) toast_changes.isOpen = /*isToasErrorOpen*/ ctx[1];
+    			const toast0_changes = {};
+    			if (dirty & /*isToastCountryOpen*/ 2) toast0_changes.isOpen = /*isToastCountryOpen*/ ctx[1];
 
-    			if (dirty & /*$$scope*/ 16384) {
-    				toast_changes.$$scope = { dirty, ctx };
+    			if (dirty & /*$$scope*/ 65536) {
+    				toast0_changes.$$scope = { dirty, ctx };
     			}
 
-    			toast.$set(toast_changes);
+    			toast0.$set(toast0_changes);
+    			const toast1_changes = {};
+    			if (dirty & /*isToastKindOpen*/ 4) toast1_changes.isOpen = /*isToastKindOpen*/ ctx[2];
+
+    			if (dirty & /*$$scope*/ 65536) {
+    				toast1_changes.$$scope = { dirty, ctx };
+    			}
+
+    			toast1.$set(toast1_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(toast.$$.fragment, local);
+    			transition_in(toast0.$$.fragment, local);
+    			transition_in(toast1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(toast.$$.fragment, local);
+    			transition_out(toast0.$$.fragment, local);
+    			transition_out(toast1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(toast, detaching);
+    			destroy_component(toast0, detaching);
+    			if (detaching) detach_dev(t);
+    			destroy_component(toast1, detaching);
     		}
     	};
 
@@ -10216,7 +10304,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(59:0) <Toasts portalRootSelector=\\\"body\\\" horizontalPosition=\\\"center\\\" verticalPosition=\\\"bottom\\\">",
+    		source: "(103:0) <Toasts portalRootSelector=\\\"body\\\" horizontalPosition=\\\"center\\\" verticalPosition=\\\"bottom\\\">",
     		ctx
     	});
 
@@ -10242,109 +10330,121 @@ var app = (function () {
     	let updating_value_2;
     	let t4;
     	let div3;
-    	let input3;
-    	let updating_value_3;
-    	let t5;
-    	let div4;
-    	let label;
-    	let span;
-    	let t7;
-    	let select;
+    	let label0;
+    	let span0;
+    	let t6;
+    	let select0;
     	let updating_selected;
-    	let t8;
+    	let t7;
+    	let div4;
+    	let label1;
+    	let span1;
+    	let t9;
+    	let select1;
+    	let updating_selected_1;
+    	let t10;
     	let div5;
     	let button;
-    	let t9;
+    	let t11;
     	let aside;
-    	let t10;
+    	let t12;
     	let toasts;
     	let current;
     	let mounted;
     	let dispose;
 
     	function input0_value_binding(value) {
-    		/*input0_value_binding*/ ctx[9](value);
+    		/*input0_value_binding*/ ctx[11](value);
     	}
 
-    	let input0_props = { label: "Name", required: true };
+    	let input0_props = { label: "Full Name", required: true };
 
-    	if (/*name*/ ctx[2] !== void 0) {
-    		input0_props.value = /*name*/ ctx[2];
+    	if (/*fullname*/ ctx[3] !== void 0) {
+    		input0_props.value = /*fullname*/ ctx[3];
     	}
 
     	input0 = new Input({ props: input0_props, $$inline: true });
     	binding_callbacks.push(() => bind(input0, 'value', input0_value_binding));
 
     	function input1_value_binding(value) {
-    		/*input1_value_binding*/ ctx[10](value);
+    		/*input1_value_binding*/ ctx[12](value);
     	}
 
-    	let input1_props = { label: "Lastname" };
-
-    	if (/*lastName*/ ctx[3] !== void 0) {
-    		input1_props.value = /*lastName*/ ctx[3];
-    	}
-
-    	input1 = new Input({ props: input1_props, $$inline: true });
-    	binding_callbacks.push(() => bind(input1, 'value', input1_value_binding));
-
-    	function input2_value_binding(value) {
-    		/*input2_value_binding*/ ctx[11](value);
-    	}
-
-    	let input2_props = {
+    	let input1_props = {
     		label: "Email",
     		type: "email",
     		required: true
     	};
 
     	if (/*email*/ ctx[4] !== void 0) {
-    		input2_props.value = /*email*/ ctx[4];
+    		input1_props.value = /*email*/ ctx[4];
+    	}
+
+    	input1 = new Input({ props: input1_props, $$inline: true });
+    	binding_callbacks.push(() => bind(input1, 'value', input1_value_binding));
+
+    	function input2_value_binding(value) {
+    		/*input2_value_binding*/ ctx[13](value);
+    	}
+
+    	let input2_props = {
+    		label: "Password",
+    		type: "password",
+    		required: true,
+    		minlength: "8"
+    	};
+
+    	if (/*password*/ ctx[5] !== void 0) {
+    		input2_props.value = /*password*/ ctx[5];
     	}
 
     	input2 = new Input({ props: input2_props, $$inline: true });
     	binding_callbacks.push(() => bind(input2, 'value', input2_value_binding));
 
-    	function input3_value_binding(value) {
-    		/*input3_value_binding*/ ctx[12](value);
+    	function select0_selected_binding(value) {
+    		/*select0_selected_binding*/ ctx[14](value);
     	}
 
-    	let input3_props = {
-    		label: "Password",
-    		type: "password",
-    		required: true
-    	};
-
-    	if (/*password*/ ctx[5] !== void 0) {
-    		input3_props.value = /*password*/ ctx[5];
-    	}
-
-    	input3 = new Input({ props: input3_props, $$inline: true });
-    	binding_callbacks.push(() => bind(input3, 'value', input3_value_binding));
-
-    	function select_selected_binding(value) {
-    		/*select_selected_binding*/ ctx[13](value);
-    	}
-
-    	let select_props = {
+    	let select0_props = {
     		required: true,
     		uniqueId: "country",
-    		options: /*countriesOptions*/ ctx[0]
+    		options: /*countriesOptions*/ ctx[0],
+    		defaultOptionLabel: " - Select -"
     	};
 
     	if (/*country*/ ctx[6] !== void 0) {
-    		select_props.selected = /*country*/ ctx[6];
+    		select0_props.selected = /*country*/ ctx[6];
     	}
 
-    	select = new Select({ props: select_props, $$inline: true });
-    	binding_callbacks.push(() => bind(select, 'selected', select_selected_binding));
+    	select0 = new Select({ props: select0_props, $$inline: true });
+    	binding_callbacks.push(() => bind(select0, 'selected', select0_selected_binding));
+
+    	function select1_selected_binding(value) {
+    		/*select1_selected_binding*/ ctx[15](value);
+    	}
+
+    	let select1_props = {
+    		required: true,
+    		uniqueId: "kind",
+    		options: [
+    			{ value: 'owner', label: 'Owner' },
+    			{ value: 'veterinary', label: 'Veterinary' }
+    		]
+    	};
+
+    	if (/*kind*/ ctx[7] !== void 0) {
+    		select1_props.selected = /*kind*/ ctx[7];
+    	}
+
+    	select1 = new Select({ props: select1_props, $$inline: true });
+    	binding_callbacks.push(() => bind(select1, 'selected', select1_selected_binding));
 
     	button = new Button({
     			props: {
     				mode: "primary",
     				size: "large",
     				type: "submit",
-    				$$slots: { default: [create_default_slot_2] },
+    				$$slots: { default: [create_default_slot_3] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -10381,43 +10481,51 @@ var app = (function () {
     			create_component(input2.$$.fragment);
     			t4 = space();
     			div3 = element("div");
-    			create_component(input3.$$.fragment);
-    			t5 = space();
-    			div4 = element("div");
-    			label = element("label");
-    			span = element("span");
-    			span.textContent = "Select a Country";
+    			label0 = element("label");
+    			span0 = element("span");
+    			span0.textContent = "Select a Country";
+    			t6 = space();
+    			create_component(select0.$$.fragment);
     			t7 = space();
-    			create_component(select.$$.fragment);
-    			t8 = space();
+    			div4 = element("div");
+    			label1 = element("label");
+    			span1 = element("span");
+    			span1.textContent = "Select a Kind";
+    			t9 = space();
+    			create_component(select1.$$.fragment);
+    			t10 = space();
     			div5 = element("div");
     			create_component(button.$$.fragment);
-    			t9 = space();
+    			t11 = space();
     			create_component(aside.$$.fragment);
-    			t10 = space();
+    			t12 = space();
     			create_component(toasts.$$.fragment);
     			attr_dev(h2, "class", "big-title");
-    			add_location(h2, file$1, 30, 8, 774);
+    			add_location(h2, file$1, 57, 8, 1326);
     			attr_dev(div0, "class", "sepatator svelte-dmqorf");
-    			add_location(div0, file$1, 32, 12, 877);
+    			add_location(div0, file$1, 59, 12, 1429);
     			attr_dev(div1, "class", "sepatator svelte-dmqorf");
-    			add_location(div1, file$1, 35, 12, 997);
+    			add_location(div1, file$1, 62, 12, 1558);
     			attr_dev(div2, "class", "sepatator svelte-dmqorf");
-    			add_location(div2, file$1, 38, 12, 1117);
-    			attr_dev(div3, "class", "sepatator svelte-dmqorf");
-    			add_location(div3, file$1, 41, 12, 1253);
-    			add_location(span, file$1, 46, 20, 1506);
-    			attr_dev(label, "for", "country");
-    			attr_dev(label, "class", "select-label");
-    			add_location(label, file$1, 45, 16, 1443);
+    			add_location(div2, file$1, 65, 12, 1694);
+    			add_location(span0, file$1, 70, 20, 1961);
+    			attr_dev(label0, "for", "country");
+    			attr_dev(label0, "class", "select-label");
+    			add_location(label0, file$1, 69, 16, 1898);
+    			attr_dev(div3, "class", "select-wrapper svelte-dmqorf");
+    			add_location(div3, file$1, 68, 12, 1853);
+    			add_location(span1, file$1, 82, 20, 2440);
+    			attr_dev(label1, "for", "kind");
+    			attr_dev(label1, "class", "select-label");
+    			add_location(label1, file$1, 81, 16, 2380);
     			attr_dev(div4, "class", "select-wrapper svelte-dmqorf");
-    			add_location(div4, file$1, 44, 12, 1398);
+    			add_location(div4, file$1, 80, 12, 2335);
     			attr_dev(div5, "class", "actions svelte-dmqorf");
-    			add_location(div5, file$1, 50, 12, 1702);
-    			add_location(form, file$1, 31, 8, 818);
-    			add_location(section, file$1, 29, 4, 756);
+    			add_location(div5, file$1, 94, 12, 2894);
+    			add_location(form, file$1, 58, 8, 1370);
+    			add_location(section, file$1, 56, 4, 1308);
     			attr_dev(main, "class", "container mt-1");
-    			add_location(main, file$1, 28, 0, 722);
+    			add_location(main, file$1, 55, 0, 1274);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10438,84 +10546,87 @@ var app = (function () {
     			mount_component(input2, div2, null);
     			append_dev(form, t4);
     			append_dev(form, div3);
-    			mount_component(input3, div3, null);
-    			append_dev(form, t5);
+    			append_dev(div3, label0);
+    			append_dev(label0, span0);
+    			append_dev(label0, t6);
+    			mount_component(select0, label0, null);
+    			append_dev(form, t7);
     			append_dev(form, div4);
-    			append_dev(div4, label);
-    			append_dev(label, span);
-    			append_dev(label, t7);
-    			mount_component(select, label, null);
-    			append_dev(form, t8);
+    			append_dev(div4, label1);
+    			append_dev(label1, span1);
+    			append_dev(label1, t9);
+    			mount_component(select1, label1, null);
+    			append_dev(form, t10);
     			append_dev(form, div5);
     			mount_component(button, div5, null);
-    			append_dev(main, t9);
+    			append_dev(main, t11);
     			mount_component(aside, main, null);
-    			insert_dev(target, t10, anchor);
+    			insert_dev(target, t12, anchor);
     			mount_component(toasts, target, anchor);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(form, "submit", prevent_default(/*handleSubmit*/ ctx[8]), false, true, false);
+    				dispose = listen_dev(form, "submit", prevent_default(/*handleSubmit*/ ctx[10]), false, true, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
     			const input0_changes = {};
 
-    			if (!updating_value && dirty & /*name*/ 4) {
+    			if (!updating_value && dirty & /*fullname*/ 8) {
     				updating_value = true;
-    				input0_changes.value = /*name*/ ctx[2];
+    				input0_changes.value = /*fullname*/ ctx[3];
     				add_flush_callback(() => updating_value = false);
     			}
 
     			input0.$set(input0_changes);
     			const input1_changes = {};
 
-    			if (!updating_value_1 && dirty & /*lastName*/ 8) {
+    			if (!updating_value_1 && dirty & /*email*/ 16) {
     				updating_value_1 = true;
-    				input1_changes.value = /*lastName*/ ctx[3];
+    				input1_changes.value = /*email*/ ctx[4];
     				add_flush_callback(() => updating_value_1 = false);
     			}
 
     			input1.$set(input1_changes);
     			const input2_changes = {};
 
-    			if (!updating_value_2 && dirty & /*email*/ 16) {
+    			if (!updating_value_2 && dirty & /*password*/ 32) {
     				updating_value_2 = true;
-    				input2_changes.value = /*email*/ ctx[4];
+    				input2_changes.value = /*password*/ ctx[5];
     				add_flush_callback(() => updating_value_2 = false);
     			}
 
     			input2.$set(input2_changes);
-    			const input3_changes = {};
-
-    			if (!updating_value_3 && dirty & /*password*/ 32) {
-    				updating_value_3 = true;
-    				input3_changes.value = /*password*/ ctx[5];
-    				add_flush_callback(() => updating_value_3 = false);
-    			}
-
-    			input3.$set(input3_changes);
-    			const select_changes = {};
-    			if (dirty & /*countriesOptions*/ 1) select_changes.options = /*countriesOptions*/ ctx[0];
+    			const select0_changes = {};
+    			if (dirty & /*countriesOptions*/ 1) select0_changes.options = /*countriesOptions*/ ctx[0];
 
     			if (!updating_selected && dirty & /*country*/ 64) {
     				updating_selected = true;
-    				select_changes.selected = /*country*/ ctx[6];
+    				select0_changes.selected = /*country*/ ctx[6];
     				add_flush_callback(() => updating_selected = false);
     			}
 
-    			select.$set(select_changes);
+    			select0.$set(select0_changes);
+    			const select1_changes = {};
+
+    			if (!updating_selected_1 && dirty & /*kind*/ 128) {
+    				updating_selected_1 = true;
+    				select1_changes.selected = /*kind*/ ctx[7];
+    				add_flush_callback(() => updating_selected_1 = false);
+    			}
+
+    			select1.$set(select1_changes);
     			const button_changes = {};
 
-    			if (dirty & /*$$scope*/ 16384) {
+    			if (dirty & /*$$scope*/ 65536) {
     				button_changes.$$scope = { dirty, ctx };
     			}
 
     			button.$set(button_changes);
     			const toasts_changes = {};
 
-    			if (dirty & /*$$scope, isToasErrorOpen*/ 16386) {
+    			if (dirty & /*$$scope, isToastKindOpen, isToastCountryOpen*/ 65542) {
     				toasts_changes.$$scope = { dirty, ctx };
     			}
 
@@ -10526,8 +10637,8 @@ var app = (function () {
     			transition_in(input0.$$.fragment, local);
     			transition_in(input1.$$.fragment, local);
     			transition_in(input2.$$.fragment, local);
-    			transition_in(input3.$$.fragment, local);
-    			transition_in(select.$$.fragment, local);
+    			transition_in(select0.$$.fragment, local);
+    			transition_in(select1.$$.fragment, local);
     			transition_in(button.$$.fragment, local);
     			transition_in(aside.$$.fragment, local);
     			transition_in(toasts.$$.fragment, local);
@@ -10537,8 +10648,8 @@ var app = (function () {
     			transition_out(input0.$$.fragment, local);
     			transition_out(input1.$$.fragment, local);
     			transition_out(input2.$$.fragment, local);
-    			transition_out(input3.$$.fragment, local);
-    			transition_out(select.$$.fragment, local);
+    			transition_out(select0.$$.fragment, local);
+    			transition_out(select1.$$.fragment, local);
     			transition_out(button.$$.fragment, local);
     			transition_out(aside.$$.fragment, local);
     			transition_out(toasts.$$.fragment, local);
@@ -10549,11 +10660,11 @@ var app = (function () {
     			destroy_component(input0);
     			destroy_component(input1);
     			destroy_component(input2);
-    			destroy_component(input3);
-    			destroy_component(select);
+    			destroy_component(select0);
+    			destroy_component(select1);
     			destroy_component(button);
     			destroy_component(aside);
-    			if (detaching) detach_dev(t10);
+    			if (detaching) detach_dev(t12);
     			destroy_component(toasts, detaching);
     			mounted = false;
     			dispose();
@@ -10575,24 +10686,43 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Register', slots, []);
     	let countriesOptions = [];
-    	let isToasErrorOpen = false;
-    	let name, lastName, email, password, country = "";
+    	let isToastCountryOpen = false;
+    	let isToastKindOpen = false;
+    	let fullname = "";
+    	let email = "";
+    	let password = "";
+    	let country = "";
+    	let kind = "";
 
     	onMount(async () => {
     		let { countries } = await sdk.locale.getCountries();
     		$$invalidate(0, countriesOptions = countries.map(({ name, code }) => ({ value: code, label: name })));
     	});
 
-    	function toastErrorClose() {
-    		$$invalidate(1, isToasErrorOpen = false);
+    	function toastCountryClose() {
+    		$$invalidate(1, isToastCountryOpen = false);
     	}
 
-    	function handleSubmit() {
-    		console.log(name, lastName, email, password, country);
+    	function toastKindClose() {
+    		$$invalidate(2, isToastKindOpen = false);
+    	}
 
+    	async function handleSubmit() {
     		if (!country) {
-    			$$invalidate(1, isToasErrorOpen = true);
+    			$$invalidate(1, isToastCountryOpen = true);
     			return;
+    		}
+
+    		if (!kind) {
+    			$$invalidate(2, isToastKindOpen = true);
+    			return;
+    		}
+
+    		try {
+    			const account = await sdk.account.create('unique()', email, password, fullname);
+    			const usermeta = await sdk.database.createDocument('usermeta', 'unique', { userId: account.$id, country, kind });
+    		} catch(err) {
+    			console.log(err); //const session = await sdk.account.createSession(email, password);
     		}
     	}
 
@@ -10603,28 +10733,28 @@ var app = (function () {
     	});
 
     	function input0_value_binding(value) {
-    		name = value;
-    		$$invalidate(2, name);
+    		fullname = value;
+    		$$invalidate(3, fullname);
     	}
 
     	function input1_value_binding(value) {
-    		lastName = value;
-    		$$invalidate(3, lastName);
-    	}
-
-    	function input2_value_binding(value) {
     		email = value;
     		$$invalidate(4, email);
     	}
 
-    	function input3_value_binding(value) {
+    	function input2_value_binding(value) {
     		password = value;
     		$$invalidate(5, password);
     	}
 
-    	function select_selected_binding(value) {
+    	function select0_selected_binding(value) {
     		country = value;
     		$$invalidate(6, country);
+    	}
+
+    	function select1_selected_binding(value) {
+    		kind = value;
+    		$$invalidate(7, kind);
     	}
 
     	$$self.$capture_state = () => ({
@@ -10638,24 +10768,27 @@ var app = (function () {
     		sdk,
     		Aside,
     		countriesOptions,
-    		isToasErrorOpen,
-    		name,
-    		lastName,
+    		isToastCountryOpen,
+    		isToastKindOpen,
+    		fullname,
     		email,
     		password,
     		country,
-    		toastErrorClose,
+    		kind,
+    		toastCountryClose,
+    		toastKindClose,
     		handleSubmit
     	});
 
     	$$self.$inject_state = $$props => {
     		if ('countriesOptions' in $$props) $$invalidate(0, countriesOptions = $$props.countriesOptions);
-    		if ('isToasErrorOpen' in $$props) $$invalidate(1, isToasErrorOpen = $$props.isToasErrorOpen);
-    		if ('name' in $$props) $$invalidate(2, name = $$props.name);
-    		if ('lastName' in $$props) $$invalidate(3, lastName = $$props.lastName);
+    		if ('isToastCountryOpen' in $$props) $$invalidate(1, isToastCountryOpen = $$props.isToastCountryOpen);
+    		if ('isToastKindOpen' in $$props) $$invalidate(2, isToastKindOpen = $$props.isToastKindOpen);
+    		if ('fullname' in $$props) $$invalidate(3, fullname = $$props.fullname);
     		if ('email' in $$props) $$invalidate(4, email = $$props.email);
     		if ('password' in $$props) $$invalidate(5, password = $$props.password);
     		if ('country' in $$props) $$invalidate(6, country = $$props.country);
+    		if ('kind' in $$props) $$invalidate(7, kind = $$props.kind);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -10664,19 +10797,21 @@ var app = (function () {
 
     	return [
     		countriesOptions,
-    		isToasErrorOpen,
-    		name,
-    		lastName,
+    		isToastCountryOpen,
+    		isToastKindOpen,
+    		fullname,
     		email,
     		password,
     		country,
-    		toastErrorClose,
+    		kind,
+    		toastCountryClose,
+    		toastKindClose,
     		handleSubmit,
     		input0_value_binding,
     		input1_value_binding,
     		input2_value_binding,
-    		input3_value_binding,
-    		select_selected_binding
+    		select0_selected_binding,
+    		select1_selected_binding
     	];
     }
 
