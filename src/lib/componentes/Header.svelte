@@ -12,7 +12,7 @@ function visibleMenu() {
 }
 
 onMount(() => {
-    setTimeout(visibleMenu, 500);
+    setTimeout(visibleMenu, 600);
 })
 
 state.subscribe((data) => {
@@ -27,7 +27,7 @@ state.subscribe((data) => {
             <a href="/" use:link> 🐾 🧑‍⚕️ Pet And Vet</a>
         </h1>
             {#if isShowMenu}
-                <div transition:fade="{{  duration: 350 }}">
+                <div transition:fade="{{  duration: 300 }}">
                     {#if account}
                         <a href="/profile" use:link> ℹ️ My Profile</a>
                     {/if}

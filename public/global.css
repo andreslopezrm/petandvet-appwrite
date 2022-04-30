@@ -59,6 +59,12 @@ a.link-black {
 	background: #fff;
 }
 
+.controls-right {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+
 
 .select-label {
 	color: var(--agnostic-font-color, var(--agnostic-dark));
