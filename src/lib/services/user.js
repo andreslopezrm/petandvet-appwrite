@@ -1,6 +1,6 @@
 import { sdk } from "../../appwrite";
 import { state } from "../store";
-import { saveSessionId } from "./local";
+import { getSessionId, saveSessionId } from "./local";
 
 
 export async function createUser({ fullname, email, password, country, kind }) {
@@ -20,8 +20,10 @@ export function login() {
 }
 
 
-export function logout() {
-
+export async function logout() {
+    const sessionId = getSessionId();
+    await sdk.account.deleteSession(sessionId);
+    state.destroy();
 }
 
 

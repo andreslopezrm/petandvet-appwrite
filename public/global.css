@@ -55,6 +55,10 @@ a.link-black {
 	color: #fff;
 }
 
+.container-white {
+	background: #fff;
+}
+
 
 .select-label {
 	color: var(--agnostic-font-color, var(--agnostic-dark));
