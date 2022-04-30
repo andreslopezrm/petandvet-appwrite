@@ -1,5 +1,5 @@
 <script>
-    import {link} from 'svelte-spa-router'
+    import {link} from 'svelte-spa-router';
 </script>
 
 <nav>
@@ -7,9 +7,14 @@
         <h1>
             <a href="/" use:link> 🐾 🧑‍⚕️ Pet And Vet</a>
         </h1>
-        <div>
+        <!-- <div>
             <a href="/profile" use:link> ℹ️ My Profile</a>
-        </div>
+        </div> -->
+        <div>
+            <a href="/register" use:link> Register </a> 
+            <span class="text-white"> | </span>
+            <a href="/login" use:link> Login </a>
+        </div> 
     </div>
 </nav>
 

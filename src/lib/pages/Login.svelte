@@ -1,5 +1,5 @@
 <script>
-    import { sdk } from '../../appwrite'
+    import { sdk } from '../../appwrite';
 
     async function onLogin () {
         // const user = await sdk.account.create('unique()', 'uno@gmail.com', '12345!!SDS', 'Kent');
