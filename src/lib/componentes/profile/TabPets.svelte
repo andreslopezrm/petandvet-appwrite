@@ -1,7 +1,8 @@
 <script>
-import { Button, Dialog, Input, EmptyState } from "agnostic-svelte";
+import { Button, Dialog, Input, Loader } from "agnostic-svelte";
 import { createPet, getPets, updatePet } from "../../services/pets";
 import { state } from "../../store";
+import LoaderDots from "../LoaderDots.svelte";
 
 let id = null;
 let name = "";
@@ -11,6 +12,7 @@ let description = "";
 
 let dialogInstance;
 let pets = [];
+let loading = true;
 let userId;
 
 state.subscribe(onSubscribeAccount)
@@ -18,7 +20,7 @@ state.subscribe(onSubscribeAccount)
 async function onSubscribeAccount(data) {
     userId = data.account?.$id;
     if(userId) {
-        //pets = await getPets(userId, 0, 1);
+        //getPets(userId, 0, 1);
     }
 }
 
@@ -44,13 +46,13 @@ async function createOrUpdate() {
 
 <div class="p-1 container-white">
     <div class="controls-right">
-        <Button mode="primary" type="button" on:click={openDialogForCreate}>Add</Button>
+        {#if userId}
+            <Button mode="primary" type="button" on:click={openDialogForCreate}>Add</Button>
+        {/if}
     </div>
     <div>
-       {#if pets.length === 0}
-            <p class="empty-state"> 
-                📥 <i>No pets yet</i>
-            </p>
+       {#if loading}
+           <LoaderDots />
        {/if}
     </div>
 </div>
@@ -70,7 +72,9 @@ async function createOrUpdate() {
             <Input type="textarea" bind:value={description} label="Description" placeholder="Color, weight, height, characteristics in general" required />
         </div>
         <div class="actions">
-            <Button mode="primary" size="large" type="submit">Acept</Button>
+            <Button mode="primary" size="large" type="submit">
+                Acept <Loader />
+            </Button>
         </div>
     </form>
 </Dialog>
