@@ -1,4 +1,4 @@
-import { Appwrite } from 'appwrite';
+import { Appwrite, Query } from 'appwrite';
 
 const server = {
     endpoint: 'https://8080-appwrite-integrationforg-l4agqveejyf.ws-us43.gitpod.io/v1',
@@ -9,4 +9,4 @@ const sdk = new Appwrite();
 
 sdk.setEndpoint(server.endpoint).setProject(server.project);
 
-export { sdk, server };
+export { sdk, server, Query };

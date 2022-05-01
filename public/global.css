@@ -4,6 +4,7 @@
 	--font-color-ligth: #eee;
 	--background-color: #ECEFF1;
 	--ring-color: #8b2c69;
+	--font-color-gray: #686868;
 }
 
 html, body, h1, h2 {
@@ -105,6 +106,16 @@ a.link-black {
 
 .dialog {
 	overflow: scroll;
+}
+
+.empty-state {
+	padding: 1.5rem;
+	text-align: center;
+	color: var(--font-color-gray);
+    font-weight: 300;
+}
+.empty-state i {
+	margin-left: 0.3rem;
 }
 
 @media only screen and (min-width: 600px) {

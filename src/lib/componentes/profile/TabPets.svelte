@@ -1,7 +1,6 @@
 <script>
-import { get } from "svelte/store";
-import { Button, Dialog, Input } from "agnostic-svelte";
-import { createPet, updatePet } from "../../services/pets";
+import { Button, Dialog, Input, EmptyState } from "agnostic-svelte";
+import { createPet, getPets, updatePet } from "../../services/pets";
 import { state } from "../../store";
 
 let id = null;
@@ -11,6 +10,17 @@ let age = "";
 let description = "";
 
 let dialogInstance;
+let pets = [];
+let userId;
+
+state.subscribe(onSubscribeAccount)
+
+async function onSubscribeAccount(data) {
+    userId = data.account?.$id;
+    if(userId) {
+        //pets = await getPets(userId, 0, 1);
+    }
+}
 
 function assignDialogInstance(ev)  {
     dialogInstance = ev.detail.instance;
@@ -21,13 +31,12 @@ function openDialogForCreate() {
     dialogInstance?.show();
 };
 
-function createOrUpdate() {
-    const userId = get(state).account.$id;
-    console.log(userId);
+async function createOrUpdate() {
+    console.log('entrer')
     if(id) {
-        updatePet();
     } else {
-        createPet({ userId, name, race, age, description })
+        const pet = await createPet({ userId, name, race, age, description });
+        console.log(pet);
     }
 }
 
@@ -37,7 +46,15 @@ function createOrUpdate() {
     <div class="controls-right">
         <Button mode="primary" type="button" on:click={openDialogForCreate}>Add</Button>
     </div>
+    <div>
+       {#if pets.length === 0}
+            <p class="empty-state"> 
+                📥 <i>No pets yet</i>
+            </p>
+       {/if}
+    </div>
 </div>
+
 <Dialog title="Add Pet" dialogRoot="#dialog-root" on:instance={assignDialogInstance}>
     <form on:submit|preventDefault={createOrUpdate}>
         <div class="separator-field">
