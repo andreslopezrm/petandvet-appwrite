@@ -35,6 +35,10 @@ body {
 	margin-top: 1rem;
 }
 
+.p-1 {
+	padding:  1rem;
+}
+
 .big-title {
 	font-size: 2.3rem;
 }
@@ -79,6 +83,28 @@ a.link-black {
 .select-label > span {
 	display: block;
 	margin-bottom: 0.5rem;
+}
+
+.separator-field {
+	margin-bottom: 1rem;
+}
+
+.select-wrapper {
+	margin: 1rem 0;
+}
+
+.actions {
+	margin-top: 2rem;
+}
+
+.toast-error-content {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.dialog {
+	overflow: scroll;
 }
 
 @media only screen and (min-width: 600px) {

@@ -61,13 +61,13 @@ async function handleSubmit() {
     <section>
         <h2 class="big-title">Register</h2>
         <form on:submit|preventDefault={handleSubmit}>
-            <div class="sepatator">
+            <div class="separator-field">
                 <Input bind:value={fullname} label="Full Name" required/>
             </div>
-            <div class="sepatator">
+            <div class="separator-field">
                 <Input bind:value={email} label="Email" type="email" required />
             </div>
-            <div class="sepatator">
+            <div class="separator-field">
                 <Input bind:value={password} label="Password" type="password" required minlength="8" />
             </div>
             <div class="select-wrapper">
@@ -112,20 +112,3 @@ async function handleSubmit() {
         </div>
     </Toast>
 </Toasts>
-
-<style >
-    .sepatator {
-        margin-bottom: 1rem;
-    }
-    .select-wrapper {
-        margin: 1rem 0;
-    }
-    .actions {
-        margin-top: 2rem;
-    }
-    .toast-error-content {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-</style>
