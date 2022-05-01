@@ -8,6 +8,7 @@ import { state } from "../../store";
 import LoaderDots from "../LoaderDots.svelte";
 import ToastMultiple from "../ToastMultiple.svelte";
 import CellImage from "../cells/CellImage.svelte";
+import CellActions from "../cells/CellActions.svelte";
 
 let id = null;
 let name = "";
@@ -41,9 +42,16 @@ function assignDialogInstance(ev)  {
 };
 
 function openDialogForCreate() {
-    id = null;
+    resetValues();
     dialogInstance?.show();
-};
+}
+
+function openDialogForEdit(index) {
+    const pet = pets[index];
+    asignValues(pet);
+    dialogInstance?.show();
+}
+
 
 function closeDialog() {
     dialogInstance?.hide();
@@ -53,6 +61,21 @@ function asignFile(ev) {
     file = ev.target.files[0];
 }
 
+function resetValues() {
+    id = null;
+    name = "";
+    race = "";
+    file = null;
+    description = "";
+}
+
+function asignValues(pet) {
+    id = pet.$id;
+    name = pet.name;
+    race = pet.race;
+    description = pet.description;
+}
+
 async function createOrUpdate() {
     submiting = true
     successMessage = null;
@@ -60,11 +83,12 @@ async function createOrUpdate() {
 
     try {
         if(id) {
-
+            console.log('edit', id)
         } else {
             const { imageId, imageUrl } = await uploadPetPhoto(file);
             await createPet({ userId, name, race, description, imageId, imageUrl });
             successMessage = "Pet create success";
+            resetValues();
         }
     } catch(err) {
         errorMessage = err.message;
@@ -73,6 +97,9 @@ async function createOrUpdate() {
         closeDialog();
     }
 }
+
+setContext('onEdit', openDialogForEdit);
+
 </script>
 
 <div class="p-1 container-white">
@@ -113,7 +140,8 @@ async function createOrUpdate() {
                         },
                         {
                             label: "Actions",
-                            key: "index"
+                            key: "index",
+                            renderComponent: () => CellActions
                         }
                     ]}
                 />
@@ -136,7 +164,7 @@ async function createOrUpdate() {
             <Input type="textarea" bind:value={description} label="Description" placeholder="Color, age, weight, height, characteristics in general" required />
         </div>
         <div class="separator-field">
-            <Input  type="file" accept="image/*" on:change={asignFile} label="Image" placeholder="Image" required />
+            <Input  type="file" accept="image/*" on:change={asignFile} label="Image" placeholder="Image"  />
         </div>
         <div class="actions">
             <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
