@@ -1,12 +1,13 @@
 <script>
 import { Button, Dialog, Input, Loader, Table } from "agnostic-svelte";
-import { onMount } from "svelte";
+import { onMount, setContext } from "svelte";
 import { get } from "svelte/store";
 import { createPet, getPets, updatePet } from "../../services/pets";
 import {  uploadPetPhoto } from "../../services/upload";
 import { state } from "../../store";
 import LoaderDots from "../LoaderDots.svelte";
 import ToastMultiple from "../ToastMultiple.svelte";
+import CellImage from "../cells/CellImage.svelte";
 
 let id = null;
 let name = "";
@@ -26,7 +27,7 @@ let errorMessage;
 
 
 $: {
-    rows = pets.map(({ name, race, description, isPublic }) => ({ name, race, description, isPublic  }))
+    rows = pets.map(({ imageUrl, name, race, description, isPublic }, index) => ({ imageUrl, name, race, description, isPublic, index  }))
 }
 
 onMount(async () => {
@@ -51,7 +52,6 @@ function closeDialog() {
 function asignFile(ev) {
     file = ev.target.files[0];
 }
-
 
 async function createOrUpdate() {
     submiting = true
@@ -91,6 +91,11 @@ async function createOrUpdate() {
                     rows={rows}
                     headers={[
                         {
+                            label: "Image",
+                            key: "imageUrl",
+                            renderComponent: () => CellImage
+                        },
+                        {
                             label: "Name",
                             key: "name"
                         },
@@ -105,6 +110,10 @@ async function createOrUpdate() {
                         {
                             label: "Public",
                             key: "isPublic"
+                        },
+                        {
+                            label: "Actions",
+                            key: "index"
                         }
                     ]}
                 />
