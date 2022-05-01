@@ -1,5 +1,6 @@
 <script>
-import { Button, Dialog, Input, Loader } from "agnostic-svelte";
+import { Button, Dialog, Input, Loader, Table } from "agnostic-svelte";
+import { onMount } from "svelte";
 import { get } from "svelte/store";
 import { createPet, getPets, updatePet } from "../../services/pets";
 import {  uploadPetPhoto } from "../../services/upload";
@@ -15,6 +16,7 @@ let description = "";
 
 let dialogInstance;
 let pets = [];
+let rows = []
 let userId = get(state)?.account?.$id;
 
 let loading = true;
@@ -23,15 +25,28 @@ let successMessage;
 let errorMessage;
 
 
+$: {
+    rows = pets.map(({ name, race, description, isPublic }) => ({ name, race, description, isPublic  }))
+}
+
+onMount(async () => {
+    pets = await getPets(userId);
+    loading = false;
+})
+
+
 function assignDialogInstance(ev)  {
     dialogInstance = ev.detail.instance;
 };
 
 function openDialogForCreate() {
-    // id = null;
-    // dialogInstance?.show();
-    successMessage = 'okkk';
+    id = null;
+    dialogInstance?.show();
 };
+
+function closeDialog() {
+    dialogInstance?.hide();
+}
 
 function asignFile(ev) {
     file = ev.target.files[0];
@@ -40,18 +55,22 @@ function asignFile(ev) {
 
 async function createOrUpdate() {
     submiting = true
+    successMessage = null;
+    errorMessage = null;
+
     try {
         if(id) {
 
         } else {
-            const image = await uploadPetPhoto(file);
-            const pet = await createPet({ userId, name, race, description, image });
-            console.log(pet);
+            const { imageId, imageUrl } = await uploadPetPhoto(file);
+            await createPet({ userId, name, race, description, imageId, imageUrl });
+            successMessage = "Pet create success";
         }
     } catch(err) {
-        
+        errorMessage = err.message;
     } finally {
         submiting = false
+        closeDialog();
     }
 }
 </script>
@@ -65,6 +84,33 @@ async function createOrUpdate() {
     <div>
        {#if loading}
            <LoaderDots />
+        {:else}
+            {#if rows.length}
+                <Table
+                    caption="Yours pets"
+                    rows={rows}
+                    headers={[
+                        {
+                            label: "Name",
+                            key: "name"
+                        },
+                        {
+                            label: "Race",
+                            key: "race"
+                        },
+                        {
+                            label: "Description",
+                            key: "description"
+                        },
+                        {
+                            label: "Public",
+                            key: "isPublic"
+                        }
+                    ]}
+                />
+            {:else}
+                <p class="empty-state">🐶 <i>No pets yet</i></p>
+            {/if}
        {/if}
     </div>
 </div>

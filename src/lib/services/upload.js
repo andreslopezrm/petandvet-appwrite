@@ -8,15 +8,20 @@ async function getPetPhotoUrl(imageId) {
  }
  
 export async function uploadPetPhoto(image) {
+    const photo = { imageId: null, imageUrl: null };
     if(!image) {
-        return null;
+        return photo;
     }
 
     const bucketFile = await sdk.storage.createFile(BUCKET_ID, 'unique()', image);
     if(!bucketFile) {
-        return null;
+        return photo;
     }
 
-    return await getPetPhotoUrl(bucketFile.$id);
+    const url = await getPetPhotoUrl(bucketFile.$id);
+    photo.imageId = bucketFile.$id;
+    photo.imageUrl = url;
+
+    return photo;
 }
 
