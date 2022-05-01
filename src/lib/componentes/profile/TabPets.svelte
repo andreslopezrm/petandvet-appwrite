@@ -1,5 +1,6 @@
 <script>
 import { Button, Dialog, Input, Loader } from "agnostic-svelte";
+import { get } from "svelte/store";
 import { createPet, getPets, updatePet } from "../../services/pets";
 import { state } from "../../store";
 import LoaderDots from "../LoaderDots.svelte";
@@ -13,16 +14,8 @@ let description = "";
 let dialogInstance;
 let pets = [];
 let loading = true;
-let userId;
+let userId = get(state)?.account?.$id;
 
-state.subscribe(onSubscribeAccount)
-
-async function onSubscribeAccount(data) {
-    userId = data.account?.$id;
-    if(userId) {
-        //getPets(userId, 0, 1);
-    }
-}
 
 function assignDialogInstance(ev)  {
     dialogInstance = ev.detail.instance;
@@ -41,7 +34,6 @@ async function createOrUpdate() {
         console.log(pet);
     }
 }
-
 </script>
 
 <div class="p-1 container-white">
