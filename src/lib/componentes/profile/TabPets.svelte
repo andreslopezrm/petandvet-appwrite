@@ -2,6 +2,7 @@
 import { Button, Dialog, Input, Loader } from "agnostic-svelte";
 import { get } from "svelte/store";
 import { createPet, getPets, updatePet } from "../../services/pets";
+import {  uploadPetPhoto } from "../../services/upload";
 import { state } from "../../store";
 import LoaderDots from "../LoaderDots.svelte";
 
@@ -9,12 +10,17 @@ let id = null;
 let name = "";
 let race = "";
 let age = "";
+let file = null;
 let description = "";
 
 let dialogInstance;
 let pets = [];
-let loading = true;
 let userId = get(state)?.account?.$id;
+
+let loading = true;
+let submiting = false;
+let successMessage;
+let errorMessage;
 
 
 function assignDialogInstance(ev)  {
@@ -26,12 +32,24 @@ function openDialogForCreate() {
     dialogInstance?.show();
 };
 
+function asignFile(ev) {
+    file = ev.target.files[0];
+}
+
 async function createOrUpdate() {
-    console.log('entrer')
-    if(id) {
-    } else {
-        const pet = await createPet({ userId, name, race, age, description });
-        console.log(pet);
+    submiting = true
+    try {
+        if(id) {
+
+        } else {
+            const image = await uploadPetPhoto(file);
+            const pet = await createPet({ userId, name, race, description, image });
+            console.log(pet);
+        }
+    } catch(err) {
+
+    } finally {
+        submiting = false
     }
 }
 </script>
@@ -58,14 +76,17 @@ async function createOrUpdate() {
             <Input bind:value={race} label="Race" placeholder="For example: dog" required />
         </div>
         <div class="separator-field">
-            <Input bind:value={age} label="Age" placeholder="For example: 3 months"  required />
+            <Input type="textarea" bind:value={description} label="Description" placeholder="Color, age, weight, height, characteristics in general" required />
         </div>
         <div class="separator-field">
-            <Input type="textarea" bind:value={description} label="Description" placeholder="Color, weight, height, characteristics in general" required />
+            <Input  type="file" accept="image/*" on:change={asignFile} label="Image" placeholder="Image" required />
         </div>
         <div class="actions">
-            <Button mode="primary" size="large" type="submit">
-                Acept <Loader />
+            <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
+                Acept 
+                {#if submiting}
+                 <Loader />
+                {/if}
             </Button>
         </div>
     </form>
