@@ -5,11 +5,11 @@ import { createPet, getPets, updatePet } from "../../services/pets";
 import {  uploadPetPhoto } from "../../services/upload";
 import { state } from "../../store";
 import LoaderDots from "../LoaderDots.svelte";
+import ToastMultiple from "../ToastMultiple.svelte";
 
 let id = null;
 let name = "";
 let race = "";
-let age = "";
 let file = null;
 let description = "";
 
@@ -28,13 +28,15 @@ function assignDialogInstance(ev)  {
 };
 
 function openDialogForCreate() {
-    id = null;
-    dialogInstance?.show();
+    // id = null;
+    // dialogInstance?.show();
+    successMessage = 'okkk';
 };
 
 function asignFile(ev) {
     file = ev.target.files[0];
 }
+
 
 async function createOrUpdate() {
     submiting = true
@@ -47,7 +49,7 @@ async function createOrUpdate() {
             console.log(pet);
         }
     } catch(err) {
-
+        
     } finally {
         submiting = false
     }
@@ -91,4 +93,13 @@ async function createOrUpdate() {
         </div>
     </form>
 </Dialog>
+
+<ToastMultiple 
+    successMessage={successMessage} 
+    errorMessage={errorMessage}
+    onCloseSuccessMessage={_ => { successMessage = null }}
+    onCloseErrorMessage={_ => { errorMessage = null }}
+/>
+
+
 

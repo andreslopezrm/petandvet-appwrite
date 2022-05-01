@@ -106,7 +106,7 @@ async function handleSubmit() {
 
 <Toasts portalRootSelector="body" horizontalPosition="center" verticalPosition="bottom">
     <Toast isOpen={isToastOpen} type="error">
-        <div class="toast-error-content">
+        <div class="toast-content">
             <p>{errorMessage}</p>
             <Close color="var(--agnostic-error-dark)" on:click={toastClose} />
         </div>

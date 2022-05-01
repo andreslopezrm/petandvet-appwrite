@@ -99,7 +99,7 @@ a.link-black {
 	margin-top: 2rem;
 }
 
-.toast-error-content {
+.toast-content {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
