@@ -25,3 +25,6 @@ export async function uploadPetPhoto(image) {
     return photo;
 }
 
+export async function deletePhoto(imageId) {
+    await sdk.storage.deleteFile(BUCKET_ID, imageId);
+}

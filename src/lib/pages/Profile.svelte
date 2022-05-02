@@ -25,16 +25,16 @@ async function closeSession() {
         <div class="container-tabs">
             <Tabs tabindex={0} size="large" tabs={[
                 {
-                    title: "🐕 Pets",
-                    ariaControls: "panel-1",
-                    tabPanelComponent: TabPets,
-                    tabindex: 0
-                },
-                {
                     title: "🗓 Events",
                     ariaControls: "panel-2",
                     tabPanelComponent: TabEvents,
                     tabindex: 1
+                },
+                {
+                    title: "🐕 Pets",
+                    ariaControls: "panel-1",
+                    tabPanelComponent: TabPets,
+                    tabindex: 0
                 },
                 {
                     title: "💡 Tips",

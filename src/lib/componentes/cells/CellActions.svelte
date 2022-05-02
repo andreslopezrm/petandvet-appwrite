@@ -28,7 +28,7 @@ function handleDelete() {
             on:click={handleEdit}>
             Edit
         </Button>
-        <Button isLink>Delete</Button>
+        <Button isLink on:click={handleDelete}>Delete</Button>
     </div>
 </td>
 <style>

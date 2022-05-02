@@ -2,15 +2,16 @@
 import { Button, Dialog, Input, Loader, Table } from "agnostic-svelte";
 import { onMount, setContext } from "svelte";
 import { get } from "svelte/store";
-import { createPet, getPets, updatePet } from "../../services/pets";
-import {  uploadPetPhoto } from "../../services/upload";
+import { createPet, deletePet, getPets, updatePet } from "../../services/pets";
+import { deletePhoto, uploadPetPhoto } from "../../services/upload";
 import { state } from "../../store";
 import LoaderDots from "../LoaderDots.svelte";
 import ToastMultiple from "../ToastMultiple.svelte";
 import CellImage from "../cells/CellImage.svelte";
 import CellActions from "../cells/CellActions.svelte";
+import Confirm from "../Confirm.svelte";
 
-let id = null;
+let currentPet = null;
 let name = "";
 let race = "";
 let file = null;
@@ -26,6 +27,7 @@ let loading = true;
 let submiting = false;
 let successMessage;
 let errorMessage;
+let openConfirm;
 
 
 $: {
@@ -61,12 +63,22 @@ function closeDialog() {
     dialogInstance?.hide();
 }
 
+function openConfirmForDelete(index) {
+    const pet = pets[index];
+    currentPet = pet;
+    openConfirm = true;
+}
+
+function closeConfirm() {
+    openConfirm = false;
+}
+
 function asignFile(ev) {
     file = ev.target.files[0];
 }
 
 function resetValues() {
-    id = null;
+    currentPet = null;
     name = "";
     race = "";
     file = null;
@@ -75,7 +87,7 @@ function resetValues() {
 }
 
 function asignValues(pet) {
-    id = pet.$id;
+    currentPet = pet;
     name = pet.name;
     race = pet.race;
     description = pet.description;
@@ -88,14 +100,26 @@ async function createOrUpdate() {
     errorMessage = null;
 
     try {
-        if(id) {
-            
+        if(currentPet) {
+            let photo;
+
+            if(file) {
+                photo = await uploadPetPhoto(file);
+                await deletePhoto(currentPet.imageId);
+            }
+            const id = currentPet.$id;
+            const imageId = photo?.imageId ?? currentPet.imageId;
+            const imageUrl = photo?.imageUrl ?? currentPet.imageUrl;
+
+            await updatePet({ id, name, race, description, imageId, imageUrl, isPublic });
+            successMessage = "Pet update success";
         } else {
             const { imageId, imageUrl } = await uploadPetPhoto(file);
             await createPet({ userId, name, race, description, imageId, imageUrl, isPublic });
             successMessage = "Pet create success";
-            resetValues();
         }
+        resetValues();
+        loadPets();
     } catch(err) {
         errorMessage = err.message;
     } finally {
@@ -104,7 +128,23 @@ async function createOrUpdate() {
     }
 }
 
+async function remove() {
+    submiting = true;
+    try {
+        await deletePet(currentPet.$id);
+        currentPet = null;
+        openConfirm = false;
+        await loadPets();
+        successMessage = "Pet delete success";
+    } catch(err) {
+        errorMessage = err.message;
+    } finally {
+        submiting = false;
+    }
+}
+
 setContext('onEdit', openDialogForEdit);
+setContext('onDelete', openConfirmForDelete);
 
 </script>
 
@@ -199,6 +239,14 @@ setContext('onEdit', openDialogForEdit);
     errorMessage={errorMessage}
     onCloseSuccessMessage={_ => { successMessage = null }}
     onCloseErrorMessage={_ => { errorMessage = null }}
+/>
+
+<Confirm 
+    message="Delete sure?" 
+    open={openConfirm}
+    onClose={closeConfirm}
+    onAccept={remove}
+    submiting={submiting}
 />
 
 

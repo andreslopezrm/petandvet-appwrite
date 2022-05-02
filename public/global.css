@@ -129,6 +129,14 @@ a.link-black {
 	margin-right: 0.5rem;
 }
 
+.confirm-action button span {
+	margin-right: 0.8rem;
+}
+
+.separator-field .date-time-field input {
+	width: 100%;
+}
+
 @media only screen and (min-width: 600px) {
 	main {
 		display: flex;

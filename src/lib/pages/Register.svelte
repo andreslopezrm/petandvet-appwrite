@@ -1,13 +1,10 @@
 <script>
 import { Input, Select, Button, Close, Toasts, Toast  } from "agnostic-svelte";
-import { onMount } from "svelte";
 import { replace } from "svelte-spa-router";
-import { sdk } from "../../appwrite";
 import Aside from "../componentes/Aside.svelte";
 import { createUser } from "../services/user";
+import { getAllCountries } from "../services/countries";
 
-
-let countriesOptions = [];
 let isToastOpen = false
 let errorMessage = "";
 let fullname = "";
@@ -16,10 +13,6 @@ let password = "";
 let country = "";
 let kind = "";
 
-onMount(async () => {
-    let { countries } = await sdk.locale.getCountries();
-    countriesOptions = countries.map(({ name, code }) => ({ value: code, label: name })); 
-})
 
 function toastClose() {
     errorMessage = "";
@@ -71,16 +64,20 @@ async function handleSubmit() {
                 <Input bind:value={password} label="Password" type="password" required minlength="8" />
             </div>
             <div class="select-wrapper">
-                <label for="country" class="select-label">
-                    <span>Select a Country</span>
-                    <Select 
-                        required 
-                        uniqueId="country" 
-                        bind:selected={country} 
-                        options={countriesOptions} 
-                        defaultOptionLabel=" - Select -"
-                    />
-                </label>
+                {#await getAllCountries()}
+                    <p>Loading countries</p>
+                {:then countriesOptions} 
+                    <label for="country" class="select-label">
+                        <span>Select a Country</span>
+                        <Select 
+                            required 
+                            uniqueId="country" 
+                            bind:selected={country} 
+                            options={countriesOptions} 
+                            defaultOptionLabel=" - Select -"
+                        />
+                    </label>
+                {/await}
             </div>
             <div class="select-wrapper">
                 <label for="kind" class="select-label">
