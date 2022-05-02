@@ -4,6 +4,7 @@ import { DateInput } from 'date-picker-svelte'
 import { get } from "svelte/store";
 import { getAllCountries } from "../../services/countries";
 import { state } from "../../store";
+import ToastMultiple from "../ToastMultiple.svelte";
 
 let currentEvent;
 let title = "";
@@ -17,6 +18,10 @@ let country = get(state)?.account?.country;
 let submiting = false;
 let userId = get(state)?.account?.$id;
 let dialogInstance;
+
+let successMessage;
+let errorMessage;
+let openConfirm;
 
 function assignDialogInstance(ev)  {
     dialogInstance = ev.detail.instance;
@@ -32,15 +37,47 @@ function asignFile(ev) {
 }
 
 function resetValues() {
-    // currentEvent = null;
-    // race = "";
-    // file = null;
-    // description = "";
-    // isPublic = false;
+    currentEvent = null;
+    title = "";
+    description = "";
+    datetime = new Date();
+    file = null;
+    address = "";
+    country = get(state)?.account?.country;
 }
 
-function createOrUpdate() {
+async function createOrUpdate() {
+    submiting = true
+    successMessage = null;
+    errorMessage = null;
 
+    try {
+        if(currentEvent) {
+            // let photo;
+
+            // if(file) {
+            //     photo = await uploadPetPhoto(file);
+            //     await deletePhoto(currentPet.imageId);
+            // }
+            // const id = currentPet.$id;
+            // const imageId = photo?.imageId ?? currentPet.imageId;
+            // const imageUrl = photo?.imageUrl ?? currentPet.imageUrl;
+
+            // await updatePet({ id, name, race, description, imageId, imageUrl, isPublic });
+            // successMessage = "Pet update success";
+        } else {
+            const { imageId, imageUrl } = await uploadPetPhoto(file);
+            await createPet({ userId, name, race, description, imageId, imageUrl, isPublic });
+            successMessage = "Pet create success";
+        }
+        resetValues();
+        loadPets();
+    } catch(err) {
+        errorMessage = err.message;
+    } finally {
+        submiting = false
+        closeDialog();
+    }
 }
 
 </script>
@@ -97,3 +134,10 @@ function createOrUpdate() {
         </div>
     </form>
 </Dialog>
+
+<ToastMultiple
+    successMessage={successMessage} 
+    errorMessage={errorMessage}
+    onCloseSuccessMessage={_ => { successMessage = null }}
+    onCloseErrorMessage={_ => { errorMessage = null }}
+/>

@@ -2,7 +2,7 @@ import { sdk, Query } from "../../appwrite";
 
 const COLLECTION_ID = 'pets';
 
-export async function createPet({ userId, name, race, age, description, imageId, imageUrl, isPublic = false }) {
+export async function createPet({ userId, name, race, description, imageId, imageUrl, isPublic = false }) {
     return await sdk.database.createDocument(COLLECTION_ID, 'unique()', { userId, name, race, description, imageId, imageUrl, isPublic });
 }
 
