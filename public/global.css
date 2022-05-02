@@ -120,6 +120,14 @@ a.link-black {
 	margin-left: 0.3rem;
 }
 
+.radio-field input {
+	accent-color: var(--primary-color);
+}
+
+.radio-field span {
+	text-transform: capitalize;
+	margin-right: 0.5rem;
+}
 
 @media only screen and (min-width: 600px) {
 	main {

@@ -15,6 +15,7 @@ let name = "";
 let race = "";
 let file = null;
 let description = "";
+let isPublic = false;
 
 let dialogInstance;
 let pets = [];
@@ -31,10 +32,13 @@ $: {
     rows = pets.map(({ imageUrl, name, race, description, isPublic }, index) => ({ imageUrl, name, race, description, isPublic, index  }))
 }
 
-onMount(async () => {
+onMount(loadPets)
+
+async function loadPets() {
+    loading = true;
     pets = await getPets(userId);
     loading = false;
-})
+}
 
 
 function assignDialogInstance(ev)  {
@@ -67,6 +71,7 @@ function resetValues() {
     race = "";
     file = null;
     description = "";
+    isPublic = false;
 }
 
 function asignValues(pet) {
@@ -74,6 +79,7 @@ function asignValues(pet) {
     name = pet.name;
     race = pet.race;
     description = pet.description;
+    isPublic = pet.isPublic;
 }
 
 async function createOrUpdate() {
@@ -83,10 +89,10 @@ async function createOrUpdate() {
 
     try {
         if(id) {
-            console.log('edit', id)
+            
         } else {
             const { imageId, imageUrl } = await uploadPetPhoto(file);
-            await createPet({ userId, name, race, description, imageId, imageUrl });
+            await createPet({ userId, name, race, description, imageId, imageUrl, isPublic });
             successMessage = "Pet create success";
             resetValues();
         }
@@ -158,13 +164,24 @@ setContext('onEdit', openDialogForEdit);
             <Input bind:value={name} label="Name" required/>
         </div>
         <div class="separator-field">
-            <Input bind:value={race} label="Race" placeholder="For example: dog" required />
+            {#each ["dog", "cat", "bird", "fish", "reptile", "other"] as type}
+                <label class="radio-field">
+                    <input type=radio bind:group={race} name="race" value={type}>
+                    <span>{type}</span>
+                </label>
+            {/each}
         </div>
         <div class="separator-field">
             <Input type="textarea" bind:value={description} label="Description" placeholder="Color, age, weight, height, characteristics in general" required />
         </div>
         <div class="separator-field">
             <Input  type="file" accept="image/*" on:change={asignFile} label="Image" placeholder="Image"  />
+        </div>
+        <div class="separator-field">
+            <label class="radio-field">
+                <input type=checkbox bind:checked={isPublic} name="isPublic">
+                <span>is public?</span>
+            </label>
         </div>
         <div class="actions">
             <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
