@@ -4,6 +4,8 @@ import { DateInput } from 'date-picker-svelte'
 import { get } from "svelte/store";
 import { getAllCountries } from "../../services/countries";
 import { state } from "../../store";
+import { createEvent } from "../../services/events";
+import { uploadEventPhoto } from "../../services/upload";
 import ToastMultiple from "../ToastMultiple.svelte";
 
 let currentEvent;
@@ -66,12 +68,12 @@ async function createOrUpdate() {
             // await updatePet({ id, name, race, description, imageId, imageUrl, isPublic });
             // successMessage = "Pet update success";
         } else {
-            const { imageId, imageUrl } = await uploadPetPhoto(file);
-            await createPet({ userId, name, race, description, imageId, imageUrl, isPublic });
+            const { imageId, imageUrl } = await uploadEventPhoto(file);
+            await createEvent({ userId, title, description, imageId, imageUrl, address, country, datetime: +datetime });
             successMessage = "Pet create success";
         }
         resetValues();
-        loadPets();
+        //loadPets();
     } catch(err) {
         errorMessage = err.message;
     } finally {

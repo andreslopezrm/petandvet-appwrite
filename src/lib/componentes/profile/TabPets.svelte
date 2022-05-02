@@ -3,7 +3,7 @@ import { Button, Dialog, Input, Loader, Table } from "agnostic-svelte";
 import { onMount, setContext } from "svelte";
 import { get } from "svelte/store";
 import { createPet, deletePet, getPets, updatePet } from "../../services/pets";
-import { deletePhoto, uploadPetPhoto } from "../../services/upload";
+import { deletePetPhoto, uploadPetPhoto } from "../../services/upload";
 import { state } from "../../store";
 import LoaderDots from "../LoaderDots.svelte";
 import ToastMultiple from "../ToastMultiple.svelte";
@@ -105,7 +105,7 @@ async function createOrUpdate() {
 
             if(file) {
                 photo = await uploadPetPhoto(file);
-                await deletePhoto(currentPet.imageId);
+                await deletePetPhoto(currentPet.imageId);
             }
             const id = currentPet.$id;
             const imageId = photo?.imageId ?? currentPet.imageId;
