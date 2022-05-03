@@ -4,9 +4,16 @@ import { DateInput } from 'date-picker-svelte'
 import { get } from "svelte/store";
 import { getAllCountries } from "../../services/countries";
 import { state } from "../../store";
-import { createEvent } from "../../services/events";
-import { uploadEventPhoto } from "../../services/upload";
+import { createEvent, deleteEvent, getEvents, updateEvent } from "../../services/events";
+import { deleteEventPhoto, uploadEventPhoto } from "../../services/upload";
 import ToastMultiple from "../ToastMultiple.svelte";
+import { onMount, setContext } from "svelte";
+import LoaderDots from "../LoaderDots.svelte";
+import CellImage from "../cells/CellImage.svelte";
+import CellActions from "../cells/CellActions.svelte";
+import CellDate from "../cells/CellDate.svelte";
+import Confirm from "../Confirm.svelte";
+
 
 let currentEvent;
 let title = "";
@@ -16,14 +23,28 @@ let file = null;
 let address = "";
 let country = get(state)?.account?.country;
 
-
+let loading = true;
 let submiting = false;
 let userId = get(state)?.account?.$id;
 let dialogInstance;
 
+let events = [];
+let rows = [];
 let successMessage;
 let errorMessage;
 let openConfirm;
+
+$: {
+    rows = events.map(({ imageUrl, title, description, address, datetime }, index) => ({ imageUrl, title, description, address, datetime, index }));
+}
+
+onMount(loadEvents);
+
+async function loadEvents() {
+    loading = true;
+    events = await getEvents(userId);
+    loading = false;
+}
 
 function assignDialogInstance(ev)  {
     dialogInstance = ev.detail.instance;
@@ -32,6 +53,26 @@ function assignDialogInstance(ev)  {
 function openDialogForCreate() {
     resetValues();
     dialogInstance?.show();
+}
+
+function openDialogForEdit(index) {
+    const event = events[index];
+    asignValues(event);
+    dialogInstance?.show();
+}
+
+function closeDialog() {
+    dialogInstance?.hide();
+}
+
+function openConfirmForDelete(index) {
+    const event = events[index];
+    currentEvent = event;
+    openConfirm = true;
+}
+
+function closeConfirm() {
+    openConfirm = false;
 }
 
 function asignFile(ev) {
@@ -48,6 +89,16 @@ function resetValues() {
     country = get(state)?.account?.country;
 }
 
+function asignValues(event) {
+    currentEvent = event;
+    title = event.title;
+    description = event.description;
+    datetime = new Date(event.datetime);
+    file = null;
+    address = event.address;
+    country = event.country;
+}
+
 async function createOrUpdate() {
     submiting = true
     successMessage = null;
@@ -55,25 +106,25 @@ async function createOrUpdate() {
 
     try {
         if(currentEvent) {
-            // let photo;
+            let photo;
 
-            // if(file) {
-            //     photo = await uploadPetPhoto(file);
-            //     await deletePhoto(currentPet.imageId);
-            // }
-            // const id = currentPet.$id;
-            // const imageId = photo?.imageId ?? currentPet.imageId;
-            // const imageUrl = photo?.imageUrl ?? currentPet.imageUrl;
+            if(file) {
+                photo = await uploadEventPhoto(file);
+                await deleteEventPhoto(currentEvent.imageId);
+            }
+            const id = currentEvent.$id;
+            const imageId = photo?.imageId ?? currentEvent.imageId;
+            const imageUrl = photo?.imageUrl ?? currentEvent.imageUrl;
 
-            // await updatePet({ id, name, race, description, imageId, imageUrl, isPublic });
-            // successMessage = "Pet update success";
+            await updateEvent({ id, title, description, imageId, imageUrl, address, country, datetime: +datetime });
+            successMessage = "Event update success";
         } else {
             const { imageId, imageUrl } = await uploadEventPhoto(file);
             await createEvent({ userId, title, description, imageId, imageUrl, address, country, datetime: +datetime });
             successMessage = "Pet create success";
         }
         resetValues();
-        //loadPets();
+        loadEvents();
     } catch(err) {
         errorMessage = err.message;
     } finally {
@@ -81,6 +132,26 @@ async function createOrUpdate() {
         closeDialog();
     }
 }
+
+async function remove() {
+    submiting = true;
+    try {
+        await deleteEvent(currentEvent.$id);
+        await deleteEventPhoto(currentEvent.imageId);
+        currentEvent = null;
+        openConfirm = false;
+        await loadEvents();
+        successMessage = "Pet delete success";
+    } catch(err) {
+        errorMessage = err.message;
+    } finally {
+        submiting = false;
+    }
+}
+
+
+setContext('onEdit', openDialogForEdit);
+setContext('onDelete', openConfirmForDelete);
 
 </script>
 
@@ -90,6 +161,49 @@ async function createOrUpdate() {
             <Button mode="primary" type="button" on:click={openDialogForCreate}>Add</Button>
         {/if}
     </div>
+    <div>
+        {#if loading}
+            <LoaderDots />
+         {:else}
+             {#if rows.length}
+                 <Table
+                     caption="Yours events"
+                     rows={rows}
+                     headers={[
+                         {
+                             label: "Image",
+                             key: "imageUrl",
+                             renderComponent: () => CellImage
+                         },
+                         {
+                             label: "Title",
+                             key: "title"
+                         },
+                         {
+                             label: "Description",
+                             key: "description"
+                         },
+                         {
+                             label: "Address",
+                             key: "address"
+                         },
+                         {
+                             label: "Date",
+                             key: "datetime",
+                             renderComponent: () => CellDate
+                         },
+                         {
+                             label: "Actions",
+                             key: "index",
+                             renderComponent: () => CellActions
+                         }
+                     ]}
+                 />
+             {:else}
+                 <p class="empty-state">⏱ <i>No events yet</i></p>
+             {/if}
+        {/if}
+     </div>
 </div>
 
 <Dialog title="Add Event" dialogRoot="#dialog-root" on:instance={assignDialogInstance}>
@@ -143,3 +257,14 @@ async function createOrUpdate() {
     onCloseSuccessMessage={_ => { successMessage = null }}
     onCloseErrorMessage={_ => { errorMessage = null }}
 />
+
+<Confirm
+    message="Delete sure?" 
+    open={openConfirm}
+    onClose={closeConfirm}
+    onAccept={remove}
+    submiting={submiting}
+/>
+
+
+

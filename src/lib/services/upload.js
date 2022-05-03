@@ -31,14 +31,17 @@ export async function uploadPetPhoto(image) {
 }
 
 export async function deletePetPhoto(imageId) {
-    await sdk.storage.deleteFile(BUCKET_PETS_ID, imageId);
+    if(imageId) {
+        await sdk.storage.deleteFile(BUCKET_PETS_ID, imageId);
+    }
 }
-
 
 export async function uploadEventPhoto(image) {
     return await uploadPhoto(BUCKET_EVENTS_ID, image);
 }
 
 export async function deleteEventPhoto(imageId) {
-    await sdk.storage.deleteFile(BUCKET_EVENTS_ID, imageId);
+    if(imageId) {
+        await sdk.storage.deleteFile(BUCKET_EVENTS_ID, imageId);
+    }
 }

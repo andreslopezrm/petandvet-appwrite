@@ -132,6 +132,7 @@ async function remove() {
     submiting = true;
     try {
         await deletePet(currentPet.$id);
+        await deletePetPhoto(currentPet.imageId);
         currentPet = null;
         openConfirm = false;
         await loadPets();
