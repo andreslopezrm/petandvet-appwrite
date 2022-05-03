@@ -2,6 +2,7 @@ import { sdk } from "../../appwrite";
 
 const BUCKET_PETS_ID = "625b7fa68a316d9abb36";
 const BUCKET_EVENTS_ID = "62706956eaa2e164a378";
+const BUCKET_AVATAR_ID = "6270a84f06bd925d1586";
 
 async function uploadPhoto(buckedId, image) {
     const photo = { imageId: null, imageUrl: null };
@@ -43,5 +44,15 @@ export async function uploadEventPhoto(image) {
 export async function deleteEventPhoto(imageId) {
     if(imageId) {
         await sdk.storage.deleteFile(BUCKET_EVENTS_ID, imageId);
+    }
+}
+
+export async function uploadAvatarPhoto(image) {
+    return await uploadPhoto(BUCKET_AVATAR_ID, image);
+}
+
+export async function deleteAvatarPhoto(imageId) {
+    if(imageId) {
+        await sdk.storage.deleteFile(BUCKET_AVATAR_ID, imageId);
     }
 }

@@ -1,1 +1,7 @@
-<h1>Info</h1>
+<script>
+import Avatar from "../user/Avatar.svelte";
+
+</script>
+<div>
+    <Avatar />
+</div>

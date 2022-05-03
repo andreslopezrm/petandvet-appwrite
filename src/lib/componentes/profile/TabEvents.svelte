@@ -48,7 +48,7 @@ async function loadEvents() {
 
 function assignDialogInstance(ev)  {
     dialogInstance = ev.detail.instance;
-};
+}
 
 function openDialogForCreate() {
     resetValues();

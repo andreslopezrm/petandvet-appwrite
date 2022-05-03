@@ -2,7 +2,6 @@ import { sdk } from "../../appwrite";
 import { state } from "../store";
 import { getSessionId, saveSessionId } from "./local";
 
-
 export async function createUser({ fullname, email, password, country, kind }) {
     const account = await sdk.account.create('unique()', email, password, fullname);
     const session = await sdk.account.createSession(email, password);

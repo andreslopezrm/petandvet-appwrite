@@ -42,10 +42,9 @@ async function loadPets() {
     loading = false;
 }
 
-
 function assignDialogInstance(ev)  {
     dialogInstance = ev.detail.instance;
-};
+}
 
 function openDialogForCreate() {
     resetValues();
