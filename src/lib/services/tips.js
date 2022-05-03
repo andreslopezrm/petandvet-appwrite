@@ -10,7 +10,7 @@ export async function getTips(userId, offset = 0, limit = 25) {
     try {
         const reponse = await sdk.database.listDocuments(COLLECTION_ID, [ Query.equal('userId', userId) ], limit, offset);
         return reponse?.documents ?? [];
-    } catch {
+    } catch(err) {
         return [];
     }
 }
