@@ -8,6 +8,7 @@ import { getAllCountries } from "../../services/countries";
 import ToastMultiple from "../ToastMultiple.svelte";
 import { loadUser } from "../../services/user";
 import FieldEdit from "../user/FieldEdit.svelte";
+import Address from "../user/Address.svelte";
 
 let account;
 let submiting = false;
@@ -40,7 +41,7 @@ async function handleSubmitGeneral() {
 <div class="p-1 container-white">
     {#if account}
         <Avatar />
-        <div class="container-info">
+        <div class="info-container">
             <form on:submit|preventDefault={handleSubmitGeneral}>
                 <div class="separator-field">
                     <Input bind:value={account.name} label="Full Name" required />
@@ -82,18 +83,22 @@ async function handleSubmitGeneral() {
                     </Button>
                 </div>
             </form>
-            <FieldEdit 
-                label="Email" 
-                property="email" 
-                type="email"
-                onEdit={updateInfoEmailPassword}
-            />   
-            <FieldEdit 
-                label="Password" 
-                property="password" 
-                type="password"
-                onEdit={updateInfoPassword}
-            />    
+            <Address />
+            <div class="info-access">
+                <h4>Access</h4>
+                <FieldEdit 
+                    label="Email" 
+                    property="email" 
+                    type="email"
+                    onEdit={updateInfoEmailPassword}
+                />   
+                <FieldEdit 
+                    label="Password" 
+                    property="password" 
+                    type="password"
+                    onEdit={updateInfoPassword}
+                /> 
+            </div>   
         </div>
     {:else}
         <LoaderDots />
@@ -108,9 +113,13 @@ async function handleSubmitGeneral() {
 />
 
 <style>
-    .container-info {
+    .info-container {
         max-width: 700px;
         margin: 0 auto;
         padding-top: 1rem;
+    }
+
+    .info-access {
+        margin-top: 2.5rem;
     }
 </style>
