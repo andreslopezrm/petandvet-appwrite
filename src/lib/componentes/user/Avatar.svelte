@@ -1,14 +1,24 @@
 <script>
 import { get } from "svelte/store";
 import { Button, Dialog, Input, Loader } from "agnostic-svelte";
-import { getAvatarUrl } from "../../services/info";
+import { getAvatarUrl, updateAvatarUrl } from "../../services/info";
 import { state } from "../../store";
+import { loadUser } from "../../services/user";
 
-let account = get(state)?.account;
+let account;
 let submiting = false;
 
 let file;
 let dialogInstance;
+let imageUrl;
+
+state.subscribe(data => {
+    account = data.account;
+})
+
+$: if(account) {
+    generate()
+}
 
 function openDialog() {
     file = null;
@@ -27,24 +37,39 @@ function asignFile(ev) {
     file = ev.target.files[0];
 }
 
+async function generate() {
+    console.log(account?.imageUrl)
+    if(account?.imageUrl) {
+        imageUrl = account?.imageUrl;
+    } else {
+        imageUrl = await getAvatarUrl(account);
+    }
+}
+
 async function change() {
-    closeDialog();
-    console.log(file)
+    submiting = true;
+    try {
+        await updateAvatarUrl(account, file);
+        await loadUser();
+    } catch(err) {
+        console.log(err);
+    } finally {
+        closeDialog();
+        submiting = false
+    }
 }
 
 </script>
 
 <div class="avatar">
-    {#await getAvatarUrl(account)}
-        <span />
-    {:then url} 
+    {#if imageUrl}
         <div>
             <figure>
-                <img width="88" src={url} alt={account?.name ?? ""} />
+                <img width="88" src={imageUrl} alt={account?.name ?? ""} />
             </figure>
             <Button mode="primary" on:click={openDialog}>Change Avatar</Button>
         </div>
-    {/await}
+    {/if}
 </div>
 
 <Dialog title="Change Avatar" dialogRoot="#dialog-root" on:instance={assignDialogInstance}>
@@ -78,6 +103,9 @@ async function change() {
     img {
         border-radius: 50%;
         border: 3px solid rgba(255, 255, 255, 0);
+        object-fit: cover;
+        width: 88px;
+        height: 88px;
     }
 
     img:hover {
