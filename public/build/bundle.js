@@ -10725,7 +10725,7 @@ var app = (function () {
     				isBorder: true,
     				isStacked: true,
     				isRounded: true,
-    				$$slots: { default: [create_default_slot_2$a] },
+    				$$slots: { default: [create_default_slot_2$b] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -10770,7 +10770,7 @@ var app = (function () {
     }
 
     // (36:12) <Card isBorder="{true}" isStacked="{true}" isRounded="{true}">
-    function create_default_slot_2$a(ctx) {
+    function create_default_slot_2$b(ctx) {
     	let figure;
     	let a0;
     	let t1;
@@ -10843,7 +10843,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$a.name,
+    		id: create_default_slot_2$b.name,
     		type: "slot",
     		source: "(36:12) <Card isBorder=\\\"{true}\\\" isStacked=\\\"{true}\\\" isRounded=\\\"{true}\\\">",
     		ctx
@@ -14491,7 +14491,7 @@ var app = (function () {
     const file$k = "src/lib/componentes/common/QrButton.svelte";
 
     // (25:0) <Button isCircle on:click={share}>
-    function create_default_slot_1$d(ctx) {
+    function create_default_slot_2$a(ctx) {
     	let svg;
     	let g1;
     	let g0;
@@ -14538,7 +14538,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$d.name,
+    		id: create_default_slot_2$a.name,
     		type: "slot",
     		source: "(25:0) <Button isCircle on:click={share}>",
     		ctx
@@ -14552,31 +14552,90 @@ var app = (function () {
     	let figure;
     	let img;
     	let img_src_value;
+    	let t0;
+    	let div;
+    	let button;
+    	let t1;
+    	let a;
+    	let t2;
+    	let current;
+
+    	button = new Button({
+    			props: {
+    				mode: "primary",
+    				size: "small",
+    				type: "button",
+    				$$slots: { default: [create_default_slot_1$d] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
 
     	const block = {
     		c: function create() {
     			figure = element("figure");
     			img = element("img");
-    			attr_dev(img, "class", "qr-figure-img svelte-pbxfrz");
+    			t0 = space();
+    			div = element("div");
+    			create_component(button.$$.fragment);
+    			t1 = space();
+    			a = element("a");
+    			t2 = text("Download");
+    			attr_dev(img, "class", "qr-figure-img svelte-1rd5ch5");
     			if (!src_url_equal(img.src, img_src_value = /*url*/ ctx[1])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "qr");
-    			add_location(img, file$k, 42, 16, 4072);
-    			attr_dev(figure, "class", "qr-figure svelte-pbxfrz");
-    			add_location(figure, file$k, 41, 12, 4029);
+    			add_location(img, file$k, 42, 16, 4077);
+    			attr_dev(figure, "class", "qr-figure svelte-1rd5ch5");
+    			add_location(figure, file$k, 41, 12, 4034);
+    			attr_dev(a, "class", "qr-download-btn svelte-1rd5ch5");
+    			attr_dev(a, "href", /*url*/ ctx[1]);
+    			attr_dev(a, "download", "");
+    			add_location(a, file$k, 48, 16, 4317);
+    			attr_dev(div, "class", "actions svelte-1rd5ch5");
+    			add_location(div, file$k, 44, 12, 4159);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, figure, anchor);
     			append_dev(figure, img);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div, anchor);
+    			mount_component(button, div, null);
+    			append_dev(div, t1);
+    			append_dev(div, a);
+    			append_dev(a, t2);
+    			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*url*/ 2 && !src_url_equal(img.src, img_src_value = /*url*/ ctx[1])) {
+    			if (!current || dirty & /*url*/ 2 && !src_url_equal(img.src, img_src_value = /*url*/ ctx[1])) {
     				attr_dev(img, "src", img_src_value);
     			}
+
+    			const button_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				button_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button.$set(button_changes);
+
+    			if (!current || dirty & /*url*/ 2) {
+    				attr_dev(a, "href", /*url*/ ctx[1]);
+    			}
     		},
-    		i: noop,
-    		o: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(button.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(button.$$.fragment, local);
+    			current = false;
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(figure);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div);
+    			destroy_component(button);
     		}
     	};
 
@@ -14602,8 +14661,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(loader.$$.fragment);
-    			attr_dev(div, "class", "qr-loading svelte-pbxfrz");
-    			add_location(div, file$k, 37, 12, 3930);
+    			attr_dev(div, "class", "qr-loading svelte-1rd5ch5");
+    			add_location(div, file$k, 37, 12, 3935);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -14637,7 +14696,34 @@ var app = (function () {
     	return block;
     }
 
-    // (35:0) <Dialog title="QR" dialogRoot="#dialog-root" on:instance={assignDialogInstance}>
+    // (46:16) <Button mode="primary" size="small" type="button">
+    function create_default_slot_1$d(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Acept");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1$d.name,
+    		type: "slot",
+    		source: "(46:16) <Button mode=\\\"primary\\\" size=\\\"small\\\" type=\\\"button\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (35:0) <Dialog title="QR Code" dialogRoot="#dialog-root" on:instance={assignDialogInstance}>
     function create_default_slot$f(ctx) {
     	let div;
     	let current_block_type_index;
@@ -14659,7 +14745,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			attr_dev(div, "class", "qr-dialog");
-    			add_location(div, file$k, 35, 4, 3872);
+    			add_location(div, file$k, 35, 4, 3877);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -14712,7 +14798,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$f.name,
     		type: "slot",
-    		source: "(35:0) <Dialog title=\\\"QR\\\" dialogRoot=\\\"#dialog-root\\\" on:instance={assignDialogInstance}>",
+    		source: "(35:0) <Dialog title=\\\"QR Code\\\" dialogRoot=\\\"#dialog-root\\\" on:instance={assignDialogInstance}>",
     		ctx
     	});
 
@@ -14728,7 +14814,7 @@ var app = (function () {
     	button = new Button({
     			props: {
     				isCircle: true,
-    				$$slots: { default: [create_default_slot_1$d] },
+    				$$slots: { default: [create_default_slot_2$a] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -14738,7 +14824,7 @@ var app = (function () {
 
     	dialog = new Dialog({
     			props: {
-    				title: "QR",
+    				title: "QR Code",
     				dialogRoot: "#dialog-root",
     				$$slots: { default: [create_default_slot$f] },
     				$$scope: { ctx }

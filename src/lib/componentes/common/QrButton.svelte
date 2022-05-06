@@ -32,7 +32,7 @@ async function share() {
     </svg>
 </Button>
 
-<Dialog title="QR" dialogRoot="#dialog-root" on:instance={assignDialogInstance}>
+<Dialog title="QR Code" dialogRoot="#dialog-root" on:instance={assignDialogInstance}>
     <div class="qr-dialog">
         {#if loading}
             <div class="qr-loading">
@@ -42,8 +42,15 @@ async function share() {
             <figure class="qr-figure">
                 <img class="qr-figure-img" src={url} alt="qr"/>
             </figure>
+            <div class="actions">
+                <Button mode="primary" size="small" type="button">
+                    Acept 
+                </Button>
+                <a class="qr-download-btn" href={url} download>Download</a>
+            </div>
         {/if}
     </div>
+
 </Dialog>
 
 <style>
@@ -64,5 +71,23 @@ async function share() {
 
     .qr-figure-img{
         max-width: 100%;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .qr-download-btn {
+        height: 2rem;
+        color: var(--agnostic-btn-primary);
+        font-size: calc(var(--agnostic-btn-font-size, 1rem) - 0.25rem);
+        padding: 0 1rem;
+        vertical-align: center;
+        display: flex;
+        align-items: center;
+        background-color: var(--agnostic-btn-bgcolor, var(--agnostic-gray-light));
     }
 </style>
