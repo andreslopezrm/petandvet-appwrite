@@ -33,3 +33,7 @@ export async function getPublicPets(offset = 0, limit = 25) {
         return [];
     }
 }
+
+export async function getPublicPet(petId) {
+    return sdk.database.getDocument(COLLECTION_ID, petId);
+}

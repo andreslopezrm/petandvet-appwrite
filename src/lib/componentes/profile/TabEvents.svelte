@@ -223,20 +223,20 @@ setContext('onDelete', openConfirmForDelete);
         <div class="separator-field">
             <Input type="textarea" bind:value={address} label="Address" placeholder="" required />
         </div>
-        {#await getAllCountries()}
-                    <p>Loading countries</p>
-                {:then countriesOptions} 
-                    <label for="country" class="select-label">
-                        <span>Select a Country</span>
-                        <Select 
-                            required 
-                            uniqueId="country" 
-                            bind:selected={country} 
-                            options={countriesOptions} 
-                            defaultOptionLabel=" - Select -"
-                        />
-                    </label>
-                {/await}
+            {#await getAllCountries()}
+                <p>Loading countries</p>
+            {:then countriesOptions} 
+                <label for="country" class="select-label">
+                    <span>Select a Country</span>
+                    <Select 
+                        required 
+                        uniqueId="country" 
+                        bind:selected={country} 
+                        options={countriesOptions} 
+                        defaultOptionLabel=" - Select -"
+                    />
+                </label>
+            {/await}
         <div class="separator-field">
             <Input  type="file" accept="image/*" on:change={asignFile} label="Image" placeholder="Image"  />
         </div>

@@ -5,12 +5,16 @@ import Events from "./pages/Events.svelte";
 import Login from "./pages/Login.svelte";
 import Register from "./pages/Register.svelte";
 import Profile from "./pages/Profile.svelte";
+import Pet from "./pages/Pet.svelte";
+import Tips from "./pages/Tips.svelte";
 import { state } from "./store";
 
 
 export const routes = {
     "/": Home,
     "/events": Events,
+    "/pet/:petId": Pet,
+    "/tips": Tips,
     "/login": wrap({
         component: Login,
         conditions: [() => get(state)?.account === null]

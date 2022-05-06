@@ -2,8 +2,8 @@ import { sdk, Query } from "../../appwrite";
 
 const COLLECTION_ID = 'events';
 
-export async function createEvent({ userId, title, description, imageId, imageUrl, address, country, datetime }) {
-    return await sdk.database.createDocument(COLLECTION_ID, 'unique()', { userId, title, description, imageId, imageUrl, address, country, datetime });
+export function createEvent({ userId, title, description, imageId, imageUrl, address, country, datetime }) {
+    return sdk.database.createDocument(COLLECTION_ID, 'unique()', { userId, title, description, imageId, imageUrl, address, country, datetime });
 }
 
 export async function getEvents(userId, offset = 0, limit = 25) {
@@ -15,10 +15,20 @@ export async function getEvents(userId, offset = 0, limit = 25) {
     }
 }
 
-export async function updateEvent({ id, title, description, imageId, imageUrl, address, country, datetime }) {
-    return await sdk.database.updateDocument(COLLECTION_ID, id, { title, description, imageId, imageUrl, address, country, datetime });
+export function updateEvent({ id, title, description, imageId, imageUrl, address, country, datetime }) {
+    return sdk.database.updateDocument(COLLECTION_ID, id, { title, description, imageId, imageUrl, address, country, datetime });
 }
 
-export async function deleteEvent(id) {
-    return await sdk.database.deleteDocument(COLLECTION_ID, id);
+export function deleteEvent(id) {
+    return sdk.database.deleteDocument(COLLECTION_ID, id);
+}
+
+export async function getEventsByCountry(country, offset = 0, limit = 25) {
+    console.log(country);
+    try {
+        const response = await sdk.database.listDocuments(COLLECTION_ID, [ Query.equal('country', country) ], limit, offset);
+        return response?.documents ?? [];
+    } catch(err) {
+        return [];
+    }
 }
