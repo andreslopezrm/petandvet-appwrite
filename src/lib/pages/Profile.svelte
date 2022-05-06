@@ -62,4 +62,5 @@ async function closeSession() {
         display: flex;
         justify-content: space-between;
     }
+    
 </style>

@@ -1,7 +1,7 @@
 import { Appwrite, Query } from 'appwrite';
 
 const server = {
-    endpoint: 'https://8080-appwrite-integrationforg-l4agqveejyf.ws-us43.gitpod.io/v1',
+    endpoint: 'https://8080-appwrite-integrationforg-l4agqveejyf.ws-us44.gitpod.io/v1',
     project: 'hackaton-appwrite',
 }
 

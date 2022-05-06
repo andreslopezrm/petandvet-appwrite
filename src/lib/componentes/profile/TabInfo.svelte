@@ -83,7 +83,11 @@ async function handleSubmitGeneral() {
                     </Button>
                 </div>
             </form>
-            <Address />
+            {#if account.kind === "veterinary"}
+                <div class="info-address">
+                    <Address />
+                </div>
+            {/if}
             <div class="info-access">
                 <h4>Access</h4>
                 <FieldEdit 
@@ -121,5 +125,8 @@ async function handleSubmitGeneral() {
 
     .info-access {
         margin-top: 2.5rem;
+    }
+    .info-address {
+        margin: 3.4rem 0;
     }
 </style>

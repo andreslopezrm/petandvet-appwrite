@@ -1,17 +1,24 @@
 <script>
-import { Button, Dialog, Input, Loader, Table } from "agnostic-svelte";
+import { Button, Dialog, Input, Loader, Select, Table } from "agnostic-svelte";
 import { onMount, setContext } from "svelte";
 import { createAddress, updateAddress, deleteAddress, getAddress } from "../../services/address";
-import { get } from "svelte/store";
 import { state } from "../../store";
 import ToastMultiple from "../ToastMultiple.svelte";
 import Confirm from "../Confirm.svelte";
+import { getAllCountries } from "../../services/countries";
+import LoaderDots from "../LoaderDots.svelte";
+import CellActions from "../cells/CellActions.svelte";
 
 let currentAddress;
 let addresses = [];
 
-let account = get(state)?.account;
-let userId = account.$id;
+let account;
+let userId;
+
+state.subscribe(data => {
+    account = data.account;
+    userId = account.$id;
+});
 
 let description;
 let country = account?.country;
@@ -29,7 +36,7 @@ let errorMessage;
 let openConfirm;
 
 $: {
-    rows = addresses.map(({ description, country, phone  }, index) => ({ description, country, phone, index  }))
+    rows = addresses.map(({ description, phone  }, index) => ({ description, phone, index  }))
 }
 
 
@@ -84,21 +91,28 @@ function resetValues() {
 function asignValues(address) {
     currentAddress = address;
     description = address.description;
-    country = aaddress.country;
+    country = address.country;
     phone = address.phone;
     latitude = address.latitude;
     longitude = address.longitude;
+}
+
+
+function detectLocation() {
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+        latitude = coords.latitude;
+        longitude = coords.longitude;
+    });
 }
 
 async function createOrUpdate() {
     submiting = true
     successMessage = null;
     errorMessage = null;
-
+    
     try {
         if(currentAddress) {
             const id = currentAddress.$id;
-
             await updateAddress({ id, description, country, latitude, longitude, phone });
             successMessage = "Address update success";
         } else {
@@ -118,7 +132,7 @@ async function createOrUpdate() {
 async function remove() {
     submiting = true;
     try {
-        await deleteAddress(currentPet.$id);
+        await deleteAddress(currentAddress.$id);
         currentAddress = null;
         openConfirm = false;
         await loadAddresses();
@@ -135,19 +149,76 @@ setContext('onDelete', openConfirmForDelete);
 
 </script>
 
-<div class="address">
-    <div class="address-controls-right">
-        {#if userId}
-            <h4>Addresses</h4>
-            <Button isLink type="button" size="smalll" on:click={openDialogForCreate}>Add</Button>
-        {/if}
+{#if account}
+    <div class="address">
+        <div class="address-controls-right">
+            {#if userId}
+                <h4>Addresses</h4>
+                <Button isLink type="button" size="smalll" on:click={openDialogForCreate}>Add</Button>
+            {/if}
+        </div>
+        <div>
+            {#if loading}
+                <LoaderDots />
+             {:else}
+                 {#if rows.length}
+                     <Table
+                         caption="Yours address"
+                         rows={rows}
+                         headers={[
+                             {
+                                 label: "Description",
+                                 key: "description",
+                             },
+                             {
+                                 label: "Phone",
+                                 key: "phone"
+                             },
+                             {
+                                 label: "Actions",
+                                 key: "index",
+                                 renderComponent: () => CellActions
+                             }
+                         ]}
+                     />
+                 {:else}
+                     <p class="empty-state">🏢 <i>No address yet</i></p>
+                 {/if}
+            {/if}
+         </div>
     </div>
-</div>
+{/if}
 
-<Dialog title="Add Pet" dialogRoot="#dialog-root" on:instance={assignDialogInstance}>
+<Dialog title="Add Address" dialogRoot="#dialog-root" on:instance={assignDialogInstance}>
     <form on:submit|preventDefault={createOrUpdate}>
         <div class="separator-field">
-            <Input bind:value={description} label="Description" required/>
+            <Input type="textarea" bind:value={description} label="Description" required/>
+        </div>
+        <div class="select-wrapper">
+            {#await getAllCountries()}
+                <p>Loading countries</p>
+            {:then countriesOptions} 
+                <label for="country" class="select-label">
+                    <span>Select a Country</span>
+                    <Select 
+                        required 
+                        uniqueId="country" 
+                        bind:selected={country} 
+                        options={countriesOptions} 
+                        defaultOptionLabel=" - Select -"
+                    />
+                </label>
+            {/await}
+        </div>
+        <div class="separator-field">
+            <Input bind:value={phone} label="Phone"/>
+        </div>
+        <div class="separator-field address-input-multiple address-input-bottom">
+            <Input bind:value={latitude} label="Latitude" />
+            <Input bind:value={longitude} label="Logitude" />
+            {#if navigator.geolocation}
+                <Button on:click={detectLocation}>📍</Button>
+            {/if}
         </div>
         <div class="actions">
             <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
@@ -184,5 +255,12 @@ setContext('onDelete', openConfirmForDelete);
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    .address-input-multiple {
+        display: flex;
+        gap: 1rem;
+    }
+    .address-input-bottom {
+        align-items: flex-end;
     }
 </style>

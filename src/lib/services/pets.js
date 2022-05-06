@@ -22,3 +22,14 @@ export async function updatePet({ id, name, race, description, imageId, imageUrl
 export async function deletePet(id) {
     return await sdk.database.deleteDocument(COLLECTION_ID, id);
 }
+
+
+export async function getPublicPets(offset = 0, limit = 25) {
+    try {
+        const reponse = await sdk.database.listDocuments(COLLECTION_ID, [ Query.equal('isPublic', true) ], limit, offset);
+        return reponse?.documents ?? [];
+    } catch(err) {
+        console.log(err)
+        return [];
+    }
+}

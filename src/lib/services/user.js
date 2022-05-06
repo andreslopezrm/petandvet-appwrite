@@ -29,8 +29,8 @@ export async function login({ email, password }) {
 
 export async function logout() {
     const sessionId = getSessionId();
-    state.destroy();
     await sdk.account.deleteSession(sessionId);
+    state.destroy();
 }
 
 

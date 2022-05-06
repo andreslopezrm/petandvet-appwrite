@@ -3,7 +3,7 @@ import { sdk, Query } from "../../appwrite";
 const COLLECTION_ID = 'address';
 
 export async function createAddress({ userId, description, country, latitude, longitude, phone }) {
-    return sdk.database.createDocument(COLLECTION_ID, 'unique()', { userId, description, country, latitude, longitude, phone });
+    return sdk.database.createDocument(COLLECTION_ID, 'unique()', { userId, description, country, latitude: latitude?.toString(), longitude: longitude?.toString(), phone });
 }
 
 export async function getAddress(userId, offset = 0, limit = 25) {
@@ -16,7 +16,7 @@ export async function getAddress(userId, offset = 0, limit = 25) {
 }
 
 export async function updateAddress({ id, description, country, latitude, longitude, phone }) {
-    return sdk.database.updateDocument(COLLECTION_ID, id, { description, country, latitude, longitude, phone });
+    return sdk.database.updateDocument(COLLECTION_ID, id, { description, country, latitude: latitude?.toString(), longitude: longitude?.toString(), phone });
 }
 
 export async function deleteAddress(id) {
