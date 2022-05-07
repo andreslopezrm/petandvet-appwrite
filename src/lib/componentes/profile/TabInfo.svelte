@@ -36,7 +36,6 @@ async function handleSubmitGeneral() {
     }
 }
 
-
 </script>
 <div class="p-1 container-white">
     {#if account}

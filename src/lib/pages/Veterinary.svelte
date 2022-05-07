@@ -53,7 +53,7 @@ async function load(data) {
                                 <strong>Name:</strong> {veterinary.name}
                             </p>
                             <p>
-                                <strong>Email:</strong> {veterinary.email}
+                                <strong>Email:</strong> <a href={`mailto:${veterinary.email}`}>{veterinary.email}</a>
                             </p>
                             <p>
                                 <strong>Country: </strong>
