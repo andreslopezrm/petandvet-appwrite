@@ -15,7 +15,7 @@ export let pet;
             <div class="pet-item-actions">
                 <a href={`/pet/${pet.$id}`} class="pet-go-details" use:link>Details</a>
                 <ShareButton link={`${window.location.href}#/pet/${pet.$id}`} />
-                <QrButton text={pet.name} />
+                <QrButton text={`${window.location.href}#/pet/${pet.$id}`} />
             </div>
         {/if}
     </div>

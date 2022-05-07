@@ -52,7 +52,9 @@ async function loadEvents() {
                     <p class="mt-1">Not veterianries yet</p>
                 {:else}
                     <div class="events-grid">
-                        {veterianries.length}
+                       {#each veterianries as veterinary}
+                           <VeterinaryItem veterinary={veterinary} />
+                       {/each}
                     </div>
                 {/if}
             {/if}

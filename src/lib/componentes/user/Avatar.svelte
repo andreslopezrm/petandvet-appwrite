@@ -38,7 +38,6 @@ function asignFile(ev) {
 }
 
 async function generate() {
-    console.log(account?.imageUrl)
     if(account?.imageUrl) {
         imageUrl = account?.imageUrl;
     } else {
