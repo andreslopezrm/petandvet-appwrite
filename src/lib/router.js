@@ -10,6 +10,8 @@ import Tips from "./pages/Tips.svelte";
 import Event from "./pages/Event.svelte";
 import Veterinaries from "./pages/Veterinaries.svelte";
 import Veterinary from "./pages/Veterinary.svelte";
+import Chats from "./pages/Chats.svelte";
+import Chat from "./pages/Chat.svelte";
 import { state } from "./store";
 
 
@@ -21,6 +23,8 @@ export const routes = {
     "/veterinary/:veterinaryId": Veterinary,
     "/pet/:petId": Pet,
     "/tips": Tips,
+    "/chats": Chats,
+    "/chat/:chatId": Chat,
     "/login": wrap({
         component: Login,
         conditions: [() => get(state)?.account === null]
@@ -34,17 +38,3 @@ export const routes = {
         conditions: [() => get(state)?.account !== null]
     }),
 }
-
-// export const routes = {
-//     "/": Home,
-//     "/events": Events,
-//     "/login": wrap({
-//         component: Login,
-//         conditions: [() => get(state)?.account === null]
-//     }),
-//     "/register": wrap({
-//         component: Register,
-//         conditions: [() => get(state)?.account === null]
-//     }),
-//     "/profile": Profile
-// }

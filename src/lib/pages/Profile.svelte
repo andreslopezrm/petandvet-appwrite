@@ -1,5 +1,6 @@
 <script>
 import { Button, Tabs } from "agnostic-svelte";
+import { link } from 'svelte-spa-router';
 import { replace } from "svelte-spa-router";
 import TabPets from "../componentes/profile/TabPets.svelte";
 import TabEvents from "../componentes/profile/TabEvents.svelte";
@@ -19,7 +20,10 @@ async function closeSession() {
             <h2 class="big-title">
                 Profile 
             </h2>
-            <Button type="button" isLink on:click={closeSession}>Logout</Button>
+            <div>
+                <a href="/chats" use:link>💬 Chats </a> 
+                <Button type="button" isLink on:click={closeSession}>Logout</Button>
+            </div>
         </div>
         
         <div class="container-tabs">

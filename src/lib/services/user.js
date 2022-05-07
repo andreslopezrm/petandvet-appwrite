@@ -44,3 +44,12 @@ export async function loadUser() {
         state.init(null);
     }
 }
+
+export async function isLogged() {
+    try {
+        const user = await sdk.account.get();
+        return user;
+    } catch {
+        return null;
+    }
+}

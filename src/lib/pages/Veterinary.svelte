@@ -1,6 +1,6 @@
 <script>
-import { Card, Table } from "agnostic-svelte";
-import { params } from "svelte-spa-router";
+import { Button, Card, Table } from "agnostic-svelte";
+import { params, replace } from "svelte-spa-router";
 import Aside from "../componentes/Aside.svelte";
 import CellViewInMap from "../componentes/cells/CellViewInMap.svelte";
 import QrButton from "../componentes/common/QrButton.svelte";
@@ -10,8 +10,11 @@ import LoaderDots from "../componentes/LoaderDots.svelte";
 import ToastMultiple from "../componentes/ToastMultiple.svelte";
 import { getFlag } from "../services/countries";
 import { buildMapUrl, getGetVeterinary } from "../services/veterianries";
+import { isLogged } from "../services/user";
+import { findRoom, createRoom } from "../services/chat";
 
 let loading = true;
+let submiting = false;
 let veterinary;
 let errorMessage;
 
@@ -31,6 +34,36 @@ async function load(data) {
         errorMessage = false;
     } finally {
         loading = false;
+    }
+}
+
+async function contactToVet() {
+    submiting = true;
+    const user = await isLogged();
+    if(!user) {
+        submiting = false;
+        replace("/login");
+        return;
+    }
+
+    const veterinaryId = veterinary.$id;
+    const ownerId = user.$id;
+
+    if(veterinaryId === ownerId) {
+        errorMessage = 'Same user can not contact';
+        return;
+    }
+
+    try {
+        let room;
+        room = await findRoom(veterinaryId, ownerId);
+        if(!room) {
+            room = await createRoom(veterinaryId, ownerId);
+        }
+        
+    } catch(err) {
+        console.log(err, veterinaryId, ownerId);
+        errorMessage = err.message;
     }
 }
 </script>
@@ -85,8 +118,20 @@ async function load(data) {
                                 />
                             </div>
                             <div class="veterinary-item-actions">
-                                <ShareButton isPrimary link={`${window.location.href}#/event/${veterinary.$id}`} />
-                                <QrButton text={`${window.location.href}#/event/${veterinary.$id}`} />
+                                <div class="veterinary-contact">
+                                    <Button on:click={contactToVet} isDisabled={submiting} mode="primary">
+                                        {#if submiting}
+                                            Sending...
+                                        {:else}
+                                            Contact
+                                        {/if}
+                                    </Button>
+                                </div>
+
+                                <div class="veterinary-share">
+                                    <ShareButton isPrimary link={`${window.location.href}#/event/${veterinary.$id}`} />
+                                    <QrButton text={`${window.location.href}#/event/${veterinary.$id}`} />
+                                </div>
                             </div>
                         </div>
                     </Card>
@@ -126,8 +171,13 @@ async function load(data) {
     .veterinary-item-actions {
         margin-top: 1.2rem;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
         gap: 1rem;
     }
 
+    .veterinary-share {
+        display: flex;
+        gap: 1rem;
+    }
 </style>

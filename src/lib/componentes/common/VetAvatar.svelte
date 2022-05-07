@@ -13,7 +13,7 @@ async function generate() {
     if(veterinary?.imageUrl) {
         imageUrl = veterinary?.imageUrl;
     } else {
-        imageUrl = await getAvatarUrl(account);
+        imageUrl = await getAvatarUrl(veterinary);
     }
 }
 </script>
