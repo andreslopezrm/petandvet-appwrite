@@ -5,12 +5,11 @@ import LoaderDots from "../componentes/LoaderDots.svelte";
 import { getAllCountries } from "../services/countries";
 import { get } from "svelte/store";
 import { state } from "../store";
-import { getEventsByCountry } from "../services/events";
-import EventItem from "../componentes/items/EventItem.svelte";
+import VeterinaryItem from "../componentes/items/VeterinaryItem.svelte";
 import { getAllVeterianriesByCountry } from "../services/veterianries";
 
 let country = get(state)?.account?.country;
-let events = [];
+let veterianries = [];
 let loading = false;
 
 $: if(country) {
@@ -19,9 +18,8 @@ $: if(country) {
 
 async function loadEvents() {
     loading = true;
-    events = await getEventsByCountry(country);
-    const vets = await getAllVeterianriesByCountry();
-    console.log(vets);
+    veterianries = await getAllVeterianriesByCountry(country);
+    console.log(country);
     loading = false;
 }
 
@@ -50,13 +48,11 @@ async function loadEvents() {
             {#if loading}
                 <LoaderDots />
             {:else}
-                {#if events.length === 0}
-                    <p class="mt-1">Not events yet</p>
+                {#if veterianries.length === 0}
+                    <p class="mt-1">Not veterianries yet</p>
                 {:else}
                     <div class="events-grid">
-                        {#each events as event}
-                            <EventItem event={event} />
-                        {/each}
+                        {veterianries.length}
                     </div>
                 {/if}
             {/if}
