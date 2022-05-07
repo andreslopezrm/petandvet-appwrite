@@ -1,12 +1,13 @@
 <script>
-import { Select } from 'agnostic-svelte';
-import Aside from '../componentes/Aside.svelte';
-import LoaderDots from '../componentes/LoaderDots.svelte';
-import { getAllCountries } from '../services/countries';
+import { Select } from "agnostic-svelte";
+import Aside from "../componentes/Aside.svelte";
+import LoaderDots from "../componentes/LoaderDots.svelte";
+import { getAllCountries } from "../services/countries";
 import { get } from "svelte/store";
 import { state } from "../store";
-import { getEventsByCountry } from '../services/events';
-import EventItem from '../componentes/items/EventItem.svelte';
+import { getEventsByCountry } from "../services/events";
+import EventItem from "../componentes/items/EventItem.svelte";
+import { getAllVeterianriesByCountry } from "../services/veterianries";
 
 let country = get(state)?.account?.country;
 let events = [];
@@ -19,6 +20,8 @@ $: if(country) {
 async function loadEvents() {
     loading = true;
     events = await getEventsByCountry(country);
+    const vets = await getAllVeterianriesByCountry();
+    console.log(vets);
     loading = false;
 }
 
