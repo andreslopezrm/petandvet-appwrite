@@ -8,6 +8,7 @@ import Profile from "./pages/Profile.svelte";
 import Pet from "./pages/Pet.svelte";
 import Tips from "./pages/Tips.svelte";
 import Event from "./pages/Event.svelte";
+import Veterinaries from "./pages/Veterinaries.svelte";
 import { state } from "./store";
 
 
@@ -15,6 +16,7 @@ export const routes = {
     "/": Home,
     "/events": Events,
     "/event/:eventId": Event,
+    "/veterinaries": Veterinaries,
     "/pet/:petId": Pet,
     "/tips": Tips,
     "/login": wrap({

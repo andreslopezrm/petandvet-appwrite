@@ -17,7 +17,7 @@ let userId;
 
 state.subscribe(data => {
     account = data.account;
-    userId = account.$id;
+    userId = account?.$id;
 });
 
 let description;
