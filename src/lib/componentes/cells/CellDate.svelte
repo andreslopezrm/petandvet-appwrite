@@ -1,8 +1,8 @@
 <script>
-import dayjs from "dayjs";
+import { getDateFormatLarge } from "../../services/date";
 
 export let cellValue;
-let date = dayjs(cellValue).format('DD MMMM YYYY HH:mm');
+let date = getDateFormatLarge(cellValue);
 </script>
 <td>
     <span>{date}</span>

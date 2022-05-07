@@ -32,3 +32,7 @@ export async function getEventsByCountry(country, offset = 0, limit = 25) {
         return [];
     }
 }
+
+export function getEvent(id) {
+    return sdk.database.getDocument(COLLECTION_ID, id);
+}
