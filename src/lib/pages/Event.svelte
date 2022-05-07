@@ -1,14 +1,14 @@
 <script>
-import { Card } from 'agnostic-svelte';
-import { params } from 'svelte-spa-router'
-import Aside from '../componentes/Aside.svelte';
-import QrButton from '../componentes/common/QrButton.svelte';
-import ShareButton from '../componentes/common/ShareButton.svelte';
-import LoaderDots from '../componentes/LoaderDots.svelte';
-import ToastMultiple from '../componentes/ToastMultiple.svelte';
-import { getEvent } from '../services/events';
-import { getFlag  } from '../services/countries';
-import { getDateFormatLarge } from '../services/date';
+import { Card } from "agnostic-svelte";
+import { params } from "svelte-spa-router";
+import Aside from "../componentes/Aside.svelte";
+import QrButton from "../componentes/common/QrButton.svelte";
+import ShareButton from "../componentes/common/ShareButton.svelte";
+import LoaderDots from "../componentes/LoaderDots.svelte";
+import ToastMultiple from "../componentes/ToastMultiple.svelte";
+import { getEvent } from "../services/events";
+import { getFlag  } from "../services/countries";
+import { getDateFormatLarge } from "../services/date";
 
 let loading = true;
 let event;
