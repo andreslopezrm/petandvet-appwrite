@@ -10725,7 +10725,7 @@ var app = (function () {
     				isBorder: true,
     				isStacked: true,
     				isRounded: true,
-    				$$slots: { default: [create_default_slot_2$c] },
+    				$$slots: { default: [create_default_slot_2$d] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -10770,7 +10770,7 @@ var app = (function () {
     }
 
     // (36:12) <Card isBorder="{true}" isStacked="{true}" isRounded="{true}">
-    function create_default_slot_2$c(ctx) {
+    function create_default_slot_2$d(ctx) {
     	let figure;
     	let a0;
     	let t1;
@@ -10843,7 +10843,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$c.name,
+    		id: create_default_slot_2$d.name,
     		type: "slot",
     		source: "(36:12) <Card isBorder=\\\"{true}\\\" isStacked=\\\"{true}\\\" isRounded=\\\"{true}\\\">",
     		ctx
@@ -10863,7 +10863,7 @@ var app = (function () {
     				isBorder: true,
     				isStacked: true,
     				isRounded: true,
-    				$$slots: { default: [create_default_slot_1$g] },
+    				$$slots: { default: [create_default_slot_1$h] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -10908,7 +10908,7 @@ var app = (function () {
     }
 
     // (58:12) <Card isBorder="{true}" isStacked="{true}" isRounded="{true}">
-    function create_default_slot_1$g(ctx) {
+    function create_default_slot_1$h(ctx) {
     	let figure;
     	let a0;
     	let t1;
@@ -10981,7 +10981,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$g.name,
+    		id: create_default_slot_1$h.name,
     		type: "slot",
     		source: "(58:12) <Card isBorder=\\\"{true}\\\" isStacked=\\\"{true}\\\" isRounded=\\\"{true}\\\">",
     		ctx
@@ -14491,7 +14491,7 @@ var app = (function () {
     const file$x = "src/lib/componentes/common/QrButton.svelte";
 
     // (25:0) <Button isCircle on:click={share}>
-    function create_default_slot_2$b(ctx) {
+    function create_default_slot_2$c(ctx) {
     	let svg;
     	let g1;
     	let g0;
@@ -14538,7 +14538,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$b.name,
+    		id: create_default_slot_2$c.name,
     		type: "slot",
     		source: "(25:0) <Button isCircle on:click={share}>",
     		ctx
@@ -14565,7 +14565,7 @@ var app = (function () {
     				mode: "primary",
     				size: "small",
     				type: "button",
-    				$$slots: { default: [create_default_slot_1$f] },
+    				$$slots: { default: [create_default_slot_1$g] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -14697,7 +14697,7 @@ var app = (function () {
     }
 
     // (46:16) <Button mode="primary" size="small" type="button">
-    function create_default_slot_1$f(ctx) {
+    function create_default_slot_1$g(ctx) {
     	let t;
 
     	const block = {
@@ -14714,7 +14714,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$f.name,
+    		id: create_default_slot_1$g.name,
     		type: "slot",
     		source: "(46:16) <Button mode=\\\"primary\\\" size=\\\"small\\\" type=\\\"button\\\">",
     		ctx
@@ -14814,7 +14814,7 @@ var app = (function () {
     	button = new Button({
     			props: {
     				isCircle: true,
-    				$$slots: { default: [create_default_slot_2$b] },
+    				$$slots: { default: [create_default_slot_2$c] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -14991,7 +14991,7 @@ var app = (function () {
     	button = new Button({
     			props: {
     				isCircle: true,
-    				$$slots: { default: [create_default_slot_2$a] },
+    				$$slots: { default: [create_default_slot_2$b] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15050,7 +15050,7 @@ var app = (function () {
     			props: {
     				isCircle: true,
     				mode: "primary",
-    				$$slots: { default: [create_default_slot_1$e] },
+    				$$slots: { default: [create_default_slot_1$f] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15101,7 +15101,7 @@ var app = (function () {
     }
 
     // (29:4) <Button isCircle on:click={share}>
-    function create_default_slot_2$a(ctx) {
+    function create_default_slot_2$b(ctx) {
     	let svg;
     	let path;
 
@@ -15130,7 +15130,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$a.name,
+    		id: create_default_slot_2$b.name,
     		type: "slot",
     		source: "(29:4) <Button isCircle on:click={share}>",
     		ctx
@@ -15140,7 +15140,7 @@ var app = (function () {
     }
 
     // (25:4) <Button isCircle on:click={share} mode="primary">
-    function create_default_slot_1$e(ctx) {
+    function create_default_slot_1$f(ctx) {
     	let svg;
     	let path;
 
@@ -15169,7 +15169,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$e.name,
+    		id: create_default_slot_1$f.name,
     		type: "slot",
     		source: "(25:4) <Button isCircle on:click={share} mode=\\\"primary\\\">",
     		ctx
@@ -17414,7 +17414,7 @@ var app = (function () {
     const file$q = "src/lib/pages/Login.svelte";
 
     // (54:20) <Button mode="primary" size="large" type="submit">
-    function create_default_slot_2$9(ctx) {
+    function create_default_slot_2$a(ctx) {
     	let t;
 
     	const block = {
@@ -17431,7 +17431,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$9.name,
+    		id: create_default_slot_2$a.name,
     		type: "slot",
     		source: "(54:20) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\">",
     		ctx
@@ -17441,7 +17441,7 @@ var app = (function () {
     }
 
     // (62:8) <Toast isOpen={isToastOpen} type="error">
-    function create_default_slot_1$d(ctx) {
+    function create_default_slot_1$e(ctx) {
     	let div;
     	let p;
     	let t0;
@@ -17495,7 +17495,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$d.name,
+    		id: create_default_slot_1$e.name,
     		type: "slot",
     		source: "(62:8) <Toast isOpen={isToastOpen} type=\\\"error\\\">",
     		ctx
@@ -17513,7 +17513,7 @@ var app = (function () {
     			props: {
     				isOpen: /*isToastOpen*/ ctx[0],
     				type: "error",
-    				$$slots: { default: [create_default_slot_1$d] },
+    				$$slots: { default: [create_default_slot_1$e] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -17626,7 +17626,7 @@ var app = (function () {
     				mode: "primary",
     				size: "large",
     				type: "submit",
-    				$$slots: { default: [create_default_slot_2$9] },
+    				$$slots: { default: [create_default_slot_2$a] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -18023,7 +18023,7 @@ var app = (function () {
     }
 
     // (97:16) <Button mode="primary" size="large" type="submit">
-    function create_default_slot_2$8(ctx) {
+    function create_default_slot_2$9(ctx) {
     	let t;
 
     	const block = {
@@ -18040,7 +18040,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$8.name,
+    		id: create_default_slot_2$9.name,
     		type: "slot",
     		source: "(97:16) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\">",
     		ctx
@@ -18050,7 +18050,7 @@ var app = (function () {
     }
 
     // (105:4) <Toast isOpen={isToastOpen} type="error">
-    function create_default_slot_1$c(ctx) {
+    function create_default_slot_1$d(ctx) {
     	let div;
     	let p;
     	let t0;
@@ -18104,7 +18104,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$c.name,
+    		id: create_default_slot_1$d.name,
     		type: "slot",
     		source: "(105:4) <Toast isOpen={isToastOpen} type=\\\"error\\\">",
     		ctx
@@ -18122,7 +18122,7 @@ var app = (function () {
     			props: {
     				isOpen: /*isToastOpen*/ ctx[0],
     				type: "error",
-    				$$slots: { default: [create_default_slot_1$c] },
+    				$$slots: { default: [create_default_slot_1$d] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -18295,7 +18295,7 @@ var app = (function () {
     				mode: "primary",
     				size: "large",
     				type: "submit",
-    				$$slots: { default: [create_default_slot_2$8] },
+    				$$slots: { default: [create_default_slot_2$9] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -18727,7 +18727,7 @@ var app = (function () {
     const file$o = "src/lib/componentes/ToastMultiple.svelte";
 
     // (22:4) <Toast isOpen={successMessage} type="success">
-    function create_default_slot_2$7(ctx) {
+    function create_default_slot_2$8(ctx) {
     	let div;
     	let p;
     	let t0;
@@ -18784,7 +18784,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$7.name,
+    		id: create_default_slot_2$8.name,
     		type: "slot",
     		source: "(22:4) <Toast isOpen={successMessage} type=\\\"success\\\">",
     		ctx
@@ -18794,7 +18794,7 @@ var app = (function () {
     }
 
     // (28:4) <Toast isOpen={errorMessage} type="error">
-    function create_default_slot_1$b(ctx) {
+    function create_default_slot_1$c(ctx) {
     	let p;
     	let t0;
     	let t1;
@@ -18847,7 +18847,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$b.name,
+    		id: create_default_slot_1$c.name,
     		type: "slot",
     		source: "(28:4) <Toast isOpen={errorMessage} type=\\\"error\\\">",
     		ctx
@@ -18867,7 +18867,7 @@ var app = (function () {
     			props: {
     				isOpen: /*successMessage*/ ctx[0],
     				type: "success",
-    				$$slots: { default: [create_default_slot_2$7] },
+    				$$slots: { default: [create_default_slot_2$8] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -18877,7 +18877,7 @@ var app = (function () {
     			props: {
     				isOpen: /*errorMessage*/ ctx[1],
     				type: "error",
-    				$$slots: { default: [create_default_slot_1$b] },
+    				$$slots: { default: [create_default_slot_1$c] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -19280,7 +19280,7 @@ var app = (function () {
     const file$m = "src/lib/componentes/cells/CellActions.svelte";
 
     // (24:8) <Button              mode="primary"              --agnostic-btn-primary="var(--primary-color)"             --agnostic-focus-ring-outline-color="--primary-outline-color"             on:click={handleEdit}>
-    function create_default_slot_1$a(ctx) {
+    function create_default_slot_1$b(ctx) {
     	let t;
 
     	const block = {
@@ -19297,7 +19297,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$a.name,
+    		id: create_default_slot_1$b.name,
     		type: "slot",
     		source: "(24:8) <Button              mode=\\\"primary\\\"              --agnostic-btn-primary=\\\"var(--primary-color)\\\"             --agnostic-focus-ring-outline-color=\\\"--primary-outline-color\\\"             on:click={handleEdit}>",
     		ctx
@@ -19345,7 +19345,7 @@ var app = (function () {
     	button0 = new Button({
     			props: {
     				mode: "primary",
-    				$$slots: { default: [create_default_slot_1$a] },
+    				$$slots: { default: [create_default_slot_1$b] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -19558,7 +19558,7 @@ var app = (function () {
     }
 
     // (39:4) <Button type="button" mode="primary" on:click={handleOnAccept} isDisabled={submiting} size="large">
-    function create_default_slot_2$6(ctx) {
+    function create_default_slot_2$7(ctx) {
     	let span;
     	let t1;
     	let if_block_anchor;
@@ -19622,7 +19622,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$6.name,
+    		id: create_default_slot_2$7.name,
     		type: "slot",
     		source: "(39:4) <Button type=\\\"button\\\" mode=\\\"primary\\\" on:click={handleOnAccept} isDisabled={submiting} size=\\\"large\\\">",
     		ctx
@@ -19632,7 +19632,7 @@ var app = (function () {
     }
 
     // (45:4) <Button type="button" isLink on:click={handleOnClose} isDisabled={submiting} size="large">
-    function create_default_slot_1$9(ctx) {
+    function create_default_slot_1$a(ctx) {
     	let t;
 
     	const block = {
@@ -19649,7 +19649,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$9.name,
+    		id: create_default_slot_1$a.name,
     		type: "slot",
     		source: "(45:4) <Button type=\\\"button\\\" isLink on:click={handleOnClose} isDisabled={submiting} size=\\\"large\\\">",
     		ctx
@@ -19674,7 +19674,7 @@ var app = (function () {
     				mode: "primary",
     				isDisabled: /*submiting*/ ctx[1],
     				size: "large",
-    				$$slots: { default: [create_default_slot_2$6] },
+    				$$slots: { default: [create_default_slot_2$7] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -19688,7 +19688,7 @@ var app = (function () {
     				isLink: true,
     				isDisabled: /*submiting*/ ctx[1],
     				size: "large",
-    				$$slots: { default: [create_default_slot_1$9] },
+    				$$slots: { default: [create_default_slot_1$a] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -20013,7 +20013,7 @@ var app = (function () {
     			props: {
     				mode: "primary",
     				type: "button",
-    				$$slots: { default: [create_default_slot_2$5] },
+    				$$slots: { default: [create_default_slot_2$6] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -20064,7 +20064,7 @@ var app = (function () {
     }
 
     // (154:12) <Button mode="primary" type="button" on:click={openDialogForCreate}>
-    function create_default_slot_2$5(ctx) {
+    function create_default_slot_2$6(ctx) {
     	let t;
 
     	const block = {
@@ -20081,7 +20081,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$5.name,
+    		id: create_default_slot_2$6.name,
     		type: "slot",
     		source: "(154:12) <Button mode=\\\"primary\\\" type=\\\"button\\\" on:click={openDialogForCreate}>",
     		ctx
@@ -20344,7 +20344,7 @@ var app = (function () {
     }
 
     // (227:12) <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
-    function create_default_slot_1$8(ctx) {
+    function create_default_slot_1$9(ctx) {
     	let t;
     	let if_block_anchor;
     	let current;
@@ -20402,7 +20402,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$8.name,
+    		id: create_default_slot_1$9.name,
     		type: "slot",
     		source: "(227:12) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\" isDisabled={submiting}>",
     		ctx
@@ -20495,7 +20495,7 @@ var app = (function () {
     				size: "large",
     				type: "submit",
     				isDisabled: /*submiting*/ ctx[6],
-    				$$slots: { default: [create_default_slot_1$8] },
+    				$$slots: { default: [create_default_slot_1$9] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -23519,7 +23519,7 @@ var app = (function () {
     			props: {
     				mode: "primary",
     				type: "button",
-    				$$slots: { default: [create_default_slot_2$4] },
+    				$$slots: { default: [create_default_slot_2$5] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -23570,7 +23570,7 @@ var app = (function () {
     }
 
     // (161:12) <Button mode="primary" type="button" on:click={openDialogForCreate}>
-    function create_default_slot_2$4(ctx) {
+    function create_default_slot_2$5(ctx) {
     	let t;
 
     	const block = {
@@ -23587,7 +23587,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$4.name,
+    		id: create_default_slot_2$5.name,
     		type: "slot",
     		source: "(161:12) <Button mode=\\\"primary\\\" type=\\\"button\\\" on:click={openDialogForCreate}>",
     		ctx
@@ -23924,7 +23924,7 @@ var app = (function () {
     }
 
     // (244:12) <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
-    function create_default_slot_1$7(ctx) {
+    function create_default_slot_1$8(ctx) {
     	let t;
     	let if_block_anchor;
     	let current;
@@ -23982,7 +23982,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$7.name,
+    		id: create_default_slot_1$8.name,
     		type: "slot",
     		source: "(244:12) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\" isDisabled={submiting}>",
     		ctx
@@ -24117,7 +24117,7 @@ var app = (function () {
     				size: "large",
     				type: "submit",
     				isDisabled: /*submiting*/ ctx[6],
-    				$$slots: { default: [create_default_slot_1$7] },
+    				$$slots: { default: [create_default_slot_1$8] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -24868,7 +24868,7 @@ var app = (function () {
     			props: {
     				mode: "primary",
     				type: "button",
-    				$$slots: { default: [create_default_slot_2$3] },
+    				$$slots: { default: [create_default_slot_2$4] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -24919,7 +24919,7 @@ var app = (function () {
     }
 
     // (132:12) <Button mode="primary" type="button" on:click={openDialogForCreate}>
-    function create_default_slot_2$3(ctx) {
+    function create_default_slot_2$4(ctx) {
     	let t;
 
     	const block = {
@@ -24936,7 +24936,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$3.name,
+    		id: create_default_slot_2$4.name,
     		type: "slot",
     		source: "(132:12) <Button mode=\\\"primary\\\" type=\\\"button\\\" on:click={openDialogForCreate}>",
     		ctx
@@ -25124,7 +25124,7 @@ var app = (function () {
     }
 
     // (168:12) <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
-    function create_default_slot_1$6(ctx) {
+    function create_default_slot_1$7(ctx) {
     	let t;
     	let if_block_anchor;
     	let current;
@@ -25182,7 +25182,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$6.name,
+    		id: create_default_slot_1$7.name,
     		type: "slot",
     		source: "(168:12) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\" isDisabled={submiting}>",
     		ctx
@@ -25228,7 +25228,7 @@ var app = (function () {
     				size: "large",
     				type: "submit",
     				isDisabled: /*submiting*/ ctx[3],
-    				$$slots: { default: [create_default_slot_1$6] },
+    				$$slots: { default: [create_default_slot_1$7] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -25791,7 +25791,7 @@ var app = (function () {
     	button = new Button({
     			props: {
     				mode: "primary",
-    				$$slots: { default: [create_default_slot_2$2] },
+    				$$slots: { default: [create_default_slot_2$3] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -25867,7 +25867,7 @@ var app = (function () {
     }
 
     // (69:12) <Button mode="primary" on:click={openDialog}>
-    function create_default_slot_2$2(ctx) {
+    function create_default_slot_2$3(ctx) {
     	let t;
 
     	const block = {
@@ -25884,7 +25884,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$2.name,
+    		id: create_default_slot_2$3.name,
     		type: "slot",
     		source: "(69:12) <Button mode=\\\"primary\\\" on:click={openDialog}>",
     		ctx
@@ -25933,7 +25933,7 @@ var app = (function () {
     }
 
     // (80:12) <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
-    function create_default_slot_1$5(ctx) {
+    function create_default_slot_1$6(ctx) {
     	let t;
     	let if_block_anchor;
     	let current;
@@ -25991,7 +25991,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$5.name,
+    		id: create_default_slot_1$6.name,
     		type: "slot",
     		source: "(80:12) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\" isDisabled={submiting}>",
     		ctx
@@ -26030,7 +26030,7 @@ var app = (function () {
     				size: "large",
     				type: "submit",
     				isDisabled: /*submiting*/ ctx[1],
-    				$$slots: { default: [create_default_slot_1$5] },
+    				$$slots: { default: [create_default_slot_1$6] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -26359,7 +26359,7 @@ var app = (function () {
     	button = new Button({
     			props: {
     				type: "button",
-    				$$slots: { default: [create_default_slot_2$1] },
+    				$$slots: { default: [create_default_slot_2$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -26515,7 +26515,7 @@ var app = (function () {
     }
 
     // (62:16) <Button type="button" on:click={openDialogForEdit}>
-    function create_default_slot_2$1(ctx) {
+    function create_default_slot_2$2(ctx) {
     	let t;
 
     	const block = {
@@ -26532,7 +26532,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$1.name,
+    		id: create_default_slot_2$2.name,
     		type: "slot",
     		source: "(62:16) <Button type=\\\"button\\\" on:click={openDialogForEdit}>",
     		ctx
@@ -26581,7 +26581,7 @@ var app = (function () {
     }
 
     // (76:16) <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
-    function create_default_slot_1$4(ctx) {
+    function create_default_slot_1$5(ctx) {
     	let t;
     	let if_block_anchor;
     	let current;
@@ -26639,7 +26639,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$4.name,
+    		id: create_default_slot_1$5.name,
     		type: "slot",
     		source: "(76:16) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\" isDisabled={submiting}>",
     		ctx
@@ -26706,7 +26706,7 @@ var app = (function () {
     				size: "large",
     				type: "submit",
     				isDisabled: /*submiting*/ ctx[6],
-    				$$slots: { default: [create_default_slot_1$4] },
+    				$$slots: { default: [create_default_slot_1$5] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -27680,7 +27680,7 @@ var app = (function () {
 
     	button = new Button({
     			props: {
-    				$$slots: { default: [create_default_slot_2] },
+    				$$slots: { default: [create_default_slot_2$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -27731,7 +27731,7 @@ var app = (function () {
     }
 
     // (220:16) <Button on:click={detectLocation}>
-    function create_default_slot_2(ctx) {
+    function create_default_slot_2$1(ctx) {
     	let t;
 
     	const block = {
@@ -27748,7 +27748,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2.name,
+    		id: create_default_slot_2$1.name,
     		type: "slot",
     		source: "(220:16) <Button on:click={detectLocation}>",
     		ctx
@@ -27797,7 +27797,7 @@ var app = (function () {
     }
 
     // (224:12) <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
-    function create_default_slot_1$3(ctx) {
+    function create_default_slot_1$4(ctx) {
     	let t;
     	let if_block_anchor;
     	let current;
@@ -27855,7 +27855,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$3.name,
+    		id: create_default_slot_1$4.name,
     		type: "slot",
     		source: "(224:12) <Button mode=\\\"primary\\\" size=\\\"large\\\" type=\\\"submit\\\" isDisabled={submiting}>",
     		ctx
@@ -27968,7 +27968,7 @@ var app = (function () {
     				size: "large",
     				type: "submit",
     				isDisabled: /*submiting*/ ctx[9],
-    				$$slots: { default: [create_default_slot_1$3] },
+    				$$slots: { default: [create_default_slot_1$4] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -29660,7 +29660,7 @@ var app = (function () {
     				isBorder: true,
     				isStacked: true,
     				isRounded: true,
-    				$$slots: { default: [create_default_slot_1$2] },
+    				$$slots: { default: [create_default_slot_1$3] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -29779,7 +29779,7 @@ var app = (function () {
     }
 
     // (41:20) <Card isBorder="{true}" isStacked="{true}" isRounded="{true}">
-    function create_default_slot_1$2(ctx) {
+    function create_default_slot_1$3(ctx) {
     	let figure;
     	let img;
     	let img_src_value;
@@ -29816,7 +29816,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$2.name,
+    		id: create_default_slot_1$3.name,
     		type: "slot",
     		source: "(41:20) <Card isBorder=\\\"{true}\\\" isStacked=\\\"{true}\\\" isRounded=\\\"{true}\\\">",
     		ctx
@@ -30843,7 +30843,7 @@ var app = (function () {
     				isBorder: true,
     				isStacked: true,
     				isRounded: true,
-    				$$slots: { default: [create_default_slot_1$1] },
+    				$$slots: { default: [create_default_slot_1$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -30962,7 +30962,7 @@ var app = (function () {
     }
 
     // (42:20) <Card isBorder="{true}" isStacked="{true}" isRounded="{true}">
-    function create_default_slot_1$1(ctx) {
+    function create_default_slot_1$2(ctx) {
     	let figure;
     	let img;
     	let img_src_value;
@@ -30999,7 +30999,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$1.name,
+    		id: create_default_slot_1$2.name,
     		type: "slot",
     		source: "(42:20) <Card isBorder=\\\"{true}\\\" isStacked=\\\"{true}\\\" isRounded=\\\"{true}\\\">",
     		ctx
@@ -32721,6 +32721,9 @@ var app = (function () {
         return rooms.documents[0];
     }
 
+    function sendMessageChat({ roomId, from, content }) {
+        return sdk.database.createDocument(COLLECTION_CHAT_ID, 'unique()', { roomId, from, content, createAt: +new Date(), seen: false })
+    }
 
     async function getAllChats(userId, kind) {
         console.log(userId, kind);
@@ -33002,7 +33005,7 @@ var app = (function () {
     }
 
     // (123:36) <Button on:click={contactToVet} isDisabled={submiting} mode="primary">
-    function create_default_slot_1(ctx) {
+    function create_default_slot_1$1(ctx) {
     	let if_block_anchor;
 
     	function select_block_type_1(ctx, dirty) {
@@ -33041,7 +33044,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1.name,
+    		id: create_default_slot_1$1.name,
     		type: "slot",
     		source: "(123:36) <Button on:click={contactToVet} isDisabled={submiting} mode=\\\"primary\\\">",
     		ctx
@@ -33128,7 +33131,7 @@ var app = (function () {
     			props: {
     				isDisabled: /*submiting*/ ctx[1],
     				mode: "primary",
-    				$$slots: { default: [create_default_slot_1] },
+    				$$slots: { default: [create_default_slot_1$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -33921,16 +33924,25 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[13] = list[i];
     	return child_ctx;
     }
 
-    // (15:8) {:else}
+    // (64:8) {:else}
     function create_else_block$2(ctx) {
     	let div1;
     	let p;
     	let t1;
     	let div0;
+    	let t2;
+    	let form;
+    	let input;
+    	let updating_value;
+    	let t3;
+    	let button;
+    	let current;
+    	let mounted;
+    	let dispose;
     	let each_value = /*messages*/ ctx[1];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -33938,6 +33950,35 @@ var app = (function () {
     	for (let i = 0; i < each_value.length; i += 1) {
     		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
     	}
+
+    	function input_value_binding_1(value) {
+    		/*input_value_binding_1*/ ctx[10](value);
+    	}
+
+    	let input_props = {
+    		placeholder: "Type a message",
+    		required: true
+    	};
+
+    	if (/*value*/ ctx[2] !== void 0) {
+    		input_props.value = /*value*/ ctx[2];
+    	}
+
+    	input = new Input({ props: input_props, $$inline: true });
+    	binding_callbacks.push(() => bind(input, 'value', input_value_binding_1));
+
+    	button = new Button({
+    			props: {
+    				mode: "primary",
+    				size: "medium",
+    				isDisabled: /*submiting*/ ctx[3],
+    				$$slots: { default: [create_default_slot_2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	button.$on("click", /*handleSend*/ ctx[6]);
 
     	const block = {
     		c: function create() {
@@ -33951,11 +33992,18 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(p, "class", "conversation-title svelte-1yjk0un");
-    			add_location(p, file$3, 16, 16, 340);
-    			attr_dev(div0, "class", "conversation-list svelte-1yjk0un");
-    			add_location(div0, file$3, 17, 16, 403);
-    			add_location(div1, file$3, 15, 12, 318);
+    			t2 = space();
+    			form = element("form");
+    			create_component(input.$$.fragment);
+    			t3 = space();
+    			create_component(button.$$.fragment);
+    			attr_dev(p, "class", "conversation-title svelte-1xkann1");
+    			add_location(p, file$3, 65, 16, 1752);
+    			attr_dev(div0, "class", "conversation-list svelte-1xkann1");
+    			add_location(div0, file$3, 66, 16, 1815);
+    			attr_dev(form, "class", "conversation-actions svelte-1xkann1");
+    			add_location(form, file$3, 79, 16, 2476);
+    			add_location(div1, file$3, 64, 12, 1730);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -33965,6 +34013,19 @@ var app = (function () {
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(div0, null);
+    			}
+
+    			/*div0_binding*/ ctx[9](div0);
+    			append_dev(div1, t2);
+    			append_dev(div1, form);
+    			mount_component(input, form, null);
+    			append_dev(form, t3);
+    			mount_component(button, form, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(form, "submit", prevent_default(/*handleSend*/ ctx[6]), false, true, false);
+    				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
@@ -33991,10 +34052,44 @@ var app = (function () {
 
     				each_blocks.length = each_value.length;
     			}
+
+    			const input_changes = {};
+
+    			if (!updating_value && dirty & /*value*/ 4) {
+    				updating_value = true;
+    				input_changes.value = /*value*/ ctx[2];
+    				add_flush_callback(() => updating_value = false);
+    			}
+
+    			input.$set(input_changes);
+    			const button_changes = {};
+    			if (dirty & /*submiting*/ 8) button_changes.isDisabled = /*submiting*/ ctx[3];
+
+    			if (dirty & /*$$scope*/ 65536) {
+    				button_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button.$set(button_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(input.$$.fragment, local);
+    			transition_in(button.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(input.$$.fragment, local);
+    			transition_out(button.$$.fragment, local);
+    			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
     			destroy_each(each_blocks, detaching);
+    			/*div0_binding*/ ctx[9](null);
+    			destroy_component(input);
+    			destroy_component(button);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -34002,33 +34097,124 @@ var app = (function () {
     		block,
     		id: create_else_block$2.name,
     		type: "else",
-    		source: "(15:8) {:else}",
+    		source: "(64:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (11:8) {#if messages.length === 0}
+    // (54:8) {#if messages.length === 0}
     function create_if_block$2(ctx) {
     	let p;
     	let i;
+    	let t1;
+    	let form;
+    	let input;
+    	let updating_value;
+    	let t2;
+    	let button;
+    	let current;
+    	let mounted;
+    	let dispose;
+
+    	function input_value_binding(value) {
+    		/*input_value_binding*/ ctx[8](value);
+    	}
+
+    	let input_props = {
+    		placeholder: "Type a message",
+    		required: true
+    	};
+
+    	if (/*value*/ ctx[2] !== void 0) {
+    		input_props.value = /*value*/ ctx[2];
+    	}
+
+    	input = new Input({ props: input_props, $$inline: true });
+    	binding_callbacks.push(() => bind(input, 'value', input_value_binding));
+
+    	button = new Button({
+    			props: {
+    				mode: "primary",
+    				size: "medium",
+    				isDisabled: /*submiting*/ ctx[3],
+    				$$slots: { default: [create_default_slot_1] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	button.$on("click", /*handleSend*/ ctx[6]);
 
     	const block = {
     		c: function create() {
     			p = element("p");
     			i = element("i");
     			i.textContent = "No messages yet";
-    			add_location(i, file$3, 12, 16, 250);
-    			add_location(p, file$3, 11, 12, 230);
+    			t1 = space();
+    			form = element("form");
+    			create_component(input.$$.fragment);
+    			t2 = space();
+    			create_component(button.$$.fragment);
+    			add_location(i, file$3, 55, 16, 1324);
+    			add_location(p, file$3, 54, 12, 1304);
+    			attr_dev(form, "class", "conversation-actions svelte-1xkann1");
+    			add_location(form, file$3, 57, 12, 1376);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
     			append_dev(p, i);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, form, anchor);
+    			mount_component(input, form, null);
+    			append_dev(form, t2);
+    			mount_component(button, form, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(form, "submit", prevent_default(/*handleSend*/ ctx[6]), false, true, false);
+    				mounted = true;
+    			}
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			const input_changes = {};
+
+    			if (!updating_value && dirty & /*value*/ 4) {
+    				updating_value = true;
+    				input_changes.value = /*value*/ ctx[2];
+    				add_flush_callback(() => updating_value = false);
+    			}
+
+    			input.$set(input_changes);
+    			const button_changes = {};
+    			if (dirty & /*submiting*/ 8) button_changes.isDisabled = /*submiting*/ ctx[3];
+
+    			if (dirty & /*$$scope*/ 65536) {
+    				button_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button.$set(button_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(input.$$.fragment, local);
+    			transition_in(button.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(input.$$.fragment, local);
+    			transition_out(button.$$.fragment, local);
+    			current = false;
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(p);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(form);
+    			destroy_component(input);
+    			destroy_component(button);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -34036,18 +34222,18 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(11:8) {#if messages.length === 0}",
+    		source: "(54:8) {#if messages.length === 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (24:24) {:else}
+    // (73:24) {:else}
     function create_else_block_1$1(ctx) {
     	let div;
     	let span;
-    	let t0_value = /*message*/ ctx[3].content + "";
+    	let t0_value = /*message*/ ctx[13].content + "";
     	let t0;
     	let t1;
 
@@ -34057,10 +34243,10 @@ var app = (function () {
     			span = element("span");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(span, "class", "conversation-item svelte-1yjk0un");
-    			add_location(span, file$3, 25, 32, 847);
-    			attr_dev(div, "class", "conversation-mesenger svelte-1yjk0un");
-    			add_location(div, file$3, 24, 28, 779);
+    			attr_dev(span, "class", "conversation-item svelte-1xkann1");
+    			add_location(span, file$3, 74, 32, 2287);
+    			attr_dev(div, "class", "conversation-mesenger svelte-1xkann1");
+    			add_location(div, file$3, 73, 28, 2219);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -34068,7 +34254,9 @@ var app = (function () {
     			append_dev(span, t0);
     			append_dev(div, t1);
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*messages*/ 2 && t0_value !== (t0_value = /*message*/ ctx[13].content + "")) set_data_dev(t0, t0_value);
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     		}
@@ -34078,18 +34266,18 @@ var app = (function () {
     		block,
     		id: create_else_block_1$1.name,
     		type: "else",
-    		source: "(24:24) {:else}",
+    		source: "(73:24) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (20:24) {#if message.from === userId}
+    // (69:24) {#if message.from === userId}
     function create_if_block_1$1(ctx) {
     	let div;
     	let span;
-    	let t0_value = /*message*/ ctx[3].content + "";
+    	let t0_value = /*message*/ ctx[13].content + "";
     	let t0;
     	let t1;
 
@@ -34099,10 +34287,10 @@ var app = (function () {
     			span = element("span");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(span, "class", "conversation-item svelte-1yjk0un");
-    			add_location(span, file$3, 21, 32, 627);
-    			attr_dev(div, "class", "conversation-me svelte-1yjk0un");
-    			add_location(div, file$3, 20, 28, 565);
+    			attr_dev(span, "class", "conversation-item svelte-1xkann1");
+    			add_location(span, file$3, 70, 32, 2067);
+    			attr_dev(div, "class", "conversation-me svelte-1xkann1");
+    			add_location(div, file$3, 69, 28, 2005);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -34110,7 +34298,9 @@ var app = (function () {
     			append_dev(span, t0);
     			append_dev(div, t1);
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*messages*/ 2 && t0_value !== (t0_value = /*message*/ ctx[13].content + "")) set_data_dev(t0, t0_value);
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     		}
@@ -34120,19 +34310,19 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(20:24) {#if message.from === userId}",
+    		source: "(69:24) {#if message.from === userId}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (19:20) {#each messages as message}
+    // (68:20) {#each messages as message}
     function create_each_block(ctx) {
     	let if_block_anchor;
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*message*/ ctx[3].from === /*userId*/ ctx[0]) return create_if_block_1$1;
+    		if (/*message*/ ctx[13].from === /*userId*/ ctx[0]) return create_if_block_1$1;
     		return create_else_block_1$1;
     	}
 
@@ -34171,42 +34361,135 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(19:20) {#each messages as message}",
+    		source: "(68:20) {#each messages as message}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (9:0) <Card>
+    // (82:20) <Button mode="primary" on:click={handleSend} size="medium" isDisabled={submiting}>
+    function create_default_slot_2(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Send");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_2.name,
+    		type: "slot",
+    		source: "(82:20) <Button mode=\\\"primary\\\" on:click={handleSend} size=\\\"medium\\\" isDisabled={submiting}>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (60:16) <Button mode="primary" on:click={handleSend} size="medium" isDisabled={submiting}>
+    function create_default_slot_1(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Send");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1.name,
+    		type: "slot",
+    		source: "(60:16) <Button mode=\\\"primary\\\" on:click={handleSend} size=\\\"medium\\\" isDisabled={submiting}>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (52:0) <Card>
     function create_default_slot(ctx) {
     	let div;
+    	let current_block_type_index;
+    	let if_block;
+    	let current;
+    	const if_block_creators = [create_if_block$2, create_else_block$2];
+    	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*messages*/ ctx[1].length === 0) return create_if_block$2;
-    		return create_else_block$2;
+    		if (/*messages*/ ctx[1].length === 0) return 0;
+    		return 1;
     	}
 
-    	let current_block_type = select_block_type(ctx);
-    	let if_block = current_block_type(ctx);
+    	current_block_type_index = select_block_type(ctx);
+    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			if_block.c();
-    			attr_dev(div, "class", "conversation-chat svelte-1yjk0un");
-    			add_location(div, file$3, 9, 4, 150);
+    			attr_dev(div, "class", "conversation-chat svelte-1xkann1");
+    			add_location(div, file$3, 52, 4, 1224);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			if_block.m(div, null);
+    			if_blocks[current_block_type_index].m(div, null);
+    			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if_block.p(ctx, dirty);
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(ctx);
+
+    			if (current_block_type_index === previous_block_index) {
+    				if_blocks[current_block_type_index].p(ctx, dirty);
+    			} else {
+    				group_outros();
+
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
+    				});
+
+    				check_outros();
+    				if_block = if_blocks[current_block_type_index];
+
+    				if (!if_block) {
+    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block.c();
+    				} else {
+    					if_block.p(ctx, dirty);
+    				}
+
+    				transition_in(if_block, 1);
+    				if_block.m(div, null);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			if_block.d();
+    			if_blocks[current_block_type_index].d();
     		}
     	};
 
@@ -34214,7 +34497,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(9:0) <Card>",
+    		source: "(52:0) <Card>",
     		ctx
     	});
 
@@ -34223,6 +34506,8 @@ var app = (function () {
 
     function create_fragment$2(ctx) {
     	let card;
+    	let t;
+    	let toastmultiple;
     	let current;
 
     	card = new Card({
@@ -34233,37 +34518,57 @@ var app = (function () {
     			$$inline: true
     		});
 
+    	toastmultiple = new ToastMultiple({
+    			props: {
+    				errorMessage: /*errorMessage*/ ctx[4],
+    				onCloseErrorMessage: /*func*/ ctx[11]
+    			},
+    			$$inline: true
+    		});
+
     	const block = {
     		c: function create() {
     			create_component(card.$$.fragment);
+    			t = space();
+    			create_component(toastmultiple.$$.fragment);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			mount_component(card, target, anchor);
+    			insert_dev(target, t, anchor);
+    			mount_component(toastmultiple, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
     			const card_changes = {};
 
-    			if (dirty & /*$$scope, userId*/ 65) {
+    			if (dirty & /*$$scope, submiting, value, messages, conversationsEl, userId*/ 65583) {
     				card_changes.$$scope = { dirty, ctx };
     			}
 
     			card.$set(card_changes);
+    			const toastmultiple_changes = {};
+    			if (dirty & /*errorMessage*/ 16) toastmultiple_changes.errorMessage = /*errorMessage*/ ctx[4];
+    			if (dirty & /*errorMessage*/ 16) toastmultiple_changes.onCloseErrorMessage = /*func*/ ctx[11];
+    			toastmultiple.$set(toastmultiple_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(card.$$.fragment, local);
+    			transition_in(toastmultiple.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(card.$$.fragment, local);
+    			transition_out(toastmultiple.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			destroy_component(card, detaching);
+    			if (detaching) detach_dev(t);
+    			destroy_component(toastmultiple, detaching);
     		}
     	};
 
@@ -34284,36 +34589,133 @@ var app = (function () {
     	let { chat } = $$props;
     	let { userId } = $$props;
     	let messages = [...chat?.messages ?? []];
+    	let value;
+    	let submiting = false;
+    	let errorMessage;
+    	let conversationsEl;
+    	onMount(scrollBottom);
+
+    	async function handleSend() {
+    		$$invalidate(3, submiting = true);
+    		$$invalidate(4, errorMessage = null);
+
+    		try {
+    			const message = await sendMessageChat({
+    				roomId: chat.$id,
+    				from: userId,
+    				content: value
+    			});
+
+    			if (message) {
+    				$$invalidate(2, value = "");
+    				scrollBottom();
+    			} else {
+    				$$invalidate(4, errorMessage = "Can not send message");
+    			}
+    		} catch(err) {
+    			$$invalidate(4, errorMessage = err.message);
+    		} finally {
+    			$$invalidate(3, submiting = false);
+    		}
+    	}
+
+    	function scrollBottom() {
+    		if (conversationsEl) {
+    			$$invalidate(5, conversationsEl.scrollTop = conversationsEl.scrollHeight, conversationsEl);
+    		}
+    	}
+
+    	sdk.subscribe('collections.chats.documents', ({ event, payload }) => {
+    		if (event === "database.documents.create" && payload.roomId === chat.$id) {
+    			$$invalidate(1, messages = [...messages, payload]);
+    		}
+    	});
+
     	const writable_props = ['chat', 'userId'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<ConversationChat> was created with unknown prop '${key}'`);
     	});
 
+    	function input_value_binding(value$1) {
+    		value = value$1;
+    		$$invalidate(2, value);
+    	}
+
+    	function div0_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			conversationsEl = $$value;
+    			$$invalidate(5, conversationsEl);
+    		});
+    	}
+
+    	function input_value_binding_1(value$1) {
+    		value = value$1;
+    		$$invalidate(2, value);
+    	}
+
+    	const func = _ => {
+    		$$invalidate(4, errorMessage = null);
+    	};
+
     	$$self.$$set = $$props => {
-    		if ('chat' in $$props) $$invalidate(2, chat = $$props.chat);
+    		if ('chat' in $$props) $$invalidate(7, chat = $$props.chat);
     		if ('userId' in $$props) $$invalidate(0, userId = $$props.userId);
     	};
 
-    	$$self.$capture_state = () => ({ Card, chat, userId, messages });
+    	$$self.$capture_state = () => ({
+    		Button,
+    		Card,
+    		Input,
+    		ToastMultiple,
+    		sendMessageChat,
+    		sdk,
+    		onMount,
+    		chat,
+    		userId,
+    		messages,
+    		value,
+    		submiting,
+    		errorMessage,
+    		conversationsEl,
+    		handleSend,
+    		scrollBottom
+    	});
 
     	$$self.$inject_state = $$props => {
-    		if ('chat' in $$props) $$invalidate(2, chat = $$props.chat);
+    		if ('chat' in $$props) $$invalidate(7, chat = $$props.chat);
     		if ('userId' in $$props) $$invalidate(0, userId = $$props.userId);
     		if ('messages' in $$props) $$invalidate(1, messages = $$props.messages);
+    		if ('value' in $$props) $$invalidate(2, value = $$props.value);
+    		if ('submiting' in $$props) $$invalidate(3, submiting = $$props.submiting);
+    		if ('errorMessage' in $$props) $$invalidate(4, errorMessage = $$props.errorMessage);
+    		if ('conversationsEl' in $$props) $$invalidate(5, conversationsEl = $$props.conversationsEl);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [userId, messages, chat];
+    	return [
+    		userId,
+    		messages,
+    		value,
+    		submiting,
+    		errorMessage,
+    		conversationsEl,
+    		handleSend,
+    		chat,
+    		input_value_binding,
+    		div0_binding,
+    		input_value_binding_1,
+    		func
+    	];
     }
 
     class ConversationChat extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { chat: 2, userId: 0 });
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { chat: 7, userId: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -34325,7 +34727,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*chat*/ ctx[2] === undefined && !('chat' in props)) {
+    		if (/*chat*/ ctx[7] === undefined && !('chat' in props)) {
     			console.warn("<ConversationChat> was created without expected prop 'chat'");
     		}
 

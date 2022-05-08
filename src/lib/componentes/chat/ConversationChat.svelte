@@ -1,9 +1,52 @@
 <script>
-import { Card } from "agnostic-svelte";
+import { Button, Card, Input } from "agnostic-svelte";
+import ToastMultiple from "../ToastMultiple.svelte";
+import { sendMessageChat } from "../../services/chat";
+import { sdk } from "../../../appwrite";
+import { onMount } from "svelte";
+
 export let chat;
 export let userId;
 
 let messages = [...chat?.messages ?? []];
+let value;
+let submiting = false;
+let errorMessage;
+
+let conversationsEl;
+
+onMount(scrollBottom);
+
+async function handleSend() {
+    submiting = true;
+    errorMessage = null;
+    try {
+        const message = await sendMessageChat({ roomId: chat.$id, from: userId, content: value });
+        if(message) {
+            value = "";
+            scrollBottom();
+        } else {
+            errorMessage = "Can not send message";
+        }
+    } catch(err) {
+        errorMessage = err.message;
+    } finally {
+        submiting = false;
+    }
+}
+
+function scrollBottom() {
+    if(conversationsEl) {
+        conversationsEl.scrollTop = conversationsEl.scrollHeight;
+    }
+}
+
+sdk.subscribe('collections.chats.documents', ({ event, payload }) => {
+    if(event === "database.documents.create" && payload.roomId === chat.$id) {
+        messages = [...messages, payload];
+    }
+});
+
 </script>
 
 <Card>
@@ -12,10 +55,16 @@ let messages = [...chat?.messages ?? []];
             <p>
                 <i>No messages yet</i>
             </p>
+            <form class="conversation-actions" on:submit|preventDefault={handleSend}>
+                <Input placeholder="Type a message" bind:value={value} required/>
+                <Button mode="primary" on:click={handleSend} size="medium" isDisabled={submiting}>
+                    Send
+                </Button>
+            </form>
         {:else}
             <div>
                 <p class="conversation-title">Conversation</p>
-                <div class="conversation-list">
+                <div class="conversation-list" bind:this={conversationsEl}>
                     {#each messages as message}
                         {#if message.from === userId}
                             <div class="conversation-me">
@@ -28,10 +77,22 @@ let messages = [...chat?.messages ?? []];
                         {/if}
                     {/each}
                 </div>
+                <form class="conversation-actions" on:submit|preventDefault={handleSend}>
+                    <Input placeholder="Type a message" bind:value={value} required/>
+                    <Button mode="primary" on:click={handleSend} size="medium" isDisabled={submiting}>
+                        Send
+                    </Button>
+                </form>
             </div>
         {/if}
     </div>
 </Card>
+
+<ToastMultiple
+    errorMessage={errorMessage}
+    onCloseErrorMessage={_ => { errorMessage = null }}
+/>
+
 
 <style>
     .conversation-chat {
@@ -44,6 +105,7 @@ let messages = [...chat?.messages ?? []];
         border-radius: 12px;
         max-width: 70%;
         padding: 0.4rem 0.8rem;
+        margin-bottom: 0.4rem;
     }
 
     .conversation-me {
@@ -68,6 +130,12 @@ let messages = [...chat?.messages ?? []];
         padding-bottom: 1rem;
         border-bottom: 1px solid #f1e8e8;
         margin-bottom: 1rem;
+    }
+
+    .conversation-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-end;
     }
 
     .conversation-list {

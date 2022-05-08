@@ -12,6 +12,9 @@ export async function findRoom(veterinaryId, ownerId) {
     return rooms.documents[0];
 }
 
+export function sendMessageChat({ roomId, from, content }) {
+    return sdk.database.createDocument(COLLECTION_CHAT_ID, 'unique()', { roomId, from, content, createAt: +new Date(), seen: false })
+}
 
 export async function getAllChats(userId, kind) {
     console.log(userId, kind)
@@ -38,3 +41,4 @@ export async function getUser(userId) {
     const response = await fetch(`http://localhost:4000/user/${userId}`);
     return response.json();
 }
+
