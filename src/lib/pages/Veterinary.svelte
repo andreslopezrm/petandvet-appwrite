@@ -60,9 +60,10 @@ async function contactToVet() {
         if(!room) {
             room = await createRoom(veterinaryId, ownerId);
         }
-        
+        loading = false;
+        replace(`/chats?first=${room.$id}`);
     } catch(err) {
-        console.log(err, veterinaryId, ownerId);
+        loading = false;
         errorMessage = err.message;
     }
 }

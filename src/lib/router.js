@@ -11,7 +11,6 @@ import Event from "./pages/Event.svelte";
 import Veterinaries from "./pages/Veterinaries.svelte";
 import Veterinary from "./pages/Veterinary.svelte";
 import Chats from "./pages/Chats.svelte";
-import Chat from "./pages/Chat.svelte";
 import { state } from "./store";
 
 
@@ -24,7 +23,6 @@ export const routes = {
     "/pet/:petId": Pet,
     "/tips": Tips,
     "/chats": Chats,
-    "/chat/:chatId": Chat,
     "/login": wrap({
         component: Login,
         conditions: [() => get(state)?.account === null]

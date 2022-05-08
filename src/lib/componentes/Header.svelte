@@ -1,6 +1,6 @@
 <script>
 import { onMount } from "svelte";
-import {link} from "svelte-spa-router";
+import { link } from "svelte-spa-router";
 import { fade } from 'svelte/transition';
 import { state } from "../store";
 

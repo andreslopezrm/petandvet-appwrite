@@ -89,7 +89,6 @@ async function createOrUpdate() {
 
     try {
         if(currentTip) {
-
             const id = currentTip.$id;
             await updateTip({ id, description });
             successMessage = "Tip update success";
