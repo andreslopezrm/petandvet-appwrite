@@ -8,6 +8,7 @@ import { getAllChats } from "../services/chat";
 import LoaderDots from "../componentes/LoaderDots.svelte";
 import ToastMultiple from "../componentes/ToastMultiple.svelte";
 import AsideChat from "../componentes/chat/AsideChat.svelte";
+import ConversationChat from "../componentes/chat/ConversationChat.svelte";
 
 let userId = get(state)?.account?.$id;
 let kind = get(state)?.account?.$kind;
@@ -46,8 +47,12 @@ function handleSelect(evt) {
             <LoaderDots />
         {:else}
             <div class="chat-container">
-                <AsideChat on:select={handleSelect} />
-                <div class="chat-conversation"></div>
+                <div class="chat-user">
+                    <AsideChat on:select={handleSelect} users={asideUsers} />
+                </div>
+                <div class="chat-conversation">
+                    <ConversationChat />
+                </div>
             </div>
         {/if}
     </section>
@@ -60,6 +65,15 @@ function handleSelect(evt) {
 
 <style>
     .chat-container {
+        display: flex;
+        gap: 1rem;
+    }
 
+    .chat-user {
+        flex: 1;
+    }
+
+    .chat-conversation  {
+        flex: 2;
     }
 </style>
