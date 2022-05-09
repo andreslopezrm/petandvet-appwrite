@@ -29,10 +29,10 @@ async function closeSession() {
         <div class="container-tabs">
             <Tabs tabindex={0} size="large" tabs={[
                 {
-                    title: "👩‍🚀 Info",
-                    ariaControls: "panel-4",
-                    tabPanelComponent: TabInfo,
-                    tabindex: 3
+                    title: "🐕 Pets",
+                    ariaControls: "panel-1",
+                    tabPanelComponent: TabPets,
+                    tabindex: 0
                 },
                 {
                     title: "💡 Tips",
@@ -47,10 +47,10 @@ async function closeSession() {
                     tabindex: 1
                 },
                 {
-                    title: "🐕 Pets",
-                    ariaControls: "panel-1",
-                    tabPanelComponent: TabPets,
-                    tabindex: 0
+                    title: "👩‍🚀 Info",
+                    ariaControls: "panel-4",
+                    tabPanelComponent: TabInfo,
+                    tabindex: 3
                 },
             ]} />
         </div>

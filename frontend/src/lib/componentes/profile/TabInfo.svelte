@@ -61,20 +61,6 @@ async function handleSubmitGeneral() {
                         </label>
                     {/await}
                 </div>
-                <div class="select-wrapper">
-                    <label for="kind" class="select-label">
-                        <span>Select a Kind</span>
-                        <Select 
-                            required 
-                            uniqueId="kind" 
-                            bind:selected={account.kind} 
-                            options={[
-                                { value: 'owner', label: 'Owner'},
-                                { value: 'veterinary', label: 'Veterinary'}
-                            ]} 
-                        />
-                    </label>
-                </div>
                 <div class="actions">
                     <Button mode="primary" size="large" type="submit" isDisabled={submiting}>
                         Acept
