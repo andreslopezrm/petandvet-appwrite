@@ -40,6 +40,8 @@ Pet and Vet is a project for the Hackaton AppWrite
 
 ![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fjcmwygj8ukoir12hiia.png)
 
+Link to [presentation](https://github.com/andreslopezrm/petandvet-appwrite/blob/main/frontend/public/assets/presentation.pdf)
+
 ## Svelte Docs
 
 We recommend to look at the [documentation.](https://svelte.dev/docs)
