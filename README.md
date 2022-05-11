@@ -1,3 +1,5 @@
+![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--67YfXsPo--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e54etxyc94vvd8v1pqsw.png)
+
 # Pet and Vet
 
 Pet and Vet is a micro social network with the purpose of connecting veterinarians with pet owners, as well as making your pet known to the world and learn about events in your country.
@@ -14,6 +16,8 @@ The main functions of this micro social network are:
 
 Pet and Vet is a project for the Hackaton AppWrite
 
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mxr9tnwmkd1d0or61jd9.png" width="190">
+
 ## Svelte Docs
 
 We recommend to look at the [documentation.](https://svelte.dev/docs)
@@ -24,27 +28,26 @@ We recommend to look at the [documentation.](https://svelte.dev/docs)
 
 Change to server folder
 
-```cd server```
+`cd server`
 
 Install dependecies
 
-```npm install```
+`npm install`
 
 Run server
 
-```npm start```
-
+`npm start`
 
 ### Frontend
 
-Change to frontend folder
+Change to frontend folder and install dependencies
 
-```cd frontend```
+`cd frontend`
 
 Install dependecies
 
-```npm install```
+`npm install`
 
 Run mode development
 
-```npm run dev```
+`npm run dev`
