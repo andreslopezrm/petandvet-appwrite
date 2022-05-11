@@ -32,9 +32,9 @@ Pet and Vet is a project for the Hackaton AppWrite
 
 ![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kfcy51zzmcx28uekqlsv.png)
 
-![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z6pkxsyltnrx3gj2bjo0.png)
-
 ![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bcl9bsu6jnd5awejy2qv.png)
+
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z6pkxsyltnrx3gj2bjo0.png)
 
 ![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ul4sj8zuhu8iq87voehk.png)
 
