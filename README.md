@@ -20,23 +20,25 @@ Pet and Vet is a project for the Hackaton AppWrite
 
 ## Presentation
 
-![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--wmukVTOj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fxgd9sozubrqui5q5apa.png)
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l3lhm2whtqinm32cm231.png)
 
-![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--35Vb_sfh--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9w2rc0tv4pbsvntunfq8.png)
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gm94zoj0xir711fhmm1e.png)
 
-![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--b93NX5IS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/arjb0rqrpiijbu2jdq85.png)
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q6yamz1axq5aqo8vpwy3.png)
 
-![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--_v2fkCsV--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6bgl3xwp8iktdmjelosz.png)
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nnfzi0zuvdj97ctfxk0v.png)
 
-![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--rmmxrif---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6zqxthzrlp9dg91ym3gt.png)
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/d5g49k3jw0k1s2p4u72n.png)
 
-![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--JZT7ovvt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4h0e0uzfkltrr80fxaxp.png)
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kfcy51zzmcx28uekqlsv.png)
 
-![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--VedSWq-A--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jie9dco17zogrh841bsb.png)
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z6pkxsyltnrx3gj2bjo0.png)
 
-![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--jqgAXGQv--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xzwvshps6e0dpoqwhclo.png)
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bcl9bsu6jnd5awejy2qv.png)
 
-![pet and vet](https://res.cloudinary.com/practicaldev/image/fetch/s--SEcTSv__--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/r4zsy079o3ks48u4s3xn.png)
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ul4sj8zuhu8iq87voehk.png)
+
+![petandvet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fjcmwygj8ukoir12hiia.png)
 
 ## Svelte Docs
 
